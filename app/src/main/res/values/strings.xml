@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">PBL6</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="sign_up_for_an_account">Sign Up for an Account</string>
+    <string name="sign_up_with_google">Sign Up with Google</string>
+    <string name="or">or</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="example_email">example@gmail.com</string>
+    <string name="password_placeholder">6+ strong character</string>
+    <string name="create_account">Create account</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="error_invalid_email">Invalid email, please type a valid email address.</string>
+    <string name="error_invalid_password">Password must meets required constrains.</string>
+    <string name="sign_up">Sign up</string>
+    <string name="have_not_had_any_account">Haven\'t had any account?</string>
+    <string name="email_or_password_incorrect">Email and/or password was incorrect.</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="enter_registered_email_request">Enter your registered email below to receive password reset instruction</string>
+    <string name="send">Send</string>
+    <string name="remember_password">Remember password?</string>
+    <string name="verify_your_email">Verify your email</string>
+    <string name="enter_otp_request">Please enter the 4 digits code sent to</string>
+    <string name="retype_password">Re-type password</string>
+    <string name="submit">Submit</string>
+    <string name="did_not_receive_the_code">Didn\'t receive the code?</string>
+    <string name="resend">Resend</string>
+    <string name="set_new_password">Set new password</string>
+    <string name="strong_password_recommendation">A strong password hepls prevent unauthorized access to your new account.</string>
+    <string name="confirm">Confirm</string>
+    <string name="new_password">New password</string>
 </resources>
