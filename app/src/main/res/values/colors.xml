@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFFF0000</color>
+    <color name="red_error">#FFF27166</color>
+    <color name="selected_keppel_blue">#54B498</color>
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="box_outline_color">#FFA3A3A3</color>
+    <color name="base_bg_color">#FFFCFCFC</color>
+    <color name="yellow_button_color">#FFFDCE14</color>
+    <color name="click_white_ripple_color">#FFEEF7F4</color>
+
+    <color name="text_and_common_logo_color">#FF3D3B39</color>
+    <color name="text_light_black_color">#FF686A70</color>
+    <color name="text_dim_color">#FFC9CAD1</color>
+    <color name="text_clickable_color">#FF54B498</color>
 </resources>

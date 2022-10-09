@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_bg_color"
+    android:fitsSystemWindows="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:background="@drawable/background_forms"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp">
+
+            <ImageButton
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@null"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:padding="7dp"
+                android:src="@drawable/button_close"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <TextView
+                android:id="@+id/tv_verify_your_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_medium"
+                android:text="@string/verify_your_email"
+                android:textColor="@color/text_and_common_logo_color"
+                android:textSize="26sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_enter_registered_email"
+                app:layout_constraintEnd_toEndOf="@id/tv_enter_registered_email"
+                app:layout_constraintStart_toStartOf="@id/tv_enter_registered_email"
+                app:layout_constraintTop_toBottomOf="@id/btn_close"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/tv_enter_registered_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/rubik_regular"
+                android:includeFontPadding="false"
+                android:paddingHorizontal="15dp"
+                android:text="@string/enter_otp_request"
+                android:textAlignment="center"
+                android:textColor="@color/text_light_black_color"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_verify_your_email"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/rubik_regular"
+                android:includeFontPadding="false"
+                android:textAlignment="center"
+                android:textColor="@color/text_light_black_color"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/iv_verify_email"
+                app:layout_constraintEnd_toEndOf="@id/tv_enter_registered_email"
+                app:layout_constraintStart_toStartOf="@id/tv_enter_registered_email"
+                app:layout_constraintTop_toBottomOf="@id/tv_enter_registered_email"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <ImageView
+                android:id="@+id/iv_verify_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/image_verify_email"
+                app:layout_constraintBottom_toTopOf="@id/pv_enter_pin"
+                app:layout_constraintEnd_toEndOf="@id/tv_enter_registered_email"
+                app:layout_constraintStart_toStartOf="@id/tv_enter_registered_email"
+                app:layout_constraintTop_toBottomOf="@id/tv_email"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:contentDescription="@null" />
+
+            <com.chaos.view.PinView
+                android:id="@+id/pv_enter_pin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:cursorVisible="true"
+                android:fontFamily="@font/rubik_medium"
+                android:inputType="number"
+                android:textSize="18sp"
+                android:textColor="@color/text_and_common_logo_color"
+                style="@style/PinWidget.PinView"
+                app:itemCount="4"
+                app:itemSpacing="28dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_submit"
+                app:layout_constraintEnd_toEndOf="@id/tv_enter_registered_email"
+                app:layout_constraintStart_toStartOf="@id/tv_enter_registered_email"
+                app:layout_constraintTop_toBottomOf="@id/iv_verify_email"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:lineColor="@color/box_outline_color"
+                app:lineWidth="2dp"
+                app:viewType="line" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/button_and_textbox_height"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/yellow_button_color"
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="center"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="@string/submit"
+                android:textAllCaps="false"
+                android:textColor="@color/text_and_common_logo_color"
+                android:textSize="16sp"
+                app:cornerRadius="@dimen/button_and_textbox_radius"
+                app:elevation="2dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_did_not_receive"
+                app:layout_constraintEnd_toEndOf="@id/tv_enter_registered_email"
+                app:layout_constraintStart_toStartOf="@id/tv_enter_registered_email"
+                app:layout_constraintTop_toBottomOf="@id/pv_enter_pin"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:strokeWidth="0dp" />
+
+            <TextView
+                android:id="@+id/tv_did_not_receive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/rubik_regular"
+                android:text="@string/did_not_receive_the_code"
+                android:textColor="@color/text_and_common_logo_color"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_resend"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@id/btn_submit"
+                app:layout_constraintTop_toBottomOf="@id/btn_submit"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/tv_resend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/rubik_medium"
+                android:padding="5dp"
+                android:text="@string/resend"
+                android:textColor="@color/text_clickable_color"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_did_not_receive"
+                app:layout_constraintEnd_toEndOf="@id/btn_submit"
+                app:layout_constraintStart_toEndOf="@id/tv_did_not_receive"
+                app:layout_constraintTop_toTopOf="@id/tv_did_not_receive" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
