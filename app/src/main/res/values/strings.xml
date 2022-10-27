@@ -33,4 +33,13 @@
     <string name="strong_password_recommendation">A strong password hepls prevent unauthorized access to your new account.</string>
     <string name="confirm">Confirm</string>
     <string name="new_password">New password</string>
+    <string name="search">Search</string>
+    <string name="recent_videos">Recent Videos</string>
+    <string name="popular_videos">Popular Videos</string>
+    <string name="views">Views</string>
+    <string name="likes">Likes</string>
+    <string name="comments">Comments</string>
+    <string name="watch_now">Watch now</string>
+    <string name="menu">Menu</string>
+    <string name="home_page">Home Page</string>
 </resources>

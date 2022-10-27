@@ -50,4 +50,6 @@ dependencies {
 
     // OTP view
     implementation 'io.github.chaosleung:pinview:1.4.4'
+    //Circle image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

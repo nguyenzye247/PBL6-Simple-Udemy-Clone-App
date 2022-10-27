@@ -5,7 +5,7 @@ import com.pbl.mobile.R
 import com.pbl.mobile.base.BaseActivity
 import com.pbl.mobile.common.EMPTY_SPACE
 import com.pbl.mobile.databinding.ActivitySignInBinding
-import com.pbl.mobile.ui.ForgotPasswordActivity
+import com.pbl.mobile.ui.forgot_password.ForgotPasswordActivity
 import com.pbl.mobile.ui.signup.SignUpActivity
 import com.pbl.mobile.util.VersionChecker
 

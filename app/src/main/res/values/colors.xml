@@ -20,5 +20,12 @@
     <color name="text_and_common_logo_color">#FF3D3B39</color>
     <color name="text_light_black_color">#FF686A70</color>
     <color name="text_dim_color">#FFC9CAD1</color>
+    <color name="text_dim2_color">#FFA3A3A3</color>
+    <color name="text_dim3_color">#FF686A70</color>
     <color name="text_clickable_color">#FF54B498</color>
+
+    <color name="icon_play_video_tint">#FF3D3B39</color>
+
+    <color name="background_search_box">#FFF8F8F8</color>
+    <color name="background_recent_video_card">#FFF6F6F4</color>
 </resources>
