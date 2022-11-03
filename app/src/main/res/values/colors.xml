@@ -15,6 +15,7 @@
     <color name="box_outline_color">#FFA3A3A3</color>
     <color name="base_bg_color">#FFFCFCFC</color>
     <color name="yellow_button_color">#FFFDCE14</color>
+    <color name="pressed_yellow_button_color">#D6B327</color>
     <color name="click_white_ripple_color">#FFEEF7F4</color>
 
     <color name="text_and_common_logo_color">#FF3D3B39</color>
