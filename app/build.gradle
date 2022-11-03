@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'com.google.gms.google-services'
+    id 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 }
 
 android {
@@ -51,6 +53,10 @@ dependencies {
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:30.4.1')
+    implementation 'com.google.firebase:firebase-messaging:23.0.8'
+
+    //OneSignal
+    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
 
     //RxJava3
     implementation("io.reactivex.rxjava3:rxjava:3.0.0")
