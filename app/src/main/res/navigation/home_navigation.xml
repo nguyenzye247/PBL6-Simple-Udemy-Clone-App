@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@+id/nav_home">
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.pbl.mobile.ui.home.fragment.FragmentHomePage"
+        android:label="@string/home_page"
+        tools:layout="@layout/fragment_home_page" />
+
+    <fragment
+        android:id="@+id/nav_popular_course"
+        android:name="com.pbl.mobile.ui.home.fragment.FragmentPopular"
+        android:label="@string/popular_videos"
+        tools:layout="@layout/fragment_popular" />
+
+    <fragment
+        android:id="@+id/nav_trendy"
+        android:name="com.pbl.mobile.ui.home.fragment.FragmentTrending"
+        android:label="@string/trendy"
+        tools:layout="@layout/fragment_trending" />
+</navigation>

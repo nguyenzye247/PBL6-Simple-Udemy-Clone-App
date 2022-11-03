@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:state_pressed="true">
+
+    </item>
+    <item android:state_focused="true">
+        <shape android:layout_width="match_parent">
+            <corners android:radius="10dp" />
+            <solid android:color="@color/yellow_button_color" />
+        </shape>
+    </item>
+    <item android:state_focused="false">
+
+    </item>
+</selector>

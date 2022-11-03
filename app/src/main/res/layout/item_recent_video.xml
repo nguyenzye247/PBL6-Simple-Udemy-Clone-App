@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    app:strokeColor="@color/background_recent_video_card"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_recent_video_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="Python, Hello World!"
+            android:textColor="@color/text_and_common_logo_color"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_recent_video_description"
+            app:layout_constraintEnd_toEndOf="@id/gl_recent_video_card"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_recent_video_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:maxLines="2"
+            android:text="Hello world program writen in python with special instructions"
+            android:textColor="@color/text_dim3_color"
+            android:textSize="12sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@id/iv_recent_video_views"
+            app:layout_constraintEnd_toStartOf="@id/gl_recent_video_card"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/tv_recent_video_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_recent_video_title"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/iv_recent_video_views"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/rubik_regular"
+            android:paddingVertical="4dp"
+            android:text="@string/views"
+            android:textColor="@color/text_dim2_color"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_play_recent_video"
+            app:layout_constraintEnd_toStartOf="@id/tv_recent_video_views_count"
+            app:layout_constraintStart_toStartOf="@id/tv_recent_video_description"
+            app:layout_constraintTop_toBottomOf="@id/tv_recent_video_description"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/tv_recent_video_views_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/rubik_medium"
+            android:paddingVertical="4dp"
+            android:text="36,567"
+            android:textColor="@color/text_and_common_logo_color"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_recent_video_views"
+            app:layout_constraintStart_toEndOf="@id/iv_recent_video_views"
+            app:layout_constraintTop_toTopOf="@id/iv_recent_video_views" />
+
+        <TextView
+            android:id="@+id/tv_recent_video_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/rubik_regular"
+            android:paddingVertical="4dp"
+            android:text="@string/likes"
+            android:textColor="@color/text_dim2_color"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_recent_video_views_count"
+            app:layout_constraintEnd_toStartOf="@id/tv_recent_video_likes_count"
+            app:layout_constraintStart_toEndOf="@id/tv_recent_video_views_count"
+            app:layout_constraintTop_toTopOf="@id/tv_recent_video_views_count" />
+
+        <TextView
+            android:id="@+id/tv_recent_video_likes_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/rubik_medium"
+            android:paddingVertical="4dp"
+            android:text="2,614"
+            android:textColor="@color/text_and_common_logo_color"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_recent_video_likes"
+            app:layout_constraintStart_toEndOf="@id/tv_recent_video_likes"
+            app:layout_constraintTop_toTopOf="@id/tv_recent_video_likes" />
+
+        <TextView
+            android:id="@+id/tv_recent_video_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:fontFamily="@font/rubik_regular"
+            android:paddingVertical="4dp"
+            android:text="@string/comments"
+            android:textColor="@color/text_dim2_color"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_recent_video_likes_count"
+            app:layout_constraintEnd_toStartOf="@id/tv_recent_video_comments_count"
+            app:layout_constraintStart_toEndOf="@id/tv_recent_video_likes_count"
+            app:layout_constraintTop_toTopOf="@id/tv_recent_video_likes_count" />
+
+        <TextView
+            android:id="@+id/tv_recent_video_comments_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/rubik_medium"
+            android:paddingVertical="4dp"
+            android:text="589"
+            android:textColor="@color/text_and_common_logo_color"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_recent_video_comments"
+            app:layout_constraintStart_toEndOf="@id/tv_recent_video_comments"
+            app:layout_constraintTop_toTopOf="@id/tv_recent_video_comments" />
+
+        <Button
+            android:id="@+id/btn_play_recent_video"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/yellow_button_color"
+            android:fontFamily="@font/rubik_regular"
+            android:text="@string/watch_now"
+            android:textAllCaps="false"
+            android:textColor="@color/text_and_common_logo_color"
+            android:textSize="12sp"
+            app:cornerRadius="26dp"
+            app:icon="@drawable/ic_play_video"
+            app:iconTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/gl_recent_video_card"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/iv_recent_video_views"
+            app:layout_constraintTop_toBottomOf="@id/iv_recent_video_views" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_recent_video_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <ImageView
+            android:id="@+id/iv_recent_video_person"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="4dp"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/image_recent_video_person"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="110:126"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/gl_recent_video_card"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,4 +1,4 @@
-package com.pbl.mobile.ui
+package com.pbl.mobile.ui.forgot_password
 
 import android.content.Intent
 import com.pbl.mobile.base.BaseActivity
