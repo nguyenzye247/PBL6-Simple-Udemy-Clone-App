@@ -3,20 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PBL6"
-        tools:targetApi="31">
+        tools:targetApi="33">
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,18 +44,18 @@
             android:exported="false">
 
         </activity>
-        <activity android:name=".ui.forgot_password.VerifyEmailActivity"
+        <activity android:name=".ui.verify_email.VerifyEmailActivity"
             android:exported="false">
 
         </activity>
-        <activity android:name=".ui.forgot_password.NewPasswordActivity"
+        <activity android:name=".ui.new_password.NewPasswordActivity"
             android:exported="false">
 
         </activity>
-<!--        <activity android:name=".ui.home.HomeActivity"-->
-<!--            android:exported="false">-->
+        <activity android:name=".ui.home.HomeActivity"
+            android:exported="false">
 
-<!--        </activity>-->
+        </activity>
     </application>
 
 </manifest>

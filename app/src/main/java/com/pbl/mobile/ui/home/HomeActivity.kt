@@ -2,7 +2,9 @@ package com.pbl.mobile.ui.home
 
 import android.util.Log
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -10,11 +12,13 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.pbl.mobile.R
 import com.pbl.mobile.base.BaseActivity
+import com.pbl.mobile.base.BaseInput
+import com.pbl.mobile.base.ViewModelProviderFactory
 import com.pbl.mobile.databinding.ActivityHomeBinding
 import com.pbl.mobile.databinding.HeaderHomeNavBinding
 
 
-class HomeActivity : BaseActivity<ActivityHomeBinding>() {
+class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
     private val navController by lazy { findNavController(R.id.nav_host_fragment_home_container) }
 
     private val navHeaderBinding by lazy {
@@ -26,6 +30,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
     }
     private lateinit var appBarConfiguration: AppBarConfiguration
     override fun getLazyBinding() = lazy { ActivityHomeBinding.inflate(layoutInflater) }
+
+    override fun getLazyViewModel() = viewModels<HomeViewModel> {
+        ViewModelProviderFactory(BaseInput.MainInput(application))
+    }
 
     override fun setupInit() {
         setUpNavigationController()

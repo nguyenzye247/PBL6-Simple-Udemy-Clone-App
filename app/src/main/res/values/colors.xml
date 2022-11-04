@@ -29,4 +29,5 @@
 
     <color name="background_search_box">#FFF8F8F8</color>
     <color name="background_recent_video_card">#FFF6F6F4</color>
+    <color name="background_progress_bar">#25A5A5A5</color>
 </resources>
