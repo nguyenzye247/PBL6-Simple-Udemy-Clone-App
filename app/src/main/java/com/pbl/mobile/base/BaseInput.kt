@@ -6,6 +6,6 @@ sealed class BaseInput {
     object NoInput : BaseInput()
 
     data class MainInput(
-        val application: Application?
+        val application: Application
     ) : BaseInput()
 }

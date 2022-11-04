@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">PBL6</string>
-    <string name="first_name">First name</string>
-    <string name="last_name">Last name</string>
+    <string name="full_name">Full name</string>
     <string name="sign_up_for_an_account">Sign Up for an Account</string>
     <string name="sign_up_with_google">Sign Up with Google</string>
     <string name="or">or</string>
@@ -47,4 +46,5 @@
     <string name="trendy">Trendy</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="sign_in_success">Sign in Success!</string>
 </resources>

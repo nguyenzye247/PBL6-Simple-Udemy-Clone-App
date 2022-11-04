@@ -7,6 +7,25 @@
     android:background="@color/base_bg_color"
     android:fitsSystemWindows="true">
 
+    <FrameLayout
+        android:id="@+id/progress_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_progress_bar"
+        android:visibility="visible">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </FrameLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -247,6 +266,7 @@
                 android:layout_height="@dimen/button_and_textbox_height"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/yellow_button_color"
+                android:elevation="5dp"
                 android:fontFamily="@font/rubik_medium"
                 android:gravity="center"
                 android:insetTop="0dp"

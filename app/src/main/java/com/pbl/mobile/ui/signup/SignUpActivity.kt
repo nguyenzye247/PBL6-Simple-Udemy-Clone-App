@@ -3,19 +3,26 @@ package com.pbl.mobile.ui.signup
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.activity.viewModels
 import androidx.core.view.isEmpty
 import androidx.core.widget.addTextChangedListener
 import com.pbl.mobile.R
 import com.pbl.mobile.base.BaseActivity
+import com.pbl.mobile.base.BaseInput
+import com.pbl.mobile.base.ViewModelProviderFactory
 import com.pbl.mobile.databinding.ActivitySignUpBinding
 import com.pbl.mobile.extension.isEmailValid
 import com.pbl.mobile.implement.TextChangeListner
 import com.pbl.mobile.ui.signin.SignInActivity
 import com.pbl.mobile.util.VersionChecker.isAndroid_M_AndAbove
 
-class SignUpActivity : BaseActivity<ActivitySignUpBinding>() {
+class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
 
     override fun getLazyBinding() = lazy { ActivitySignUpBinding.inflate(layoutInflater) }
+
+    override fun getLazyViewModel() = viewModels<SignUpViewModel> {
+        ViewModelProviderFactory(BaseInput.NoInput)
+    }
 
     override fun setupInit() {
         initClickEvent()
@@ -50,8 +57,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>() {
     }
 
     private fun isAllInputNonEmpty(): Boolean{
-        return binding.txtFirstName.isEmpty() &&
-                binding.txtLastName.isEmpty() &&
+        return binding.txtFullName.isEmpty() &&
                 binding.txtEmail.isEmpty() &&
                 binding.txtPassword.isEmpty() &&
                 binding.txtRepeatPassword.isEmpty()
