@@ -11,6 +11,9 @@ import com.pbl.mobile.base.BaseInput
 import com.pbl.mobile.base.ViewModelProviderFactory
 import com.pbl.mobile.common.EMPTY_SPACE
 import com.pbl.mobile.databinding.ActivitySignInBinding
+import com.pbl.mobile.extension.isEmailValid
+import com.pbl.mobile.extension.setError
+import com.pbl.mobile.extension.showToast
 import com.pbl.mobile.ui.forgot_password.ForgotPasswordActivity
 import com.pbl.mobile.ui.signup.SignUpActivity
 import com.pbl.mobile.util.VersionChecker
@@ -43,7 +46,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
 
     private fun initClickEvent() {
         binding.btnSignIn.setOnClickListener {
-            signIn()
+            executeSignInButtonClick()
         }
         binding.tvForgotPassword.setOnClickListener {
             forgotPassword()
@@ -65,6 +68,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                     response.data?.let { viewModel.progressLogin(it) }
                 }
                 is BaseResponse.Error -> {
+                    response.msg?.let { this@SignInActivity.showToast(it) }
                     stopLoading()
                     setNonExistedAccountAppearance()
                     showError()
@@ -77,6 +81,42 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
         val emailInputText = binding.txtEmail.editText?.text.toString()
         val passwordInputText = binding.txtPassword.editText?.text.toString()
         viewModel.login(emailInputText, passwordInputText)
+    }
+
+    private fun executeSignInButtonClick() {
+        if (validateEmailInput())
+            signIn()
+    }
+
+    private fun validateEmailInput(): Boolean {
+        val emailInputText = binding.txtEmail.editText?.text?.toString()
+        if (emailInputText.isEmailValid()) {
+            setValidEmailAppearance()
+            return true
+        } else
+            setInvalidEmailAppearance()
+        return false
+    }
+
+    private fun setValidEmailAppearance() {
+        binding.txtEmail.setError(false, null)
+        if (VersionChecker.isAndroid_M_AndAbove())
+            binding.txtEmail.editText?.setTextColor(
+                resources.getColor(
+                    R.color.text_and_common_logo_color,
+                    theme
+                )
+            )
+        else
+            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.text_and_common_logo_color))
+    }
+
+    private fun setInvalidEmailAppearance() {
+        binding.txtEmail.setError(true, getString(R.string.error_invalid_email))
+        if (VersionChecker.isAndroid_M_AndAbove())
+            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.red_error, theme))
+        else
+            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.red_error))
     }
 
     private fun setExistedAccountAppearance() {

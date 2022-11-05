@@ -7,16 +7,6 @@
     android:background="@color/base_bg_color"
     android:fitsSystemWindows="true">
 
-    <ProgressBar
-        android:id="@+id/progress_sign_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -173,6 +163,8 @@
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxStrokeColor="@color/selected_keppel_blue"
+                    app:errorIconDrawable="@null"
+                    app:errorTextColor="@color/red_error"
                     app:expandedHintEnabled="true"
                     app:hintAnimationEnabled="true"
                     app:hintTextColor="@color/selected_keppel_blue"
@@ -247,6 +239,8 @@
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxStrokeColor="@color/selected_keppel_blue"
                     app:endIconMode="password_toggle"
+                    app:errorIconDrawable="@null"
+                    app:errorTextColor="@color/red_error"
                     app:expandedHintEnabled="true"
                     app:hintAnimationEnabled="true"
                     app:hintTextColor="@color/selected_keppel_blue"
@@ -285,6 +279,8 @@
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
                     app:boxStrokeColor="@color/selected_keppel_blue"
+                    app:errorIconDrawable="@null"
+                    app:errorTextColor="@color/red_error"
                     app:expandedHintEnabled="true"
                     app:hintAnimationEnabled="true"
                     app:hintTextColor="@color/selected_keppel_blue"
@@ -375,5 +371,24 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/progress_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_progress_bar"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

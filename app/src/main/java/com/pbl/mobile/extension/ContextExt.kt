@@ -18,5 +18,5 @@ fun Context?.showToast(@StringRes mes: Int, duration: Int = Toast.LENGTH_SHORT) 
 }
 
 fun Context.getBaseConfig() : BaseConfig {
-    return  BaseConfig.newInstance(this)
+    return BaseConfig.newInstance(this)
 }

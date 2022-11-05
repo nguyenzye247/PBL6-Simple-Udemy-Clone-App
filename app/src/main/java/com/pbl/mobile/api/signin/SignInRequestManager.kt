@@ -6,7 +6,11 @@ import com.pbl.mobile.model.remote.signin.SignInResponse
 import io.reactivex.rxjava3.core.Single
 
 class SignInRequestManager {
-    fun login(application: Application, token: String, request: SignInRequest): Single<SignInResponse> {
-        return SignInAPI.getApi(application).login(token, request)
+    fun login(
+        application: Application,
+        token: String,
+        request: SignInRequest
+    ): Single<SignInResponse> {
+        return SignInApi.getApi(application).login(token, request)
     }
 }

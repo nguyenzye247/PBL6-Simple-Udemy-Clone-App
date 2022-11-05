@@ -10,13 +10,16 @@ import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
 
-interface SignInAPI {
+interface SignInApi {
     companion object {
-        fun getApi(application: Application): SignInAPI {
-            return BaseRequestManager.getInstance(application).myRetrofit.create(SignInAPI::class.java)
+        fun getApi(application: Application): SignInApi {
+            return BaseRequestManager.getInstance(application).myRetrofit.create(SignInApi::class.java)
         }
     }
 
     @POST(SIGN_IN_URL)
-    fun login(@Header("Authorization") token: String ,@Body request: SignInRequest): Single<SignInResponse>
+    fun login(
+        @Header("Authorization") token: String,
+        @Body request: SignInRequest
+    ): Single<SignInResponse>
 }

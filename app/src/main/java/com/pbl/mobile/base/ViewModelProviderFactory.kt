@@ -20,7 +20,7 @@ class ViewModelProviderFactory(private val input: BaseInput) : ViewModelProvider
                 return SignInViewModel(input as BaseInput.MainInput) as T
             }
             modelClass.isAssignableFrom(SignUpViewModel::class.java) -> {
-                return SignUpViewModel(input as BaseInput.NoInput) as T
+                return SignUpViewModel(input as BaseInput.MainInput) as T
             }
             modelClass.isAssignableFrom(ForgotPasswordViewModel::class.java) -> {
                 return ForgotPasswordViewModel(input as BaseInput.NoInput) as T
