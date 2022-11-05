@@ -47,4 +47,7 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="sign_in_success">Sign in Success!</string>
+    <string name="sign_up_success">Sign up successful</string>
+    <string name="field_cant_not_be_empty">Field can not be empty</string>
+    <string name="confirm_password_error">Password and confirm password must be matched</string>
 </resources>

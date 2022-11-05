@@ -2,6 +2,8 @@ package com.pbl.mobile
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.onesignal.OneSignal
 import com.pbl.mobile.common.ONESIGNAL_APP_ID
@@ -15,13 +17,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
-        binding.button.setOnClickListener {
-            val intent = Intent(this, SignInActivity::class.java)
-            startActivity(intent)
-        }
-
         onesignalSetup()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            val intent = Intent(this@MainActivity, SignInActivity::class.java)
+            startActivity(intent)
+        }, 3000)
     }
 
     private fun onesignalSetup(){
