@@ -16,7 +16,7 @@
         android:textSize="14sp"
         android:textStyle="italic"
         android:fontFamily="@font/rubik_medium"
-        android:textColor="@color/text_clickable_color"
+        android:textColor="@color/blue_light_100"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

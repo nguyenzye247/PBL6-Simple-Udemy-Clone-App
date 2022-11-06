@@ -94,4 +94,8 @@ dependencies {
     implementation 'io.github.chaosleung:pinview:1.4.4'
     //Circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //Steps view
+    implementation 'com.github.shuhart:stepview:1.5.1'
+    //Rich text edit
+    implementation 'jp.wasabeef:richeditor-android:2.0.0'
 }

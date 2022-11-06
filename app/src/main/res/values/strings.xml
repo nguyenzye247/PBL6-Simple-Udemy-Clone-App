@@ -50,4 +50,21 @@
     <string name="sign_up_success">Sign up successful</string>
     <string name="field_cant_not_be_empty">Field can not be empty</string>
     <string name="confirm_password_error">Password and confirm password must be matched</string>
+    <string name="upload_information">Upload Information</string>
+    <string name="upload_sections">Upload Sections</string>
+    <string name="enter_title_here">Enter title here</string>
+    <string name="title">Title</string>
+    <string name="upload_your">Upload Your</string>
+    <string name="thumbnail">Thumbnail</string>
+    <string name="support_format">Support: MP4, MOV, WMV</string>
+    <string name="price">Price</string>
+    <string name="category">Category</string>
+    <string name="enter_price_here">Enter price here</string>
+    <string name="select_category">Select category</string>
+    <string name="hashtag">Hashtag</string>
+    <string name="select_hashtag">Select hashtag</string>
+    <string name="new_lecture">New Lecture</string>
+    <string name="lecture_title">Lecture Title</string>
+    <string name="enter_lecture_title">Enter lecture title here</string>
+    <string name="video">Video</string>
 </resources>

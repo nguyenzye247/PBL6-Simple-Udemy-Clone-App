@@ -21,4 +21,11 @@
         android:name="com.pbl.mobile.ui.home.fragment.FragmentTrending"
         android:label="@string/trendy"
         tools:layout="@layout/fragment_trending" />
+
+    <fragment
+        android:id="@+id/nav_upload"
+        android:name="com.pbl.mobile.ui.home.fragment.upload.FragmentUpload"
+        android:label="@string/upload"
+        tools:layout="@layout/fragment_upload">
+    </fragment>
 </navigation>
