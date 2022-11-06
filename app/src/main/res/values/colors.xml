@@ -8,26 +8,28 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FFFF0000</color>
-    <color name="red_error">#FFF27166</color>
-    <color name="selected_keppel_blue">#54B498</color>
     <color name="transparent">#00FFFFFF</color>
 
-    <color name="box_outline_color">#FFA3A3A3</color>
-    <color name="base_bg_color">#FFFCFCFC</color>
-    <color name="yellow_button_color">#FFFDCE14</color>
-    <color name="pressed_yellow_button_color">#D6B327</color>
-    <color name="click_white_ripple_color">#FFEEF7F4</color>
+    <color name="gray_100">#FFC9CAD1</color>
+    <color name="gray_200">#FF686A70</color>
+    <color name="gray_300">#FFA3A3A3</color>
+    <color name="gray_400">#FF686A70</color>
+    <color name="gray_500">#FFF6F6F4</color>
 
-    <color name="text_and_common_logo_color">#FF3D3B39</color>
-    <color name="text_light_black_color">#FF686A70</color>
-    <color name="text_dim_color">#FFC9CAD1</color>
-    <color name="text_dim2_color">#FFA3A3A3</color>
-    <color name="text_dim3_color">#FF686A70</color>
-    <color name="text_clickable_color">#FF54B498</color>
+    <color name="white_background">#FFFCFCFC</color>
+    <color name="white_ripple">#FFEEF7F4</color>
+    <color name="white_100">#FFF8F8F8</color>
+    <color name="white_200">#FFF6F6F4</color>
 
-    <color name="icon_play_video_tint">#FF3D3B39</color>
+    <color name="red_100">#FFF27166</color>
+    <color name="red_200">#FF9B2D2D</color>
 
-    <color name="background_search_box">#FFF8F8F8</color>
-    <color name="background_recent_video_card">#FFF6F6F4</color>
-    <color name="background_progress_bar">#25A5A5A5</color>
+    <color name="yellow_100">#FFFDCE14</color>
+    <color name="yellow_200">#D6B327</color>
+
+    <color name="black_100">#FF3D3B39</color>
+    <color name="black_200">#25A5A5A5</color>
+
+    <color name="blue_light_100">#FF54B498</color>
+
 </resources>

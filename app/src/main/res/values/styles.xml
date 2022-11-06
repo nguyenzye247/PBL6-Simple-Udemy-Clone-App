@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="MyZeroSizeTextAppearance">
         <item name="android:textSize">0sp</item>
     </style>
+
     <style name="MyNavigationMenuTextAppearance" parent="TextAppearance.AppCompat">
         <item name="textAllCaps">false</item>
         <item name="fontFamily">@font/rubik_medium</item>
         <item name="android:textSize">16sp</item>
     </style>
+
     <style name="TextFontRubikRegular">
         <item name="fontFamily">@font/rubik_regular</item>
     </style>
+
     <style name="TextFontRubikMedium">
         <item name="fontFamily">@font/rubik_medium</item>
+    </style>
+
+    <style name="TextFontRubikLight">
+        <item name="fontFamily">@font/rubik_light</item>
+    </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/gray_300</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
     </style>
 </resources>

@@ -27,7 +27,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
     }
 
     override fun setupInit() {
-//        loginIfExisted()
+        loginIfExisted()
         initView()
         initClickEvent()
         observe()
@@ -103,20 +103,20 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
         if (VersionChecker.isAndroid_M_AndAbove())
             binding.txtEmail.editText?.setTextColor(
                 resources.getColor(
-                    R.color.text_and_common_logo_color,
+                    R.color.black_100,
                     theme
                 )
             )
         else
-            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.text_and_common_logo_color))
+            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.black_100))
     }
 
     private fun setInvalidEmailAppearance() {
         binding.txtEmail.setError(true, getString(R.string.error_invalid_email))
         if (VersionChecker.isAndroid_M_AndAbove())
-            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.red_error, theme))
+            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.red_100, theme))
         else
-            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.red_error))
+            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.red_100))
     }
 
     private fun setExistedAccountAppearance() {
@@ -128,19 +128,19 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
         if (VersionChecker.isAndroid_M_AndAbove()) {
             binding.txtEmail.editText?.setTextColor(
                 resources.getColor(
-                    R.color.text_and_common_logo_color,
+                    R.color.black_100,
                     theme
                 )
             )
             binding.txtPassword.editText?.setTextColor(
                 resources.getColor(
-                    R.color.text_and_common_logo_color,
+                    R.color.black_100,
                     theme
                 )
             )
         } else {
-            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.text_and_common_logo_color))
-            binding.txtPassword.editText?.setTextColor(resources.getColor(R.color.text_and_common_logo_color))
+            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.black_100))
+            binding.txtPassword.editText?.setTextColor(resources.getColor(R.color.black_100))
         }
     }
 
@@ -151,11 +151,11 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
         binding.txtPassword.error = getString(R.string.email_or_password_incorrect)
 
         if (VersionChecker.isAndroid_M_AndAbove()) {
-            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.red_error, theme))
-            binding.txtPassword.editText?.setTextColor(resources.getColor(R.color.red_error, theme))
+            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.red_100, theme))
+            binding.txtPassword.editText?.setTextColor(resources.getColor(R.color.red_100, theme))
         } else {
-            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.red_error))
-            binding.txtPassword.editText?.setTextColor(resources.getColor(R.color.red_error))
+            binding.txtEmail.editText?.setTextColor(resources.getColor(R.color.red_100))
+            binding.txtPassword.editText?.setTextColor(resources.getColor(R.color.red_100))
         }
     }
 

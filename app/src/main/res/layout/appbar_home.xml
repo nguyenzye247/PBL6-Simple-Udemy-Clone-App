@@ -82,7 +82,7 @@
             android:focusable="true"
             android:gravity="center_vertical"
             android:hint="@string/search"
-            android:textColorHint="@color/box_outline_color"
+            android:textColorHint="@color/gray_300"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/iv_search"
