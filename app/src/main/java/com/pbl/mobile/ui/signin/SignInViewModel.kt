@@ -15,7 +15,7 @@ import com.pbl.mobile.extension.observeOnUiThread
 import com.pbl.mobile.extension.showToast
 import com.pbl.mobile.model.remote.signin.SignInRequest
 import com.pbl.mobile.model.remote.signin.SignInResponse
-import com.pbl.mobile.ui.home.HomeActivity
+import com.pbl.mobile.ui.main.HomeMainActivity
 import com.pbl.mobile.util.NetworkUtil
 import okhttp3.ResponseBody
 import retrofit2.HttpException
@@ -75,7 +75,7 @@ class SignInViewModel(input: BaseInput.MainInput) : BaseViewModel(input) {
 
     fun navigateToHome() {
         pApplication.let {
-            val intent = Intent(it, HomeActivity::class.java)
+            val intent = Intent(it, HomeMainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             it.startActivity(intent)
         }

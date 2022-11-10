@@ -14,11 +14,8 @@ import com.pbl.mobile.base.BaseViewModel
 import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.extension.observeOnUiThread
 import com.pbl.mobile.extension.showToast
-import com.pbl.mobile.model.remote.signin.SignInRequest
-import com.pbl.mobile.model.remote.signin.SignInResponse
 import com.pbl.mobile.model.remote.signup.SignUpRequest
 import com.pbl.mobile.model.remote.signup.SignUpResponse
-import com.pbl.mobile.ui.home.HomeActivity
 import com.pbl.mobile.ui.signin.SignInActivity
 
 class SignUpViewModel(input: BaseInput.MainInput) : BaseViewModel(input) {

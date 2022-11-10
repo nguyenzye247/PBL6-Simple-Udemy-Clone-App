@@ -3,7 +3,7 @@ package com.pbl.mobile.base
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.pbl.mobile.ui.forgot_password.ForgotPasswordViewModel
-import com.pbl.mobile.ui.home.HomeViewModel
+import com.pbl.mobile.ui.main.HomeMainViewModel
 import com.pbl.mobile.ui.new_password.NewPasswordViewModel
 import com.pbl.mobile.ui.signin.SignInViewModel
 import com.pbl.mobile.ui.signup.SignUpViewModel
@@ -13,8 +13,8 @@ class ViewModelProviderFactory(private val input: BaseInput) : ViewModelProvider
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         when {
-            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-                return HomeViewModel(input as BaseInput.MainInput) as T
+            modelClass.isAssignableFrom(HomeMainViewModel::class.java) -> {
+                return HomeMainViewModel(input as BaseInput.MainInput) as T
             }
             modelClass.isAssignableFrom(SignInViewModel::class.java) -> {
                 return SignInViewModel(input as BaseInput.MainInput) as T

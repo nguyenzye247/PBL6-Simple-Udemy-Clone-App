@@ -6,25 +6,19 @@
     app:startDestination="@+id/nav_home">
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.pbl.mobile.ui.home.fragment.FragmentHomePage"
+        android:name="com.pbl.mobile.ui.main.fragment.FragmentHome"
         android:label="@string/home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_popular_course"
-        android:name="com.pbl.mobile.ui.home.fragment.FragmentPopular"
+        android:name="com.pbl.mobile.ui.main.fragment.FragmentMyCourse"
         android:label="@string/popular_videos"
-        tools:layout="@layout/fragment_popular" />
-
-    <fragment
-        android:id="@+id/nav_trendy"
-        android:name="com.pbl.mobile.ui.home.fragment.FragmentTrending"
-        android:label="@string/trendy"
-        tools:layout="@layout/fragment_trending" />
+        tools:layout="@layout/fragment_my_course" />
 
     <fragment
         android:id="@+id/nav_upload"
-        android:name="com.pbl.mobile.ui.home.fragment.upload.FragmentUpload"
+        android:name="com.pbl.mobile.ui.upload.FragmentUpload"
         android:label="@string/upload"
         tools:layout="@layout/fragment_upload">
     </fragment>

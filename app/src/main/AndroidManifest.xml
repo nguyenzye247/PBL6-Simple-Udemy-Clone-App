@@ -52,7 +52,7 @@
             android:exported="false">
 
         </activity>
-        <activity android:name=".ui.home.HomeActivity"
+        <activity android:name=".ui.main.HomeMainActivity"
             android:exported="false">
 
         </activity>
