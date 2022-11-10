@@ -1,11 +1,11 @@
-package com.pbl.mobile.ui.home.fragment.upload.adapter
+package com.pbl.mobile.ui.upload.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.pbl.mobile.ui.home.fragment.upload.FragmentUploadInformation
-import com.pbl.mobile.ui.home.fragment.upload.FragmentUploadSection
+import com.pbl.mobile.ui.upload.FragmentUploadInformation
+import com.pbl.mobile.ui.upload.FragmentUploadSection
 
 class UploadAdapter(
     private val fragmentActivity: FragmentManager,

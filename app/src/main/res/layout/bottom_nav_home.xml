@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/white_100"
+        app:contentInsetStart="0dp"
+        app:fabAlignmentMode="center"
+        app:fabCradleMargin="8dp"
+        app:fabCradleRoundedCornerRadius="16dp"
+        app:fabCradleVerticalOffset="5dp"
+        app:hideOnScroll="true">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:elevation="0dp"
+            app:itemIconTint="@color/bottom_bar_item_color"
+            app:itemRippleColor="@color/yellow_300"
+            app:itemTextAppearanceActive="@style/BottomActiveNavTextAppearance"
+            app:itemTextAppearanceInactive="@style/BottomInactiveNavTextAppearance"
+            app:itemTextColor="@color/bottom_bar_item_color"
+            app:menu="@menu/menu_home_bottom" />
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/upload"
+        android:src="@drawable/ic_upload"
+        app:backgroundTint="@color/yellow_100"
+        app:elevation="7dp"
+        app:fabCustomSize="64dp"
+        app:layout_anchor="@id/bottom_bar_main"
+        app:rippleColor="@color/yellow_200"
+        app:tint="@color/white_300" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -67,4 +67,7 @@
     <string name="lecture_title">Lecture Title</string>
     <string name="enter_lecture_title">Enter lecture title here</string>
     <string name="video">Video</string>
+    <string name="my_courses">My Courses</string>
+    <string name="language">Language</string>
+    <string name="logo_description">Storytelling</string>
 </resources>

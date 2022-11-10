@@ -101,7 +101,7 @@
                 app:layout_constraintEnd_toEndOf="@id/tv_sign_up_for_account"
                 app:layout_constraintStart_toStartOf="@id/tv_sign_up_for_account"
                 app:layout_constraintTop_toBottomOf="@id/tv_sign_up_for_account"
-                app:rippleColor="@color/white_ripple"
+                app:rippleColor="@color/white_300"
                 app:strokeColor="@color/gray_300"
                 app:strokeWidth="1dp" />
 
