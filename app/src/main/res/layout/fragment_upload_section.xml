@@ -1,48 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_upload_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingHorizontal="12dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_add_section"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintBottom_toTopOf="@id/btn_publish_course"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/btn_add_section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button"
+        app:layout_constraintTop_toBottomOf="@id/rv_upload_section"
+        app:layout_constraintBottom_toTopOf="@id/btn_publish"
+        app:layout_constraintStart_toStartOf="@id/rv_upload_section"
+        android:layout_marginStart="12dp"
+        android:drawableEnd="@drawable/ic_add_outlined"
+        android:drawableTint="@color/yellow_100"
+        android:text="@string/add"
+        android:textAllCaps="false"
+        android:textColor="@color/yellow_100"
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginTop="12dp"
         />
 
     <Button
-        android:id="@+id/btn_publish_course"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:id="@+id/btn_publish"
+        style="@style/AppYellowButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/yellow_100"
-        android:elevation="2dp"
-        android:fontFamily="@font/rubik_medium"
-        android:gravity="center"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
         android:paddingVertical="12dp"
-        android:text="@string/submit"
-        android:textAllCaps="false"
+        android:text="@string/publish_course"
         android:textColor="@color/black_100"
+        app:boxBackgroundMode="outline"
         android:textSize="16sp"
-        app:cornerRadius="@dimen/button_and_textbox_radius"
-        app:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rv_upload_section"
-        app:layout_constraintVertical_bias="1"
+        app:layout_constraintTop_toBottomOf="@id/btn_add_section"
+        app:layout_constraintVertical_bias="0"
         app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintWidth_percent="0.8"
-        app:strokeWidth="0dp" />
+        app:layout_constraintWidth_percent="0.8" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

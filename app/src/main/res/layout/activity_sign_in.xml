@@ -142,33 +142,17 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_email"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/CommonEditTextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="@string/email"
-                android:textColorHint="@color/black_100"
-                app:boxBackgroundMode="outline"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="@color/text_box_stroke_color"
-                app:boxStrokeErrorColor="@color/red_100"
-                app:boxStrokeWidth="1dp"
-                app:boxStrokeWidthFocused="1dp"
-                app:errorIconDrawable="@null"
-                app:errorTextColor="@color/red_100"
-                app:expandedHintEnabled="true"
-                app:hintAnimationEnabled="true"
-                app:hintTextColor="@color/black_100"
                 app:layout_constraintBottom_toTopOf="@id/txt_password"
                 app:layout_constraintEnd_toEndOf="@id/divider_second"
                 app:layout_constraintStart_toStartOf="@id/divider_first"
                 app:layout_constraintTop_toBottomOf="@id/tv_or"
                 app:layout_constraintVertical_chainStyle="packed"
-                app:placeholderText="@string/example_email"
-                app:placeholderTextColor="@color/gray_100">
+                app:placeholderText="@string/example_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"

@@ -4,22 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
     app:startDestination="@+id/nav_home">
-    <fragment
-        android:id="@+id/nav_home"
-        android:name="com.pbl.mobile.ui.main.fragment.FragmentHome"
-        android:label="@string/home_page"
-        tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/nav_popular_course"
-        android:name="com.pbl.mobile.ui.main.fragment.FragmentMyCourse"
-        android:label="@string/popular_videos"
-        tools:layout="@layout/fragment_my_course" />
 
-    <fragment
-        android:id="@+id/nav_upload"
-        android:name="com.pbl.mobile.ui.upload.FragmentUpload"
-        android:label="@string/upload"
-        tools:layout="@layout/fragment_upload">
-    </fragment>
+
 </navigation>
