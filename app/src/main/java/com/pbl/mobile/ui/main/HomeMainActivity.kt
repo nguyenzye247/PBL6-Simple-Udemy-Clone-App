@@ -1,5 +1,6 @@
 package com.pbl.mobile.ui.main
 
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -8,10 +9,14 @@ import com.pbl.mobile.base.BaseActivity
 import com.pbl.mobile.base.BaseInput
 import com.pbl.mobile.base.ViewModelProviderFactory
 import com.pbl.mobile.databinding.ActivityHomeBinding
+import com.pbl.mobile.ui.upload.UploadActivity
+import com.pbl.mobile.ui.upload.dialog.UploadBottomSheet
 
 
-class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>() {
+class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
+    OnUploadOptionSelect {
     private lateinit var homeMainAdapter: HomeMainAdapter
+    private var uploadBottomSheet: UploadBottomSheet? = null
 
     override fun getLazyBinding() = lazy { ActivityHomeBinding.inflate(layoutInflater) }
 
@@ -29,7 +34,7 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>() 
             R.id.menu_notification -> {
 
             }
-            R.id.menu_languge -> {
+            R.id.menu_language -> {
 
             }
             R.id.menu_search -> {
@@ -46,7 +51,6 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>() 
 
     private fun initViews() {
         binding.apply {
-
         }
     }
 
@@ -55,7 +59,9 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>() 
         initBottomNavigation()
         initNavigationListener()
         binding.apply {
-
+            layoutBottomNavHome.btnFabUpload.setOnClickListener {
+                showUploadBottomSheet()
+            }
         }
     }
 
@@ -72,8 +78,14 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>() 
                     R.id.menu_home -> {
                         binding.vp2Main.setCurrentItem(HomeMainAdapter.HOME_POS, false)
                     }
+                    R.id.menu_holder -> {
+                        binding.vp2Main.setCurrentItem(HomeMainAdapter.HOLDER_POS, false)
+                    }
                     R.id.menu_my_course -> {
                         binding.vp2Main.setCurrentItem(HomeMainAdapter.MY_COURSE_POS, false)
+                    }
+                    R.id.menu_user_profile -> {
+                        binding.vp2Main.setCurrentItem(HomeMainAdapter.PROFILE_POS, false)
                     }
                 }
                 true
@@ -86,7 +98,30 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>() 
             homeMainAdapter = HomeMainAdapter(supportFragmentManager, lifecycle)
             adapter = homeMainAdapter
             currentItem = HomeMainAdapter.HOME_POS
-            offscreenPageLimit = 2
+            offscreenPageLimit = 4
         }
+    }
+
+    private fun showUploadBottomSheet() {
+        uploadBottomSheet = UploadBottomSheet.newInstance()
+        uploadBottomSheet?.let {
+            if (!it.isAdded) {
+                it.show(supportFragmentManager, UploadBottomSheet.TAG)
+            }
+        }
+    }
+
+    private fun goToUploadCourse() {
+        Intent(this@HomeMainActivity, UploadActivity::class.java).apply {
+            startActivity(this)
+        }
+    }
+
+    override fun onUploadCourseSelect() {
+        goToUploadCourse()
+    }
+
+    override fun onBackPressed() {
+        //TODO: Show dialog exit confirmation
     }
 }
