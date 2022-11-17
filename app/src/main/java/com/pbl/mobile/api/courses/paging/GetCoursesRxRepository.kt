@@ -6,4 +6,6 @@ import com.pbl.mobile.model.local.Course
 
 interface GetCoursesRxRepository {
     fun getCourses(): LiveData<PagingData<Course>>
+
+    fun getInstructorCourses(): LiveData<PagingData<Course>>
 }

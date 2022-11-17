@@ -10,15 +10,12 @@ import com.pbl.mobile.model.local.Course
 import com.pbl.mobile.model.remote.courses.GetCourseResponse
 import io.reactivex.rxjava3.core.Single
 
-class CoursePagingSource(
+class InstructorCoursePagingSource(
     private val application: Application,
+    private val id: String,
     private val courseRequestManager: CourseRequestManager
 ) : RxPagingSource<Int, Course>() {
-    // The refresh key is used for the initial load of the next PagingSource, after invalidation
     override fun getRefreshKey(state: PagingState<Int, Course>): Int? {
-        // We need to get the previous key (or next key if previous is null) of the page
-        // that was closest to the most recently accessed index.
-        // Anchor position is the most recently accessed index
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
@@ -27,13 +24,16 @@ class CoursePagingSource(
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Course>> {
         val page = params.key ?: DEFAULT_PAGE_INDEX
-        return courseRequestManager.getCourses(application, page, params.loadSize)
+        return courseRequestManager.getInstructorCourses(application, id, page, params.loadSize)
             .observeOnIOThread()
             .map { toLoadResult(it, page) }
             .onErrorReturn { LoadResult.Error(it) }
     }
 
-    private fun toLoadResult(courseResponse: GetCourseResponse, position: Int): LoadResult<Int, Course> {
+    private fun toLoadResult(
+        courseResponse: GetCourseResponse,
+        position: Int
+    ): LoadResult<Int, Course> {
         return LoadResult.Page(
             data = courseResponse.data,
             prevKey = if (position == DEFAULT_PAGE_INDEX) null else position - 1,

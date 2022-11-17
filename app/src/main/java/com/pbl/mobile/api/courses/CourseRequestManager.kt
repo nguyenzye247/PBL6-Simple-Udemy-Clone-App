@@ -8,4 +8,8 @@ class CourseRequestManager {
     fun getCourses(application: Application, page: Int, limit: Int): Single<GetCourseResponse> {
         return CoursesApi.getApi(application).getCourses(page, limit)
     }
+
+    fun getInstructorCourses(application: Application, id: String, page: Int, limit: Int): Single<GetCourseResponse> {
+        return CoursesApi.getApi(application).getInstructorCourses(id, page, limit)
+    }
 }
