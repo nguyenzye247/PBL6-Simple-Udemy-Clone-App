@@ -9,8 +9,10 @@ const val CONFIRM_EMAIL_URL = "api/v1/confirmEmail/"
 const val GET_COURSES_URL = "api/v1/courses"
 const val GET_INSTRUCTORS_COURSES_URL = "api/v1/users/courses"
 
+const val GET_SECTION_URL = "api/v1/sections"
 const val GET_COURSES_SECTION_URL = "sections"
 
+const val GET_SECTION_VIDEOS_URL = "videos"
 
 const val CREATE_CATEGORY_URL = "api/v1/category-topics"
 const val GET_CATEGORY_URL = "api/v1/category-topics"
