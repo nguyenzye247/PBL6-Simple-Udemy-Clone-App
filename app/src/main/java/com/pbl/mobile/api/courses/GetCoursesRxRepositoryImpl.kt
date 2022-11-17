@@ -18,7 +18,21 @@ class GetCoursesRxRepositoryImpl(
                 pageSize = 10,
                 maxSize = 50,
                 prefetchDistance = 5,
-                initialLoadSize = 20
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = {
+                coursePagingSource
+            }
+        ).liveData
+    }
+
+    override fun getInstructorCourses(): LiveData<PagingData<Course>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5,
+                maxSize = 100,
+                prefetchDistance = 3,
+                initialLoadSize = 5
             ),
             pagingSourceFactory = {
                 coursePagingSource
