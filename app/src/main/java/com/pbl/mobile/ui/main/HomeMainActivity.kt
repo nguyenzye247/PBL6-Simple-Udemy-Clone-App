@@ -47,6 +47,7 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
     override fun setupInit() {
         initViews()
         initListeners()
+        observe()
     }
 
     private fun initViews() {
@@ -59,10 +60,14 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
         initBottomNavigation()
         initNavigationListener()
         binding.apply {
-            layoutBottomNavHome.btnFabUpload.setOnClickListener {
+            btnFabUpload.setOnClickListener {
                 showUploadBottomSheet()
             }
         }
+    }
+
+    private fun observe() {
+        viewModel
     }
 
     private fun initNavigationListener() {
@@ -72,7 +77,7 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
     }
 
     private fun initBottomNavigation() {
-        binding.layoutBottomNavHome.bottomNavMain.apply {
+        binding.bottomNavMain.apply {
             this.setOnItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.menu_home -> {
@@ -115,6 +120,14 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
         Intent(this@HomeMainActivity, UploadActivity::class.java).apply {
             startActivity(this)
         }
+    }
+
+    private fun hideFab() {
+        binding.btnFabUpload.animate().setDuration(500).translationY(0f).start()
+    }
+
+    private fun showFab() {
+        binding.btnFabUpload.animate().setDuration(500).translationY(1f).start()
     }
 
     override fun onUploadCourseSelect() {
