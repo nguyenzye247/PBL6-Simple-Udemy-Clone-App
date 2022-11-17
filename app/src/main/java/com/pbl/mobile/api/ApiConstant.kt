@@ -5,6 +5,7 @@ const val SIGN_UP_URL = "api/v1/register"
 const val SIGN_IN_URL = "api/v1/login"
 const val REFRESH_URL = "api/v1/refresh-token"
 const val CONFIRM_EMAIL_URL = "api/v1/confirmEmail/"
+const val GET_COURSES_URL = "api/v1/courses"
 
 const val BEARER = "Bearer "
 const val AUTHORIZATION = "Authorization"

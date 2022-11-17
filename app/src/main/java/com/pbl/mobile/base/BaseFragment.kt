@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 abstract class BaseFragment<T : ViewBinding, V : BaseViewModel> : Fragment() {
+    protected val subscription: CompositeDisposable = CompositeDisposable()
     var isCreated = false
     abstract fun getLazyBinding(): Lazy<T>
     abstract fun getLazyViewModel(): Lazy<V>
@@ -33,5 +35,10 @@ abstract class BaseFragment<T : ViewBinding, V : BaseViewModel> : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         isCreated = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        subscription.clear()
     }
 }

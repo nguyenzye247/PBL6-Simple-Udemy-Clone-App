@@ -4,13 +4,11 @@
         android:id="@+id/menu_home"
         android:icon="@drawable/ic_home_outline"
         android:title="@string/home_page" />
-
     <item
         android:id="@+id/menu_holder"
         android:icon="@drawable/ic_trendy"
         android:title="@string/holder"
         />
-
     <item
         android:id="@+id/menu_place_holder"
         android:enabled="false"

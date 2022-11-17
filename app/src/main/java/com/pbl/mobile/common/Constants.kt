@@ -7,3 +7,6 @@ const val KEY_TOKEN = "token"
 const val KEY_REFRESH_TOKEN = "refreshToken"
 const val KEY_IS_ACCOUNT_ACTIVATED = "is_activated"
 const val KEY_ROLE = "role"
+
+const val DEFAULT_PAGE_INDEX = 1
+const val PAGING_DEFAULT_SIZE = 10
