@@ -19,6 +19,9 @@ const val GET_CATEGORY_URL = "api/v1/category-topics"
 const val EDIT_CATEGORY_URL = "api/v1/category-topics"
 const val DELETE_CATEGORY_URL = "api/v1/category-topics"
 
+const val PUSH_COMMENT_URL = "api/v1/java/comments"
+const val GET_COMMENTS_URL = "api/v1/java/comments"
+
 const val BEARER = "Bearer "
 const val AUTHORIZATION = "Authorization"
 
