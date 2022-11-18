@@ -1,4 +1,4 @@
-package com.pbl.mobile.model.remote.comment
+package com.pbl.mobile.model.remote.comment.push
 
 import com.google.gson.annotations.SerializedName
 import com.pbl.mobile.model.local.Comment
