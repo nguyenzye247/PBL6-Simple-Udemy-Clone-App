@@ -4,9 +4,8 @@ import android.app.Application
 import com.pbl.mobile.api.BaseRequestManager
 import com.pbl.mobile.api.GET_COMMENTS_URL
 import com.pbl.mobile.api.PUSH_COMMENT_URL
-import com.pbl.mobile.api.category.CategoryApi
-import com.pbl.mobile.model.remote.comment.PushCommentRequest
-import com.pbl.mobile.model.remote.comment.PushCommentResponse
+import com.pbl.mobile.model.remote.comment.push.PushCommentRequest
+import com.pbl.mobile.model.remote.comment.push.PushCommentResponse
 import com.pbl.mobile.model.remote.comment.get.GetCommentResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Body
