@@ -11,6 +11,8 @@ data class Course(
     val price: String,
     @SerializedName("description")
     val description: String,
+    @SerializedName("thumbnailUrl")
+    val thumbnailUrl: String,
     @SerializedName("isActived")
     val isActivated: Boolean,
     @SerializedName("createdAt")

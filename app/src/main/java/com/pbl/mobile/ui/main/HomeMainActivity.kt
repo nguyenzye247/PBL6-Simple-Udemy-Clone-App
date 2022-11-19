@@ -9,6 +9,7 @@ import com.pbl.mobile.base.BaseActivity
 import com.pbl.mobile.base.BaseInput
 import com.pbl.mobile.base.ViewModelProviderFactory
 import com.pbl.mobile.databinding.ActivityHomeBinding
+import com.pbl.mobile.extension.showToast
 import com.pbl.mobile.ui.upload.UploadActivity
 import com.pbl.mobile.ui.upload.dialog.UploadBottomSheet
 
@@ -61,7 +62,8 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
         initNavigationListener()
         binding.apply {
             btnFabUpload.setOnClickListener {
-                showUploadBottomSheet()
+                showToast("Upcoming Feature")
+//                showUploadBottomSheet()
             }
         }
     }
@@ -122,16 +124,8 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
         }
     }
 
-    private fun hideFab() {
-        binding.btnFabUpload.animate().setDuration(500).translationY(0f).start()
-    }
-
-    private fun showFab() {
-        binding.btnFabUpload.animate().setDuration(500).translationY(1f).start()
-    }
-
     override fun onUploadCourseSelect() {
-        goToUploadCourse()
+//        goToUploadCourse()
     }
 
     override fun onBackPressed() {
