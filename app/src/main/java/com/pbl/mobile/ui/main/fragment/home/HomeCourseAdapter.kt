@@ -1,16 +1,26 @@
 package com.pbl.mobile.ui.main.fragment.home
 
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.pbl.mobile.databinding.ItemCourseBinding
 import com.pbl.mobile.model.local.Course
 import com.pbl.mobile.util.HtmlUtils.fromHtmlText
 import com.pbl.mobile.util.HtmlUtils.removeHtmlHyphen
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 
-class HomeCourseAdapter :
+class HomeCourseAdapter(
+    private val subscription: CompositeDisposable
+) :
     PagingDataAdapter<Course, HomeCourseAdapter.CourseViewHolder>(COURSE_COMPARATOR) {
     companion object {
         private val COURSE_COMPARATOR = object : DiffUtil.ItemCallback<Course>() {
@@ -35,7 +45,18 @@ class HomeCourseAdapter :
                     tvCourseName.text = it.name
                     val des = removeHtmlHyphen(fromHtmlText(it.description))
                     tvCourseDescription.text = des
-                    tvCoursePrice.text = it.price
+                    val price = "$" + it.price.toFloat().toInt().toString()
+                    tvCoursePrice.text = price
+                    Thread(
+                        Runnable {
+                            Handler(Looper.getMainLooper()).post {
+                                Glide.with(root.context)
+                                    .load(it.thumbnailUrl)
+                                    .transform(CenterInside(), RoundedCorners(24))
+                                    .into(ivCourseThumbnail)
+                            }
+                        }
+                    ).start()
                 }
             }
         }
@@ -54,4 +75,10 @@ class HomeCourseAdapter :
             )
         )
     }
+
+//    private fun loadThumbnail(): Single<String> {
+//        return Single.create{
+//
+//        }
+//    }
 }

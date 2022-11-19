@@ -28,7 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeMainViewModel>() {
 
     private fun initViews() {
         binding.apply {
-            homeCourseAdapter = HomeCourseAdapter()
+            homeCourseAdapter = HomeCourseAdapter(subscription)
             binding.apply {
                 rvCourses.adapter = homeCourseAdapter
                 rvCourses.layoutManager = linearLayoutManager
