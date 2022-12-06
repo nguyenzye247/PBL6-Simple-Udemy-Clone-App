@@ -27,9 +27,11 @@
 
     <color name="yellow_100">#FFFDCE14</color>
     <color name="yellow_150">#CDFDCE14</color>
+    <color name="yellow_175">#E6FDCE14</color>
     <color name="yellow_200">#D6B327</color>
     <color name="yellow_300">#E4BA12</color>
-    <color name="yellow_400">#DFFFF5D0</color>
+    <color name="yellow_400">#FFF5D0</color>
+    <color name="yellow_450">#DFFFF5D0</color>
 
     <color name="black_100">#FF3D3B39</color>
     <color name="black_200">#25A5A5A5</color>

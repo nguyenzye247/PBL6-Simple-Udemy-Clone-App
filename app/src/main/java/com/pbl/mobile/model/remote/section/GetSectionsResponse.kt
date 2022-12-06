@@ -6,6 +6,11 @@ import com.pbl.mobile.model.local.Section
 data class GetSectionsResponse(
     @SerializedName("status")
     val status: String,
-    @SerializedName("sections")
-    val sections: List<Section>,
-)
+    @SerializedName("data")
+    val data: Data,
+) {
+    data class Data(
+        @SerializedName("sections")
+        val sections: List<Section>
+    )
+}

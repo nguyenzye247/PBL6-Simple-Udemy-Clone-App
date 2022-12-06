@@ -95,4 +95,10 @@
     <string name="section">Section</string>
     <string name="lecture">Lecture</string>
     <string name="lecture_video">Lecture Video</string>
+    <string name="enroll">Enroll Now</string>
+    <string name="show_more">Show more</string>
+    <string name="created_by">Created By</string>
+    <string name="course_content">Course content</string>
+    <string name="on_demand_video">hours on-demand video</string>
+    <string name="sections">sections</string>
 </resources>

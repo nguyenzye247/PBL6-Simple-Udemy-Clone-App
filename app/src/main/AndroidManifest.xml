@@ -22,6 +22,7 @@
         tools:targetApi="33">
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,36 +36,49 @@
         </activity>
         <activity
             android:name=".ui.signup.SignUpActivity"
+            android:screenOrientation="portrait"
             android:exported="false">
 
         </activity>
         <activity
             android:name=".ui.signin.SignInActivity"
+            android:screenOrientation="portrait"
             android:exported="false">
 
         </activity>
         <activity
             android:name=".ui.forgot_password.ForgotPasswordActivity"
+            android:screenOrientation="portrait"
             android:exported="false">
 
         </activity>
         <activity
             android:name=".ui.verify_email.VerifyEmailActivity"
+            android:screenOrientation="portrait"
             android:exported="false">
 
         </activity>
         <activity
             android:name=".ui.new_password.NewPasswordActivity"
+            android:screenOrientation="portrait"
             android:exported="false">
 
         </activity>
         <activity
             android:name=".ui.main.HomeMainActivity"
+            android:screenOrientation="portrait"
             android:exported="false">
 
         </activity>
         <activity
             android:name=".ui.upload.UploadActivity"
+            android:screenOrientation="portrait"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".ui.course.CourseDetailActivity"
+            android:screenOrientation="portrait"
             android:exported="false">
 
         </activity>
