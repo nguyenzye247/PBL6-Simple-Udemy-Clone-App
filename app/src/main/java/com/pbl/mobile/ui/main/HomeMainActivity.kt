@@ -106,6 +106,7 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
             adapter = homeMainAdapter
             currentItem = HomeMainAdapter.HOME_POS
             offscreenPageLimit = 4
+            isUserInputEnabled = false
         }
     }
 

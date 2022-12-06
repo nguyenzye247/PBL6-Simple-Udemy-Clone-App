@@ -19,7 +19,8 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 class HomeCourseAdapter(
-    private val subscription: CompositeDisposable
+    private val subscription: CompositeDisposable,
+    private val onCourseItemClickCallback: (course: Course?) -> Unit
 ) :
     PagingDataAdapter<Course, HomeCourseAdapter.CourseViewHolder>(COURSE_COMPARATOR) {
     companion object {
@@ -47,16 +48,17 @@ class HomeCourseAdapter(
                     tvCourseDescription.text = des
                     val price = "$" + it.price.toFloat().toInt().toString()
                     tvCoursePrice.text = price
-                    Thread(
-                        Runnable {
-                            Handler(Looper.getMainLooper()).post {
-                                Glide.with(root.context)
-                                    .load(it.thumbnailUrl)
-                                    .transform(CenterInside(), RoundedCorners(24))
-                                    .into(ivCourseThumbnail)
-                            }
+                    Thread {
+                        Handler(Looper.getMainLooper()).post {
+                            Glide.with(root.context)
+                                .load(it.thumbnailUrl)
+                                .transform(CenterInside(), RoundedCorners(24))
+                                .into(ivCourseThumbnail)
                         }
-                    ).start()
+                    }.start()
+                    root.setOnClickListener {
+                        onCourseItemClickCallback.invoke(item)
+                    }
                 }
             }
         }

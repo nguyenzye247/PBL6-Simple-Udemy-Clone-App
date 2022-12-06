@@ -1,10 +1,9 @@
 package com.pbl.mobile.model.remote.video
 
-import com.pbl.mobile.model.local.Video
+import com.pbl.mobile.model.local.Lecture
 
 data class GetVideoResponse(
-
     val status: String,
 
-    val data: List<Video>
+    val data: List<Lecture>
 )

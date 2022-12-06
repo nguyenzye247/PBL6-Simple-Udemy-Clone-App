@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="10dp"
     android:layout_marginVertical="5dp"
-    android:background="@drawable/bg_create_section">
+    android:background="@drawable/bg_section_item">
 
     <TextView
         android:id="@+id/tv_section_id"

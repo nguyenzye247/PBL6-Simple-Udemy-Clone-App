@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cs_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@null"
+        android:minWidth="@dimen/dimen_48dp"
+        android:minHeight="@dimen/dimen_48dp"
+        android:padding="@dimen/dimen_4dp"
+        android:src="@drawable/button_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tv_course_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_8dp"
+        android:layout_marginEnd="@dimen/dimen_8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/black_100"
+        android:textSize="@dimen/dimen_20sp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_close"
+        tools:text="The Complete Android 12 and Kotlin Development Masterclass" />
+
+    <TextView
+        android:id="@+id/tv_created_by"
+        style="@style/TextFontRubikRegular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_6dp"
+        android:maxLines="1"
+        android:text="@string/created_by"
+        android:textColor="@color/black_100"
+        app:layout_constraintEnd_toStartOf="@id/tv_created_by_person"
+        app:layout_constraintStart_toStartOf="@id/tv_course_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_course_title" />
+
+    <TextView
+        android:id="@+id/tv_created_by_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_4dp"
+        android:ellipsize="marquee"
+        android:maxLines="1"
+        android:text="Example Name"
+        android:textColor="@color/blue_light_100"
+        app:layout_constraintBottom_toBottomOf="@id/tv_created_by"
+        app:layout_constraintStart_toEndOf="@id/tv_created_by"
+        app:layout_constraintTop_toTopOf="@id/tv_created_by" />
+
+    <TextView
+        android:id="@+id/tv_course_description_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_12dp"
+        android:text="@string/description"
+        android:textColor="@color/black_100"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintBottom_toTopOf="@id/wv_course_description"
+        app:layout_constraintStart_toStartOf="@id/tv_course_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_created_by" />
+
+    <WebView
+        android:id="@+id/wv_course_description"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0dp"
+        android:background="@color/white_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_course_title"
+        app:layout_constraintStart_toStartOf="@id/tv_course_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_course_description_title" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/yellow_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/wv_course_description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

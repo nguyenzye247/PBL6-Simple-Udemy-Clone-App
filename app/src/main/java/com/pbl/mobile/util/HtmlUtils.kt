@@ -9,6 +9,11 @@ object HtmlUtils {
         HtmlCompat.fromHtml(htmlText, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
 
     fun removeHtmlHyphen(text: String):String{
+        val result = text.replace("^\"|\"$", "")
+        return result.substring(1, result.length - 1)
+    }
+
+    fun removeEndlines(text: String): String {
         val result = text
             .replace("\n", "")
             .replace("\\t", "")

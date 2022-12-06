@@ -2,7 +2,7 @@ package com.pbl.mobile.model.local
 
 import com.google.gson.annotations.SerializedName
 
-data class Video(
+data class Lecture(
     @SerializedName("id")
     val id: String,
     @SerializedName("description")

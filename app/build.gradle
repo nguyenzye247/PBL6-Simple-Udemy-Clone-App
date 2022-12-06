@@ -102,4 +102,8 @@ dependencies {
     implementation 'com.github.shuhart:stepview:1.5.1'
     //Rich text edit
     implementation 'jp.wasabeef:richeditor-android:2.0.0'
+    //Simple Rating Bar
+    implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
+    //Smooth Progress Bar
+    implementation 'com.github.castorflex.smoothprogressbar:library-circular:1.3.0'
 }

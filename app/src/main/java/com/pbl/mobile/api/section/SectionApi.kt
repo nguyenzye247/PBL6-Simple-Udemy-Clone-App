@@ -7,6 +7,7 @@ import com.pbl.mobile.api.GET_COURSES_URL
 import com.pbl.mobile.model.remote.section.GetSectionsResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Path
 
 interface SectionApi {
@@ -17,5 +18,8 @@ interface SectionApi {
     }
 
     @GET("$GET_COURSES_URL/{ID}/$GET_COURSES_SECTION_URL")
-    fun getCourseSections(@Path("ID") courseId: String): Single<GetSectionsResponse>
+    fun getCourseSections(
+//        @Header("Authorization") token: String,
+        @Path("ID") courseId: String
+    ): Single<GetSectionsResponse>
 }
