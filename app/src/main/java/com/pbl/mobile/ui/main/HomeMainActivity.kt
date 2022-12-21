@@ -91,9 +91,6 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
                     R.id.menu_home -> {
                         binding.vp2Main.setCurrentItem(HomeMainAdapter.HOME_POS, false)
                     }
-                    R.id.menu_holder -> {
-                        binding.vp2Main.setCurrentItem(HomeMainAdapter.HOLDER_POS, false)
-                    }
                     R.id.menu_my_course -> {
                         binding.vp2Main.setCurrentItem(HomeMainAdapter.MY_COURSE_POS, false)
                     }
@@ -111,7 +108,7 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
             homeMainAdapter = HomeMainAdapter(supportFragmentManager, lifecycle)
             adapter = homeMainAdapter
             currentItem = HomeMainAdapter.HOME_POS
-            offscreenPageLimit = 4
+            offscreenPageLimit = 3
             isUserInputEnabled = false
         }
     }

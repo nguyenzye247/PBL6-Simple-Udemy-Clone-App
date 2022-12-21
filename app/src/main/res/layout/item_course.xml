@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/dimen_8dp"
-    android:layout_marginBottom="@dimen/dimen_12dp"
+    android:layout_marginHorizontal="@dimen/dimen_4dp"
+    android:layout_marginBottom="@dimen/dimen_4dp"
     app:cardCornerRadius="@dimen/dimen_12dp"
     app:cardElevation="@dimen/dimen_2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingVertical="@dimen/dimen_8dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_instructor_avatar"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/dimen_12dp"
             android:scaleType="centerCrop"
             android:src="@drawable/image_instructor_avatar"
             app:layout_constraintBottom_toTopOf="@id/gl_instructor_info"
@@ -25,6 +25,7 @@
             app:layout_constraintEnd_toStartOf="@id/gl_instructor_avatar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintWidth_percent="0.12" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -75,10 +76,12 @@
             android:id="@+id/iv_course_thumbnail"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dimen_12dp"
             android:layout_marginEnd="15dp"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
             android:src="@drawable/image_course_thumbnail"
+            app:layout_constraintBottom_toTopOf="@id/rv_course_tags"
             app:layout_constraintDimensionRatio="630:286"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/iv_instructor_avatar"
@@ -107,26 +110,12 @@
             android:textColor="@color/black_100"
             android:textSize="16sp"
             app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toTopOf="@id/tv_course_description"
+            app:layout_constraintBottom_toTopOf="@id/tv_course_name"
             app:layout_constraintEnd_toEndOf="@id/rv_course_tags"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@id/rv_course_tags"
             app:layout_constraintTop_toBottomOf="@id/rv_course_tags"
             tools:text="Salat Definition and Meaning" />
-
-        <TextView
-            android:id="@+id/tv_course_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toEndOf="@id/rv_course_tags"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="@id/tv_course_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_course_name"
-            tools:text="Salat definition, prayers, said five times a day: the second time..." />
 
         <TextView
             android:id="@+id/tv_course_price"
@@ -139,8 +128,8 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_course_origin_price"
-            app:layout_constraintStart_toStartOf="@id/tv_course_description"
-            app:layout_constraintTop_toBottomOf="@id/tv_course_description"
+            app:layout_constraintStart_toStartOf="@id/tv_course_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_course_name"
             tools:text="$13.99" />
 
         <TextView

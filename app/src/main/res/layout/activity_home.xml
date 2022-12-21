@@ -69,7 +69,7 @@
         android:layout_gravity="bottom"
         android:backgroundTint="@color/white_100"
         app:contentInsetStart="0dp"
-        app:fabAlignmentMode="center"
+        app:fabAlignmentMode="end"
         app:fabCradleMargin="12dp"
         app:fabCradleRoundedCornerRadius="36dp"
         app:fabCradleVerticalOffset="0dp"
