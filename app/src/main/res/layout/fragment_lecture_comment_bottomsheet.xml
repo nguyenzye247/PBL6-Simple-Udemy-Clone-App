@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cs_lecture_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <ImageView
+        android:id="@+id/iv_pull_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:background="@drawable/ic_pull_bar"
+        android:contentDescription="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="@integer/int_0" />
+
+    <TextView
+        android:id="@+id/tv_comment_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:fontFamily="@font/rubik_medium"
+        android:text="@string/comments"
+        android:textColor="@color/black_100"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_pull_bar" />
+
+    <TextView
+        android:id="@+id/tv_comment_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/black_100"
+        app:layout_constraintBottom_toBottomOf="@id/tv_comment_title"
+        app:layout_constraintStart_toEndOf="@id/tv_comment_title"
+        app:layout_constraintTop_toTopOf="@id/tv_comment_title"
+        tools:text="(69)" />
+
+
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@null"
+        android:minWidth="@dimen/dimen_48dp"
+        android:minHeight="@dimen/dimen_48dp"
+        android:padding="@dimen/dimen_2dp"
+        android:src="@drawable/button_close"
+        app:layout_constraintBottom_toBottomOf="@id/tv_comment_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_comment_title" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_user_comment_avatar"
+        android:layout_width="@dimen/dimen_44dp"
+        android:layout_height="@dimen/dimen_44dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        app:layout_constraintEnd_toStartOf="@id/txt_add_comment"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/tv_comment_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_comment_title"
+        app:layout_constraintWidth_percent="0.1"
+        tools:src="@tools:sample/avatars" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_add_comment"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_12dp"
+        app:boxBackgroundColor="@color/white_400"
+        app:boxCornerRadiusBottomEnd="@dimen/dimen_8dp"
+        app:boxCornerRadiusBottomStart="@dimen/dimen_8dp"
+        app:boxCornerRadiusTopEnd="@dimen/dimen_8dp"
+        app:boxCornerRadiusTopStart="@dimen/dimen_8dp"
+        app:boxStrokeWidth="@dimen/dimen_0dp"
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toBottomOf="@id/iv_user_comment_avatar"
+        app:layout_constraintEnd_toStartOf="@id/btn_add_comment"
+        app:layout_constraintStart_toEndOf="@id/iv_user_comment_avatar"
+        app:layout_constraintTop_toTopOf="@id/iv_user_comment_avatar"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_add_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rubik_regular"
+            android:hint="@string/add_a_comment"
+            android:inputType="text"
+            android:textColor="@color/black_100"
+            android:textCursorDrawable="@null"
+            android:textSize="14sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_add_comment"
+        android:layout_width="@dimen/dimen_40dp"
+        android:layout_height="@dimen/dimen_40dp"
+        android:layout_marginEnd="@dimen/dimen_12dp"
+        android:insetLeft="@dimen/dimen_0dp"
+        android:insetTop="@dimen/dimen_0dp"
+        android:insetRight="@dimen/dimen_0dp"
+        android:insetBottom="@dimen/dimen_0dp"
+        app:backgroundTint="@color/yellow_100"
+        app:cornerRadius="@dimen/dimen_8dp"
+        app:icon="@drawable/ic_send"
+        app:iconGravity="textStart"
+        app:iconPadding="@dimen/dimen_0dp"
+        app:iconTint="@color/black_100"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="@id/txt_add_comment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txt_add_comment" />
+
+    <View
+        android:id="@+id/v_divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:background="@color/gray_100"
+        app:layout_constraintTop_toBottomOf="@id/iv_user_comment_avatar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_comments"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0dp"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_divider1" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/yellow_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

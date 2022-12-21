@@ -1,5 +1,6 @@
 package com.pbl.mobile.ui.course
 
+import android.content.Intent
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
@@ -10,7 +11,10 @@ import com.pbl.mobile.api.BaseResponse
 import com.pbl.mobile.base.BaseActivity
 import com.pbl.mobile.base.BaseInput
 import com.pbl.mobile.base.ViewModelProviderFactory
+import com.pbl.mobile.common.CATEGORY_KEY
 import com.pbl.mobile.common.COURSE_KEY
+import com.pbl.mobile.common.EMPTY_TEXT
+import com.pbl.mobile.common.LECTURE_KEY
 import com.pbl.mobile.databinding.ActivityCourseDetailBinding
 import com.pbl.mobile.extension.parcelable
 import com.pbl.mobile.extension.showToast
@@ -20,6 +24,7 @@ import com.pbl.mobile.model.local.Lecture
 import com.pbl.mobile.model.local.Section
 import com.pbl.mobile.ui.course.lecture.SectionLectureBottomSheet
 import com.pbl.mobile.ui.course.section.SectionAdapter
+import com.pbl.mobile.ui.watchlecture.WatchLectureActivity
 import com.pbl.mobile.util.HtmlUtils
 
 class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseViewModel>(),
@@ -28,6 +33,7 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseVie
     private val sections = arrayListOf<Section>()
     private val lectures = arrayListOf<Lecture>()
     private lateinit var sectionAdapter: SectionAdapter
+    private var categoryName: String? = null
 
     override fun getLazyBinding() = lazy { ActivityCourseDetailBinding.inflate(layoutInflater) }
 
@@ -72,10 +78,6 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseVie
                 Glide.with(this@CourseDetailActivity)
                     .load(courseData.thumbnailUrl)
                     .into(ivCourseThumbnail)
-                collapseToolbarLayout.title =
-                    categories.firstOrNull {
-                        courseData.categoryTopicId == it.id
-                    }?.name ?: ""
             }
         }
         binding.contentLayout.apply {
@@ -111,6 +113,9 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseVie
             binding.apply {
                 contentLayout.apply {
                     tvCourseDescription.setOnClickListener {
+                        llDescription.performClick()
+                    }
+                    llDescription.setOnClickListener {
                         showCourseDescriptionBottomSheet(course)
                     }
                 }
@@ -123,6 +128,23 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseVie
 
     private fun observe() {
         val course = intent.parcelable<Course>(COURSE_KEY)
+        viewModel.getInstructor(course?.userId ?: EMPTY_TEXT)
+        viewModel.instructor().observe(this@CourseDetailActivity) { response ->
+            when (response) {
+                is BaseResponse.Success -> {
+                    response.data?.let { instructorResponse ->
+                        binding.contentLayout.tvCreatedByPerson.text =
+                            instructorResponse.data.fullName
+                    }
+                }
+                is BaseResponse.Error -> {
+                    binding.contentLayout.tvCreatedByPerson.text = getString(R.string.unknown)
+                }
+                else -> {
+                    // no-ops
+                }
+            }
+        }
         viewModel.getCategories()
         viewModel.categories().observe(this@CourseDetailActivity) { response ->
             when (response) {
@@ -130,10 +152,11 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseVie
                     response.data?.let { categoryResponse ->
                         categories.clear()
                         categories.addAll(categoryResponse.categories)
-                        binding.contentLayout.tvCourseCategory.text =
-                            categories.firstOrNull {
-                                course?.categoryTopicId == it.id
-                            }?.name ?: ""
+                        val category = categories.firstOrNull {
+                            course?.categoryTopicId == it.id
+                        }?.name ?: EMPTY_TEXT
+                        binding.contentLayout.tvCourseCategory.text = category
+                        categoryName = category
                     }
                 }
                 is BaseResponse.Error -> {
@@ -187,10 +210,15 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseVie
     }
 
     override fun onLectureItemSelect(lecture: Lecture) {
-        goToWatchLecture()
+        goToWatchLecture(lecture)
     }
 
-    private fun goToWatchLecture() {
-        showToast("Watch Video")
+    private fun goToWatchLecture(lecture: Lecture) {
+        startActivity(
+            Intent(this@CourseDetailActivity, WatchLectureActivity::class.java).apply {
+                putExtra(LECTURE_KEY, lecture)
+                putExtra(CATEGORY_KEY, categoryName)
+            }
+        )
     }
 }

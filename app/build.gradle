@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'com.google.gms.google-services'
     id 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+    id "io.sentry.android.gradle" version "3.3.0"
 }
 
 android {
@@ -34,7 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 }
@@ -106,4 +107,16 @@ dependencies {
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
     //Smooth Progress Bar
     implementation 'com.github.castorflex.smoothprogressbar:library-circular:1.3.0'
+    //Exo media
+//    implementation ("com.devbrackets.android:exomedia:4.3.0") {
+//        transitive = true
+//    }
+    //Exo player
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.2'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.18.2'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.2'
+
+    implementation 'io.sentry:sentry-android:6.9.1'
+
+    implementation 'org.ocpsoft.prettytime:prettytime:5.0.4.Final'
 }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -26,7 +27,7 @@ class SectionLectureBottomSheet(
 
     companion object {
         const val TAG = "SectionLecturesBottomSheet_Tag"
-        const val HEIGHT_FACTOR = 0.9
+        const val HEIGHT_FACTOR = 0.8
         fun newInstance(sectionName: String,lectures: ArrayList<Lecture>) =
             SectionLectureBottomSheet(sectionName, lectures)
     }
@@ -57,12 +58,11 @@ class SectionLectureBottomSheet(
     }
 
     private fun initViews() {
-        dialog?.window?.apply {
-            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            setLayout(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
-            )
+        dialog?.setOnShowListener {
+            val bottomSheet =
+                dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout
+            BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
+            (binding.root.parent as View).setBackgroundColor(Color.TRANSPARENT)
         }
         binding.apply {
             tvSectionTitle.text = sectionName

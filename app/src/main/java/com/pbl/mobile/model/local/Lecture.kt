@@ -1,7 +1,10 @@
 package com.pbl.mobile.model.local
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Lecture(
     @SerializedName("id")
     val id: String,
@@ -27,4 +30,4 @@ data class Lecture(
     val sectionId: String,
     @SerializedName("userId")
     val userId: String
-)
+) : Parcelable

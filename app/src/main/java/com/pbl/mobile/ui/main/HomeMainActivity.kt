@@ -12,6 +12,7 @@ import com.pbl.mobile.databinding.ActivityHomeBinding
 import com.pbl.mobile.extension.showToast
 import com.pbl.mobile.ui.upload.UploadActivity
 import com.pbl.mobile.ui.upload.dialog.UploadBottomSheet
+import io.sentry.Sentry
 
 
 class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
@@ -46,6 +47,11 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
     }
 
     override fun setupInit() {
+//        try {
+//            throw Exception("Lifecycle error test.")
+//        } catch (e: Exception) {
+//            Sentry.captureException(e)
+//        }
         initViews()
         initListeners()
         observe()

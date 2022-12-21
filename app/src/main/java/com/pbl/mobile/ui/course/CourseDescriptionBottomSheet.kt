@@ -1,12 +1,11 @@
 package com.pbl.mobile.ui.course
 
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
+import android.widget.FrameLayout
 import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -25,7 +24,7 @@ class CourseDescriptionBottomSheet(
     companion object {
         const val TAG = "CourseDescriptionBottomSheet_Tag"
 
-        const val HEIGHT_FACTOR = 0.9
+        const val HEIGHT_FACTOR = 0.8
         fun newInstance(course: Course) =
             CourseDescriptionBottomSheet(course)
     }
@@ -50,12 +49,11 @@ class CourseDescriptionBottomSheet(
     }
 
     private fun initViews() {
-        dialog?.window?.apply {
-            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            setLayout(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
-            )
+        dialog?.setOnShowListener {
+            val bottomSheet =
+                dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout
+            BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
+            (binding.root.parent as View).setBackgroundColor(Color.TRANSPARENT)
         }
         binding.apply {
             progressBar.isVisible = true

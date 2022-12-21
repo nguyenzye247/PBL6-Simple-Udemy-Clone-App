@@ -17,11 +17,13 @@ import com.pbl.mobile.extension.showToast
 import com.pbl.mobile.model.remote.signup.SignUpRequest
 import com.pbl.mobile.model.remote.signup.SignUpResponse
 import com.pbl.mobile.ui.signin.SignInActivity
+import io.sentry.Sentry
+import retrofit2.HttpException
+
 
 class SignUpViewModel(input: BaseInput.MainInput) : BaseViewModel(input) {
     private val pApplication = input.application
     private val signUpRequestManager = SignUpRequestManager()
-    private val token = BEARER + SessionManager.fetchToken(pApplication)
 
     private val _registerResult: MutableLiveData<BaseResponse<SignUpResponse>> = MutableLiveData()
 
@@ -31,7 +33,10 @@ class SignUpViewModel(input: BaseInput.MainInput) : BaseViewModel(input) {
         _registerResult.value = BaseResponse.Loading()
         try {
             addDisposables(
-                signUpRequestManager.register(pApplication, token, SignUpRequest(email, password, fullName))
+                signUpRequestManager.register(
+                    pApplication,
+                    SignUpRequest(email, password, fullName)
+                )
                     .observeOnUiThread()
                     .doOnSubscribe {
                         _registerResult.value = BaseResponse.Loading()
@@ -75,7 +80,11 @@ class SignUpViewModel(input: BaseInput.MainInput) : BaseViewModel(input) {
     }
 
     private fun handelError(throwable: Throwable) {
-        _registerResult.value = BaseResponse.Error(throwable.message)
+        if (throwable is HttpException) {
+            Sentry.captureException(throwable)
+            val body = throwable.response()!!.errorBody()
+            _registerResult.value = BaseResponse.Error(body?.string() ?: "Error Creating Account")
+        }
     }
 
 }

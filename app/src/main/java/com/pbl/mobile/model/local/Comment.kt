@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Comment(
     @SerializedName("createdAt")
-    val createdAt: Long,
+    val createdAt: String?,
     @SerializedName("updatedAt")
-    val updatedAt: Long?,
+    val updatedAt: String?,
     @SerializedName("deletedAt")
-    val deletedAt: Long?,
+    val deletedAt: String?,
     @SerializedName("id")
     val id: String,
     @SerializedName("content")

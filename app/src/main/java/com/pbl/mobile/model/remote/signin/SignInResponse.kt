@@ -12,6 +12,10 @@ data class SignInResponse(
         @SerializedName("token")
         var token: String,
         @SerializedName("refreshToken")
-        var refreshToken: String
+        var refreshToken: String,
+        @SerializedName("expiresIn")
+        val expiresIn: String,
+        @SerializedName("type")
+        val type: String
     )
 }

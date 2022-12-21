@@ -9,6 +9,7 @@ import com.pbl.mobile.ui.new_password.NewPasswordViewModel
 import com.pbl.mobile.ui.signin.SignInViewModel
 import com.pbl.mobile.ui.signup.SignUpViewModel
 import com.pbl.mobile.ui.verify_email.VerifyEmailViewModel
+import com.pbl.mobile.ui.watchlecture.WatchLectureViewModel
 
 class ViewModelProviderFactory(private val input: BaseInput) : ViewModelProvider.Factory {
 
@@ -34,6 +35,9 @@ class ViewModelProviderFactory(private val input: BaseInput) : ViewModelProvider
             }
             modelClass.isAssignableFrom(CourseViewModel::class.java) -> {
                 return CourseViewModel(input as BaseInput.CourseDetailInput) as T
+            }
+            modelClass.isAssignableFrom(WatchLectureViewModel::class.java) -> {
+                return WatchLectureViewModel(input as BaseInput.WatchLectureInput) as T
             }
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

@@ -19,7 +19,6 @@ interface SectionApi {
 
     @GET("$GET_COURSES_URL/{ID}/$GET_COURSES_SECTION_URL")
     fun getCourseSections(
-//        @Header("Authorization") token: String,
         @Path("ID") courseId: String
     ): Single<GetSectionsResponse>
 }
