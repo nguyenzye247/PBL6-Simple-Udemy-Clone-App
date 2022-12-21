@@ -17,6 +17,18 @@ object SessionManager {
 
     fun fetchRefreshToken(pContext: Context) = pContext.getBaseConfig().refreshToken
 
+    fun saveExpiresTime(pContext: Context, expiresDuration: String) {
+        try {
+            val expiresDurationInMilli = expiresDuration.toLong()
+            pContext.getBaseConfig().expiresTime =
+                System.currentTimeMillis() + expiresDurationInMilli
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+        }
+    }
+
+    fun fetchExpiresTime(pContext: Context) = pContext.getBaseConfig().expiresTime
+
     fun clearData(pContext: Context) {
         pContext.getBaseConfig().token = ""
         pContext.getBaseConfig().refreshToken = ""

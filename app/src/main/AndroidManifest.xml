@@ -20,66 +20,81 @@
         android:theme="@style/Theme.PBL6"
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
+        <meta-data
+            android:name="io.sentry.dsn"
+            android:value="https://7b6dc9ed07d24b55b50d5841bd7bf5d7@o4504270232158208.ingest.sentry.io/4504282767884288" />
+        <!-- Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+           We recommend adjusting this value in production. -->
+        <meta-data
+            android:name="io.sentry.traces.sample-rate"
+            android:value="1.0" />
+        <!-- Enable user interaction tracing to capture transactions for various UI events (such as clicks or scrolls). -->
+        <meta-data
+            android:name="io.sentry.traces.user-interaction.enable"
+            android:value="true" />
+
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
         <activity
             android:name=".ui.signup.SignUpActivity"
-            android:screenOrientation="portrait"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".ui.signin.SignInActivity"
-            android:screenOrientation="portrait"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".ui.forgot_password.ForgotPasswordActivity"
-            android:screenOrientation="portrait"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".ui.verify_email.VerifyEmailActivity"
-            android:screenOrientation="portrait"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".ui.new_password.NewPasswordActivity"
-            android:screenOrientation="portrait"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".ui.main.HomeMainActivity"
-            android:screenOrientation="portrait"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".ui.upload.UploadActivity"
-            android:screenOrientation="portrait"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".ui.course.CourseDetailActivity"
-            android:screenOrientation="portrait"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".ui.watchlecture.WatchLectureActivity"
+            android:configChanges="uiMode|orientation|screenSize|screenLayout"
+            android:exported="true">
 
         </activity>
     </application>

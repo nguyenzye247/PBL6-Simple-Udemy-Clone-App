@@ -12,6 +12,7 @@ import com.pbl.mobile.base.ViewModelProviderFactory
 import com.pbl.mobile.databinding.ActivitySignUpBinding
 import com.pbl.mobile.extension.isEmailValid
 import com.pbl.mobile.extension.setError
+import com.pbl.mobile.extension.showToast
 import com.pbl.mobile.implement.TextChangeListner
 import com.pbl.mobile.ui.signin.SignInActivity
 import com.pbl.mobile.util.VersionChecker.isAndroid_M_AndAbove
@@ -90,7 +91,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
                 }
                 is BaseResponse.Error -> {
                     stopLoading()
-                    showError()
+                    showError(response.msg ?: "Error On Account Sign Up")
                 }
                 else -> {}
             }
@@ -186,8 +187,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
         binding.progressSignUp.isVisible = false
     }
 
-    private fun showError() {
+    private fun showError(message: String) {
         //TODO: show register fail custom toast
+        showToast(message)
     }
 
     private fun resetInputFields() {

@@ -1,9 +1,9 @@
 package com.pbl.mobile.api.comment
 
 import android.app.Application
+import com.pbl.mobile.model.remote.comment.get.GetCommentResponse
 import com.pbl.mobile.model.remote.comment.push.PushCommentRequest
 import com.pbl.mobile.model.remote.comment.push.PushCommentResponse
-import com.pbl.mobile.model.remote.comment.get.GetCommentResponse
 import io.reactivex.rxjava3.core.Single
 
 class CommentRequestManager {
@@ -11,7 +11,12 @@ class CommentRequestManager {
         return CommentApi.getApi(application).push(request)
     }
 
-    fun getVideoComments(application: Application, videoId: String): Single<GetCommentResponse> {
-        return CommentApi.getApi(application).getVideoComments(videoId)
+    fun getVideoComments(
+        application: Application,
+        videoId: String,
+        page: Int,
+        paging: Int
+    ): Single<GetCommentResponse> {
+        return CommentApi.getApi(application).getVideoComments(videoId, page, paging)
     }
 }

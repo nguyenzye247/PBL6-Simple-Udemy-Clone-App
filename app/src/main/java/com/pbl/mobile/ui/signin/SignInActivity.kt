@@ -34,8 +34,9 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
     }
 
     private fun loginIfExisted() {
-        val token = SessionManager.fetchToken(this@SignInActivity)
-        if (token.isNotBlank()) {
+        val expiresTime = SessionManager.fetchExpiresTime(this@SignInActivity)
+        if (System.currentTimeMillis() <= expiresTime) {
+            viewModel.getMe()
             viewModel.navigateToHome()
         }
     }
@@ -65,6 +66,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                 is BaseResponse.Success -> {
                     stopLoading()
                     setExistedAccountAppearance()
+                    viewModel.getMe()
                     response.data?.let { viewModel.progressLogin(it) }
                 }
                 is BaseResponse.Error -> {

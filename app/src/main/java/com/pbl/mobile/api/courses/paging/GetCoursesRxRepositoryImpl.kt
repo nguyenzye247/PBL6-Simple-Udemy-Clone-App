@@ -1,12 +1,11 @@
-package com.pbl.mobile.api.courses
+package com.pbl.mobile.api.courses.paging
 
 import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
-import com.pbl.mobile.api.courses.paging.CoursePagingSource
-import com.pbl.mobile.api.courses.paging.GetCoursesRxRepository
+import com.pbl.mobile.api.courses.paging.source.CoursePagingSource
 import com.pbl.mobile.model.local.Course
 
 class GetCoursesRxRepositoryImpl(
@@ -15,10 +14,10 @@ class GetCoursesRxRepositoryImpl(
     override fun getCourses(): LiveData<PagingData<Course>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 10,
-                maxSize = 50,
-                prefetchDistance = 5,
-                initialLoadSize = 10
+                pageSize = 4,
+                maxSize = 100,
+                prefetchDistance = 3,
+                initialLoadSize = 4
             ),
             pagingSourceFactory = {
                 coursePagingSource

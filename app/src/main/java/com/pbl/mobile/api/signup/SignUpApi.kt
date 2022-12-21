@@ -20,7 +20,6 @@ interface SignUpApi {
 
     @POST(SIGN_UP_URL)
     fun register(
-        @Header("Authorization") token: String,
         @Body request: SignUpRequest
     ): Single<SignUpResponse>
 }

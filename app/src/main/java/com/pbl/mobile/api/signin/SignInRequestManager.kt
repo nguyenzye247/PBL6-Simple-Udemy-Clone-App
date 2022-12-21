@@ -8,9 +8,8 @@ import io.reactivex.rxjava3.core.Single
 class SignInRequestManager {
     fun login(
         application: Application,
-        token: String,
         request: SignInRequest
     ): Single<SignInResponse> {
-        return SignInApi.getApi(application).login(token, request)
+        return SignInApi.getApi(application).login(request)
     }
 }

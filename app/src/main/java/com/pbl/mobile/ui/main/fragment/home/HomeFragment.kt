@@ -3,17 +3,23 @@ package com.pbl.mobile.ui.main.fragment.home
 import android.content.Intent
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pbl.mobile.base.BaseFragment
 import com.pbl.mobile.common.COURSE_KEY
 import com.pbl.mobile.databinding.FragmentHomeBinding
 import com.pbl.mobile.model.local.Course
+import com.pbl.mobile.model.remote.user.GetSimpleUserResponse
 import com.pbl.mobile.ui.course.CourseDetailActivity
 import com.pbl.mobile.ui.main.HomeMainViewModel
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.launch
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeMainViewModel>() {
     private lateinit var homeCourseAdapter: HomeCourseAdapter
+    private val loadedInstructorIds = arrayListOf<String>()
+
     private val linearLayoutManager by lazy {
         LinearLayoutManager(
             context,
@@ -35,7 +41,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeMainViewModel>() {
     private fun initViews() {
         binding.apply {
             homeCourseAdapter = HomeCourseAdapter(
-                subscription,
                 onCourseItemClickCallback = {
                     goToCourseDetail(it)
                 }
@@ -57,8 +62,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeMainViewModel>() {
     }
 
     private fun observe() {
-        viewModel.getCourses().observe(this@HomeFragment) {
-            homeCourseAdapter.submitData(lifecycle, it)
+        lifecycleScope.launch {
+            homeCourseAdapter.loadStateFlow
+                .distinctUntilChangedBy { it.refresh }
+                .collect { _ ->
+                    val list = homeCourseAdapter.snapshot().items
+                    if (list.isNotEmpty()) {
+                        val courseUserIds = list.map { it.userId }
+                        val unloadedUserIds = arrayListOf<String>()
+                        courseUserIds.forEach { id ->
+                            if (!loadedInstructorIds.contains(id)) {
+                                unloadedUserIds.add(id)
+                                loadedInstructorIds.add(id)
+                            }
+                        }
+                        if (unloadedUserIds.isNotEmpty()) {
+                            viewModel.loadInstructors(unloadedUserIds)
+                        }
+                    }
+                }
+        }
+        viewModel.isFinishedLoadInstructor().observe(this@HomeFragment) { isFinished ->
+            if (isFinished) {
+                homeCourseAdapter.setInstructor(viewModel.instructors)
+            }
+        }
+        viewModel.getCourses().observe(this@HomeFragment) { pagingCourseData ->
+            homeCourseAdapter.submitData(lifecycle, pagingCourseData)
         }
     }
 

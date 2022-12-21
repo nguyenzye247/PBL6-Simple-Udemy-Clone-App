@@ -19,7 +19,6 @@ interface SignInApi {
 
     @POST(SIGN_IN_URL)
     fun login(
-        @Header("Authorization") token: String,
         @Body request: SignInRequest
     ): Single<SignInResponse>
 }

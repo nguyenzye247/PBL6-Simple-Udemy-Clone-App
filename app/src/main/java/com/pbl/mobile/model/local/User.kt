@@ -13,10 +13,10 @@ data class User(
     var email: String,
     @SerializedName("confirmation_token")
     var confirmationToken: String,
-    @SerializedName("confirm_at")
+    @SerializedName("confirmed_at")
     var confirmAt: Long,
-    @SerializedName("is_actived")
-    var isActive: Boolean,
+    @SerializedName("is_activated")
+    var isActivated: Boolean,
     @SerializedName("password")
     var password: String,
     @SerializedName("verify_code")

@@ -1,4 +1,4 @@
-package com.pbl.mobile.api.courses.paging
+package com.pbl.mobile.api.courses.paging.source
 
 import android.app.Application
 import androidx.paging.PagingState

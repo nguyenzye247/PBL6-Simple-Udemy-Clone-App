@@ -8,9 +8,8 @@ import io.reactivex.rxjava3.core.Single
 class SignUpRequestManager {
     fun register(
         application: Application,
-        token: String,
         request: SignUpRequest
     ): Single<SignUpResponse> {
-        return SignUpApi.getApi(application).register(token, request)
+        return SignUpApi.getApi(application).register(request)
     }
 }

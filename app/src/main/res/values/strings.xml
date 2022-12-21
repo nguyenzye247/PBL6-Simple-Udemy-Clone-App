@@ -101,4 +101,12 @@
     <string name="course_content">Course content</string>
     <string name="on_demand_video">hours on-demand video</string>
     <string name="sections">sections</string>
+    <string name="more">…more</string>
+    <string name="share">Share</string>
+    <string name="slash">/</string>
+    <string name="unknown">Unknown</string>
+    <string name="add_a_comment">Add a comment…</string>
+    <string name="read_more">Read more</string>
+
+    <string name="holder_avatar">https://aui.atlassian.com/aui/latest/docs/images/avatar-person.svg</string>
 </resources>

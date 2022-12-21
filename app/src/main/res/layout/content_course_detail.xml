@@ -13,8 +13,11 @@
         android:layout_marginTop="@dimen/dimen_12dp"
         android:textColor="@color/black_100"
         android:textSize="@dimen/dimen_22sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_course_category"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed"
         tools:text="$12.44" />
 
     <TextView
@@ -44,6 +47,7 @@
         android:textColor="@color/black_100"
         android:textSize="@dimen/dimen_20sp"
         app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/rt_stars"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +64,10 @@
         android:textSize="@dimen/dimen_18sp"
         app:layout_constraintBottom_toBottomOf="@id/rt_stars"
         app:layout_constraintEnd_toStartOf="@id/rt_stars"
-        app:layout_constraintStart_toStartOf="@id/tv_course_title" />
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/tv_course_title"
+        app:layout_constraintTop_toTopOf="@id/rt_stars" />
 
     <com.willy.ratingbar.ScaleRatingBar
         android:id="@+id/rt_stars"
@@ -71,6 +78,7 @@
         android:numStars="5"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/tv_created_by"
+        app:layout_constraintEnd_toStartOf="@id/tv_student_count"
         app:layout_constraintStart_toEndOf="@id/rt_stars_point"
         app:layout_constraintTop_toBottomOf="@id/tv_course_title"
         app:srb_isIndicator="true"
@@ -90,7 +98,9 @@
         android:textColor="@color/black_100"
         android:textSize="@dimen/dimen_16sp"
         app:layout_constraintBottom_toBottomOf="@id/rt_stars"
-        app:layout_constraintStart_toEndOf="@id/rt_stars" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/rt_stars"
+        app:layout_constraintTop_toTopOf="@id/rt_stars" />
 
     <TextView
         android:id="@+id/tv_created_by"
@@ -101,6 +111,7 @@
         android:maxLines="1"
         android:text="@string/created_by"
         android:textColor="@color/black_100"
+        app:layout_constraintBottom_toTopOf="@id/cv_course_description"
         app:layout_constraintEnd_toStartOf="@id/tv_created_by_person"
         app:layout_constraintStart_toStartOf="@id/tv_course_title"
         app:layout_constraintTop_toBottomOf="@id/rt_stars" />
@@ -128,15 +139,21 @@
         android:elevation="@dimen/dimen_0dp"
         app:cardCornerRadius="@dimen/dimen_8dp"
         app:cardElevation="@dimen/dimen_0dp"
+        app:layout_constraintBottom_toTopOf="@id/cv_course_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tv_created_by"
         app:layout_constraintTop_toBottomOf="@id/tv_created_by"
+        app:layout_constraintVertical_chainStyle="packed"
         app:strokeColor="@color/gray_300"
         app:strokeWidth="@dimen/dimen_1dp">
 
         <LinearLayout
+            android:id="@+id/ll_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
             android:orientation="vertical">
 
             <TextView
@@ -173,7 +190,6 @@
         android:id="@+id/cv_course_content"
         android:layout_width="@dimen/dimen_0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_16dp"
         android:layout_marginBottom="@dimen/dimen_16dp"
         android:elevation="@dimen/dimen_0dp"
         app:cardCornerRadius="@dimen/dimen_8dp"
@@ -183,6 +199,7 @@
         app:layout_constraintStart_toStartOf="@id/cv_course_description"
         app:layout_constraintTop_toBottomOf="@id/cv_course_description"
         app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed"
         app:strokeColor="@color/gray_300"
         app:strokeWidth="@dimen/dimen_1dp">
 
@@ -214,10 +231,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginHorizontal="@dimen/dimen_8dp"
-                android:layout_marginVertical="@dimen/dimen_12dp"
                 android:contentDescription="@null"
-                android:src="@drawable/image_sent_email" />
+                android:src="@drawable/ic_empty" />
 
         </LinearLayout>
 
