@@ -16,6 +16,7 @@ const val KEY_ROLE = "role"
 
 const val COURSE_KEY = "course_key"
 const val LECTURE_KEY = "lecture_key"
+const val LIST_LECTURE_KEY = "list_lecture_key"
 const val CATEGORY_KEY = "category_key"
 const val IS_PURCHASED_COURSES_KEY = "purchased_courses_key"
 const val PURCHASE_URL_KEY = "purchase_url_key"

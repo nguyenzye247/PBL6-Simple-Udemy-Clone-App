@@ -17,7 +17,7 @@ class GetCoursesRxRepositoryImpl(
                 pageSize = 4,
                 maxSize = 100,
                 prefetchDistance = 2,
-                initialLoadSize = 4
+                initialLoadSize = 3
             ),
             pagingSourceFactory = {
                 coursePagingSource

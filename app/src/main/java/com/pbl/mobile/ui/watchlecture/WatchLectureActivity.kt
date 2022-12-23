@@ -1,5 +1,6 @@
 package com.pbl.mobile.ui.watchlecture
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Build
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
@@ -21,15 +23,14 @@ import com.pbl.mobile.api.BaseResponse
 import com.pbl.mobile.base.BaseActivity
 import com.pbl.mobile.base.BaseInput
 import com.pbl.mobile.base.ViewModelProviderFactory
-import com.pbl.mobile.common.CATEGORY_KEY
-import com.pbl.mobile.common.EMPTY_TEXT
-import com.pbl.mobile.common.LECTURE_KEY
+import com.pbl.mobile.common.*
 import com.pbl.mobile.databinding.ActivityWatchLectureBinding
 import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.extension.showToast
 import com.pbl.mobile.model.local.Comment
 import com.pbl.mobile.model.local.Lecture
 import com.pbl.mobile.model.remote.user.GetSimpleUserResponse
+import com.pbl.mobile.ui.course.lecture.LectureAdapter
 import com.pbl.mobile.ui.watchlecture.comment.LectureCommentBottomSheet
 import com.pbl.mobile.ui.watchlecture.description.LectureDescriptionBottomSheet
 import com.pbl.mobile.util.DateFormatUtils
@@ -39,10 +40,12 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
     private var player: ExoPlayer? = null
     private val comments: ArrayList<Comment> = arrayListOf()
     private var previewUser: GetSimpleUserResponse.User? = null
+    private lateinit var lectureAdapter: LectureAdapter
 
     private var playWhenReady = true
     private var currentItem = 0
     private var playbackPosition = 0L
+    private var likeCount:Int = 0
 
     companion object {
         private const val SKIP_AMOUNT = 5 //second
@@ -88,6 +91,11 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        releasePlayer()
+    }
+
     override fun setupInit() {
         initViews()
         initListeners()
@@ -96,11 +104,41 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
 
     private fun initViews() {
         val lecture = getLectureFromIntent()
+        val categoryName = intent.getStringExtra(CATEGORY_KEY)
+        val isCoursePurchased = intent.getBooleanExtra(IS_PURCHASED_COURSES_KEY, false)
+        val lectures = intent.getParcelableArrayListExtra<Lecture>(LIST_LECTURE_KEY)
+            ?: arrayListOf()
         binding.apply {
             lecture?.let { lec ->
-                tvCategory.text = intent.getStringExtra(CATEGORY_KEY)
+                tvCategory.text = categoryName
                 tvLectureTitle.text = lec.title
                 tvVideoPublishTime.text = DateFormatUtils.parseDate(lec.createdAt)
+            }
+            rvLectures.apply {
+                lectureAdapter = LectureAdapter(
+                    isCoursePurchased,
+                    lectures,
+                    onLectureItemClickCallback = {
+                        this@WatchLectureActivity.finish()
+                        startActivity(
+                            Intent(
+                                this@WatchLectureActivity,
+                                WatchLectureActivity::class.java
+                            ).apply {
+                                putExtra(LECTURE_KEY, it)
+                                putExtra(CATEGORY_KEY, categoryName)
+                                putExtra(IS_PURCHASED_COURSES_KEY, isCoursePurchased)
+                                putParcelableArrayListExtra(LIST_LECTURE_KEY, lectures)
+                            }
+                        )
+                    }
+                )
+                adapter = lectureAdapter
+                layoutManager = LinearLayoutManager(
+                    this@WatchLectureActivity,
+                    LinearLayoutManager.VERTICAL,
+                    false
+                )
             }
         }
     }
@@ -166,6 +204,7 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
                         binding.tvInstructorName.text = instructorResponse.data.fullName
                         Glide.with(this@WatchLectureActivity)
                             .load(instructorResponse.data.avatarUrl)
+                            .placeholder(R.drawable.avatar_holder_person)
                             .into(binding.ivInstructorAvatar)
                     } ?: kotlin.run {
                         binding.tvInstructorName.text = getString(R.string.unknown)
@@ -282,12 +321,15 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
             when (response) {
                 is BaseResponse.Success -> {
                     response.data?.let { videoLikeResponse ->
-                        val likeCount = videoLikeResponse.data.size
-                        binding.btnLike.text = likeCount.toString()
+                        likeCount = videoLikeResponse.data.size
+                        val likeCountText =
+                            likeCount.toString() + EMPTY_SPACE + getString(R.string.likes)
+                        binding.btnLike.text = likeCountText
                     }
                 }
                 is BaseResponse.Error -> {
-                    binding.btnLike.text = "0"
+                    val noLikeText = "0" + EMPTY_SPACE + getString(R.string.likes)
+                    binding.btnLike.text = noLikeText
                 }
                 else -> {
                     //no-ops
@@ -374,6 +416,7 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
         val lecture = getLectureFromIntent()
         val lectureDescriptionBottomSheet = LectureDescriptionBottomSheet.newInstance(
             lecture,
+            likeCount,
             getLectureBottomSheetHeight()
         )
         lectureDescriptionBottomSheet.show(
@@ -385,7 +428,10 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
         val lectureId = getLectureFromIntent()?.id ?: EMPTY_TEXT
         val lectureCommentsBottomSheet = LectureCommentBottomSheet.newInstance(
             lectureId,
-            getLectureBottomSheetHeight()
+            getLectureBottomSheetHeight(),
+            onDismissCallback = {
+                viewModel.getComments(lectureId)
+            }
         )
         lectureCommentsBottomSheet.show(supportFragmentManager, LectureCommentBottomSheet.TAG)
     }
@@ -402,6 +448,7 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
                 binding.apply {
                     Glide.with(this@WatchLectureActivity)
                         .load(user.avatarUrl)
+                        .placeholder(R.drawable.avatar_holder_person)
                         .into(ivPreviewUserCommentAvatar)
                     tvCommentPreview.text = comment.content
                 }

@@ -15,6 +15,7 @@ import com.pbl.mobile.util.HtmlUtils
 
 class LectureDescriptionBottomSheet(
     private val lecture: Lecture?,
+    private val likeCount: Int,
     private val maxHeight: Int
 ) : BottomSheetDialogFragment() {
 
@@ -26,8 +27,8 @@ class LectureDescriptionBottomSheet(
 
     companion object {
         const val TAG = "LectureDescriptionBottomSheet_Tag"
-        fun newInstance(lecture: Lecture?, maxHeight: Int) =
-            LectureDescriptionBottomSheet(lecture, maxHeight)
+        fun newInstance(lecture: Lecture?, likeCount: Int, maxHeight: Int) =
+            LectureDescriptionBottomSheet(lecture, likeCount, maxHeight)
     }
 
     override fun onCreateView(
@@ -62,6 +63,7 @@ class LectureDescriptionBottomSheet(
                     "text/html; charset=utf-8",
                     "UTF-8"
                 )
+                tvLikeCount.text = likeCount.toString()
                 tvPublishDay.text = DateFormatUtils.getDayAndMonthFrom(lecture.createdAt)
                 tvPublishYear.text = DateFormatUtils.getYearFrom(lecture.createdAt)
             }

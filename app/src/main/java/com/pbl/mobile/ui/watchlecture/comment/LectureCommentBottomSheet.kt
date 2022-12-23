@@ -1,5 +1,6 @@
 package com.pbl.mobile.ui.watchlecture.comment
 
+import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,7 +29,8 @@ import kotlinx.coroutines.launch
 
 class LectureCommentBottomSheet(
     private val lectureId: String,
-    private val maxHeight: Int
+    private val maxHeight: Int,
+    private val onDismissCallback: () -> Unit
 ) : BottomSheetDialogFragment() {
     private lateinit var commentAdapter: LectureCommentAdapter
     private val comments: ArrayList<Comment> = arrayListOf()
@@ -43,8 +45,8 @@ class LectureCommentBottomSheet(
 
     companion object {
         const val TAG = "LectureCommentBottomSheet_Tag"
-        fun newInstance(lectureId: String, maxHeight: Int) =
-            LectureCommentBottomSheet(lectureId, maxHeight)
+        fun newInstance(lectureId: String, maxHeight: Int, onDismissCallback: () -> Unit) =
+            LectureCommentBottomSheet(lectureId, maxHeight, onDismissCallback)
     }
 
     override fun onCreateView(
@@ -166,5 +168,10 @@ class LectureCommentBottomSheet(
                     commentAdapter.setUser(viewModel.commentUsers)
                 }
             }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismissCallback.invoke()
     }
 }

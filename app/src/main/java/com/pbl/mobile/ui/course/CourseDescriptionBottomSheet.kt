@@ -38,7 +38,6 @@ class CourseDescriptionBottomSheet(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bottomSheetBehavior = BottomSheetBehavior.from(view.parent as View)
-        bottomSheetBehavior.isDraggable = false
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         activity?.let {
             val maxHeight = HEIGHT_FACTOR * ScreenUtils.getScreenHeight(it)
