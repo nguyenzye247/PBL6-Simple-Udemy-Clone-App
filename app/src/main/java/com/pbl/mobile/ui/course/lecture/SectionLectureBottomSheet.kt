@@ -2,24 +2,22 @@ package com.pbl.mobile.ui.course.lecture
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pbl.mobile.databinding.FragmentSectionLecturesBottomsheetBinding
 import com.pbl.mobile.model.local.Lecture
-import com.pbl.mobile.model.local.Section
 import com.pbl.mobile.util.ScreenUtils
 
 class SectionLectureBottomSheet(
     private val sectionName: String,
-    private val lectures: ArrayList<Lecture>
+    private val lectures: ArrayList<Lecture>,
+    private val isPurchasedCourse: Boolean
 ) : BottomSheetDialogFragment() {
     private val binding by lazy { FragmentSectionLecturesBottomsheetBinding.inflate(layoutInflater) }
     private lateinit var lectureAdapter: LectureAdapter
@@ -28,8 +26,12 @@ class SectionLectureBottomSheet(
     companion object {
         const val TAG = "SectionLecturesBottomSheet_Tag"
         const val HEIGHT_FACTOR = 0.8
-        fun newInstance(sectionName: String,lectures: ArrayList<Lecture>) =
-            SectionLectureBottomSheet(sectionName, lectures)
+        fun newInstance(
+            sectionName: String,
+            lectures: ArrayList<Lecture>,
+            isPurchasedCourse: Boolean
+        ) =
+            SectionLectureBottomSheet(sectionName, lectures, isPurchasedCourse)
     }
 
     override fun onAttach(context: Context) {
@@ -68,6 +70,7 @@ class SectionLectureBottomSheet(
             tvSectionTitle.text = sectionName
             rvLectures.apply {
                 lectureAdapter = LectureAdapter(
+                    isPurchasedCourse,
                     lectures,
                     onLectureItemClickCallback = {
                         onLectureItemSelect.onLectureItemSelect(it)

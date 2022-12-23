@@ -8,9 +8,9 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pbl.mobile.base.BaseFragment
 import com.pbl.mobile.common.COURSE_KEY
+import com.pbl.mobile.common.IS_PURCHASED_COURSES_KEY
 import com.pbl.mobile.databinding.FragmentHomeBinding
 import com.pbl.mobile.model.local.Course
-import com.pbl.mobile.model.remote.user.GetSimpleUserResponse
 import com.pbl.mobile.ui.course.CourseDetailActivity
 import com.pbl.mobile.ui.main.HomeMainViewModel
 import kotlinx.coroutines.flow.distinctUntilChangedBy
@@ -18,7 +18,8 @@ import kotlinx.coroutines.launch
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeMainViewModel>() {
     private lateinit var homeCourseAdapter: HomeCourseAdapter
-    private val loadedInstructorIds = arrayListOf<String>()
+    private val loadedInstructorIds = mutableSetOf<String>()
+    private val purchasedCourseIds: ArrayList<String> = arrayListOf()
 
     private val linearLayoutManager by lazy {
         LinearLayoutManager(
@@ -64,37 +65,41 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeMainViewModel>() {
     private fun observe() {
         lifecycleScope.launch {
             homeCourseAdapter.loadStateFlow
-                .distinctUntilChangedBy { it.refresh }
+                .distinctUntilChangedBy { it.append is LoadState.NotLoading }
                 .collect { _ ->
                     val list = homeCourseAdapter.snapshot().items
                     if (list.isNotEmpty()) {
                         val courseUserIds = list.map { it.userId }
-                        val unloadedUserIds = arrayListOf<String>()
                         courseUserIds.forEach { id ->
-                            if (!loadedInstructorIds.contains(id)) {
-                                unloadedUserIds.add(id)
-                                loadedInstructorIds.add(id)
-                            }
+                            loadedInstructorIds.add(id)
                         }
-                        if (unloadedUserIds.isNotEmpty()) {
-                            viewModel.loadInstructors(unloadedUserIds)
+                        if (loadedInstructorIds.isNotEmpty()) {
+                            viewModel.loadHomeInstructors(loadedInstructorIds)
                         }
                     }
                 }
         }
-        viewModel.isFinishedLoadInstructor().observe(this@HomeFragment) { isFinished ->
+        viewModel.isFinishedLoadHomeInstructor().observe(this@HomeFragment) { isFinished ->
             if (isFinished) {
-                homeCourseAdapter.setInstructor(viewModel.instructors)
+                homeCourseAdapter.setInstructor(viewModel.homeInstructors)
             }
         }
         viewModel.getCourses().observe(this@HomeFragment) { pagingCourseData ->
             homeCourseAdapter.submitData(lifecycle, pagingCourseData)
         }
+        viewModel.isFinishedLoadMyPurchaseCourses().observe(this@HomeFragment) { isFinished ->
+            if (isFinished) {
+                purchasedCourseIds.clear()
+                purchasedCourseIds.addAll(viewModel.myPurchaseCourses.map { it.id })
+            }
+        }
+        viewModel.loadMyPurchasedCourseIds()
     }
 
     private fun goToCourseDetail(course: Course?) {
         Intent(context, CourseDetailActivity::class.java).apply {
             putExtra(COURSE_KEY, course)
+            putExtra(IS_PURCHASED_COURSES_KEY, purchasedCourseIds.contains(course?.id))
             startActivity(this)
         }
     }

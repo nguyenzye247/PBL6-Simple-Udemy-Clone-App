@@ -149,19 +149,93 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dimen_12dp"
-        android:backgroundTint="@color/yellow_100"
         android:elevation="@dimen/dimen_5dp"
         android:gravity="center"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/enroll"
         android:textAllCaps="false"
-        android:textColor="@color/black_100"
+        android:textColor="@color/selector_enroll_button_text"
         android:textSize="16sp"
+        app:backgroundTint="@color/selector_enroll_button"
         app:cornerRadius="@dimen/dimen_48dp"
         app:elevation="2dp"
         app:layout_anchor="@id/app_bar_course"
         app:layout_anchorGravity="bottom|end"
         app:strokeWidth="0dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fr_success_purchase"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_550"
+        android:elevation="@dimen/dimen_6dp"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/ani_success_purchase"
+            android:layout_width="@dimen/dimen_160dp"
+            android:layout_height="@dimen/dimen_160dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false"
+            app:lottie_repeatCount="1"
+            app:lottie_url="https://assets1.lottiefiles.com/packages/lf20_atippmse.json" />
+
+        <TextView
+            android:id="@+id/tv_purchase_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_28dp"
+            android:text="@string/purchase_success"
+            android:textColor="@color/black_100"
+            android:textSize="@dimen/dimen_24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ani_success_purchase" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fr_fail_purchase"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_550"
+        android:elevation="@dimen/dimen_6dp"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/ani_fail_purchase"
+            android:layout_width="@dimen/dimen_160dp"
+            android:layout_height="@dimen/dimen_160dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="false"
+            app:lottie_loop="false"
+            app:lottie_repeatCount="1"
+            app:lottie_url="https://assets9.lottiefiles.com/packages/lf20_pqpmxbxp.json" />
+
+        <TextView
+            android:id="@+id/tv_fail_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_28dp"
+            android:text="@string/fail_to_purchase"
+            android:textColor="@color/black_100"
+            android:textSize="@dimen/dimen_24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ani_fail_purchase" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

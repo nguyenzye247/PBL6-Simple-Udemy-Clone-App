@@ -16,7 +16,7 @@ class GetCoursesRxRepositoryImpl(
             config = PagingConfig(
                 pageSize = 4,
                 maxSize = 100,
-                prefetchDistance = 3,
+                prefetchDistance = 2,
                 initialLoadSize = 4
             ),
             pagingSourceFactory = {

@@ -119,4 +119,7 @@ dependencies {
     implementation 'io.sentry:sentry-android:6.9.1'
 
     implementation 'org.ocpsoft.prettytime:prettytime:5.0.4.Final'
+
+    implementation 'com.airbnb.android:lottie:5.2.0'
+    implementation "androidx.browser:browser:1.4.0"
 }

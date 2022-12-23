@@ -1,8 +1,17 @@
 package com.pbl.mobile.ui.course
 
+import android.content.ComponentName
 import android.content.Intent
+import android.net.Uri
+import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.browser.customtabs.CustomTabsClient
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.browser.customtabs.CustomTabsServiceConnection
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -11,11 +20,9 @@ import com.pbl.mobile.api.BaseResponse
 import com.pbl.mobile.base.BaseActivity
 import com.pbl.mobile.base.BaseInput
 import com.pbl.mobile.base.ViewModelProviderFactory
-import com.pbl.mobile.common.CATEGORY_KEY
-import com.pbl.mobile.common.COURSE_KEY
-import com.pbl.mobile.common.EMPTY_TEXT
-import com.pbl.mobile.common.LECTURE_KEY
+import com.pbl.mobile.common.*
 import com.pbl.mobile.databinding.ActivityCourseDetailBinding
+import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.extension.parcelable
 import com.pbl.mobile.extension.showToast
 import com.pbl.mobile.model.local.Category
@@ -26,27 +33,45 @@ import com.pbl.mobile.ui.course.lecture.SectionLectureBottomSheet
 import com.pbl.mobile.ui.course.section.SectionAdapter
 import com.pbl.mobile.ui.watchlecture.WatchLectureActivity
 import com.pbl.mobile.util.HtmlUtils
+import com.pbl.mobile.widget.CourseEnrollConfirmDialog
 
-class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseViewModel>(),
-    SectionLectureBottomSheet.OnLectureItemSelectListener {
-    private val categories = arrayListOf<Category>()
-    private val sections = arrayListOf<Section>()
-    private val lectures = arrayListOf<Lecture>()
+
+class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseDetailsViewModel>(),
+    SectionLectureBottomSheet.OnLectureItemSelectListener,
+    CourseEnrollConfirmDialog.OnDialogConfirmListener {
+    private val categories: ArrayList<Category> = arrayListOf()
+    private val sections: ArrayList<Section> = arrayListOf()
     private lateinit var sectionAdapter: SectionAdapter
     private var categoryName: String? = null
+    private var isCoursePurchased: Boolean = false
+    private var isShowPurchaseAnimation = false
+
+    companion object {
+        private const val CUSTOM_TAB_PACKAGE_NAME = "com.android.chrome"
+    }
+
+    private val chromeCustomTabLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result: ActivityResult? ->
+        //TODO: check for purchase in server
+        isShowPurchaseAnimation = true
+        viewModel.loadMyPurchasedCourseIds()
+    }
 
     override fun getLazyBinding() = lazy { ActivityCourseDetailBinding.inflate(layoutInflater) }
 
-    override fun getLazyViewModel() = viewModels<CourseViewModel> {
+    override fun getLazyViewModel() = viewModels<CourseDetailsViewModel> {
         ViewModelProviderFactory(
             BaseInput.CourseDetailInput(
-                application
+                application,
+                intent.getBooleanExtra(IS_PURCHASED_COURSES_KEY, false)
             )
         )
     }
 
     override fun setupInit() {
         val course = intent.parcelable<Course>(COURSE_KEY)
+        isCoursePurchased = intent.getBooleanExtra(IS_PURCHASED_COURSES_KEY, false)
         initViews(course)
         initListener(course)
         observe()
@@ -120,7 +145,7 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseVie
                     }
                 }
                 btnEnrollCourse.setOnClickListener {
-                    //TODO: confirm enroll course
+                    showEnrollConfirmDialog()
                 }
             }
         }
@@ -128,6 +153,32 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseVie
 
     private fun observe() {
         val course = intent.parcelable<Course>(COURSE_KEY)
+        viewModel.myPurchasedCourses().observe(this@CourseDetailActivity) { courseIds ->
+            course?.let { currentCourse ->
+                if (courseIds.contains(currentCourse.id)) {
+                    binding.btnEnrollCourse.text = getString(R.string.purchased)
+                    binding.btnEnrollCourse.isEnabled = false
+                    isCoursePurchased = true
+                    if (isShowPurchaseAnimation) {
+                        binding.frSuccessPurchase.isVisible = true
+                        binding.aniSuccessPurchase.playAnimation()
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            binding.frSuccessPurchase.isVisible = false
+                        }, 4000)
+                    }
+                } else {
+                    binding.btnEnrollCourse.isEnabled = true
+                    isCoursePurchased = false
+                    if (isShowPurchaseAnimation) {
+                        binding.frFailPurchase.isVisible = true
+                        binding.aniFailPurchase.playAnimation()
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            binding.frFailPurchase.isVisible = false
+                        }, 4000)
+                    }
+                }
+            }
+        }
         viewModel.getInstructor(course?.userId ?: EMPTY_TEXT)
         viewModel.instructor().observe(this@CourseDetailActivity) { response ->
             when (response) {
@@ -185,17 +236,60 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseVie
                 }
                 is BaseResponse.Error -> {
                     showToast("Error Loading Course Contents")
-                    binding.contentLayout.progressBar.isVisible = false
+                    binding.contentLayout.progressBarCourseContent.isVisible = false
                 }
                 is BaseResponse.Loading -> {
-                    binding.contentLayout.progressBar.isVisible = true
+                    binding.contentLayout.progressBarCourseContent.isVisible = true
                 }
             }
         }
         viewModel.isAllLectureLoaded().observe(this@CourseDetailActivity) { isAllLoaded ->
             if (isAllLoaded)
-                binding.contentLayout.progressBar.isVisible = false
+                binding.contentLayout.progressBarCourseContent.isVisible = false
         }
+        viewModel.purchaseCourseResponse().observe(this@CourseDetailActivity) { response ->
+            when (response) {
+                is BaseResponse.Loading -> {
+                    binding.contentLayout.progressBar.isVisible = true
+                }
+                is BaseResponse.Success -> {
+                    response.data?.let { purchaseResponse ->
+                        val purchaseUrl = purchaseResponse.data.paymentUrl
+                        launchChromeCustomTab(purchaseUrl)
+                    }
+                    binding.contentLayout.progressBar.isVisible = false
+                }
+                is BaseResponse.Error -> {
+                    showToast(getString(R.string.error_purchasing_course))
+                    binding.contentLayout.progressBar.isVisible = false
+                }
+            }
+        }
+    }
+
+    private fun launchChromeCustomTab(paymentUrl: String) {
+        CustomTabsClient.bindCustomTabsService(
+            this@CourseDetailActivity,
+            CUSTOM_TAB_PACKAGE_NAME,
+            object : CustomTabsServiceConnection() {
+                override fun onCustomTabsServiceConnected(
+                    name: ComponentName,
+                    client: CustomTabsClient
+                ) {
+                    client.warmup(0L)
+                }
+
+                override fun onServiceDisconnected(name: ComponentName) {
+
+                }
+            }
+        )
+        val customTabsIntent = CustomTabsIntent.Builder()
+            .setShowTitle(true)
+            .build()
+        customTabsIntent.intent.data = Uri.parse(paymentUrl)
+//        customTabsIntent.launchUrl(this@CourseDetailActivity, Uri.parse(paymentUrl))
+        chromeCustomTabLauncher.launch(customTabsIntent.intent)
     }
 
     private fun showCourseDescriptionBottomSheet(course: Course) {
@@ -205,7 +299,12 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseVie
     }
 
     private fun showSectionLecturesBottomSheet(sectionName: String, lectures: ArrayList<Lecture>) {
-        val lecturesBottomSheet = SectionLectureBottomSheet.newInstance(sectionName, lectures)
+        val lecturesBottomSheet =
+            SectionLectureBottomSheet.newInstance(
+                sectionName,
+                lectures,
+                isCoursePurchased
+            )
         lecturesBottomSheet.show(supportFragmentManager, SectionLectureBottomSheet.TAG)
     }
 
@@ -219,6 +318,19 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseVie
                 putExtra(LECTURE_KEY, lecture)
                 putExtra(CATEGORY_KEY, categoryName)
             }
+        )
+    }
+
+    private fun showEnrollConfirmDialog() {
+        val enrollConfirmDialog = CourseEnrollConfirmDialog.newInstance()
+        enrollConfirmDialog.show(supportFragmentManager, CourseEnrollConfirmDialog.TAG)
+    }
+
+    override fun onEnrollConfirm() {
+        val course = intent.parcelable<Course>(COURSE_KEY)
+        viewModel.makePurchase(
+            course?.id ?: EMPTY_TEXT,
+            this.getBaseConfig().myId
         )
     }
 }

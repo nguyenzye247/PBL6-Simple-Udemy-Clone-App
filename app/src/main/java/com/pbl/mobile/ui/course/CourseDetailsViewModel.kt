@@ -2,30 +2,35 @@ package com.pbl.mobile.ui.course
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.pbl.mobile.api.BEARER
 import com.pbl.mobile.api.BaseResponse
 import com.pbl.mobile.api.SUCCESS
-import com.pbl.mobile.api.SessionManager
 import com.pbl.mobile.api.category.CategoryRequestManager
+import com.pbl.mobile.api.payment.PaymentRequestManager
 import com.pbl.mobile.api.section.SectionRequestManager
 import com.pbl.mobile.api.user.UserRequestManager
 import com.pbl.mobile.api.video.VideoRequestManager
 import com.pbl.mobile.base.BaseInput
 import com.pbl.mobile.base.BaseViewModel
+import com.pbl.mobile.common.LANGUAGE
+import com.pbl.mobile.common.ORDER_INFO
+import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.extension.observeOnUiThread
 import com.pbl.mobile.model.local.Lecture
 import com.pbl.mobile.model.remote.category.get.CategoryGetResponse
+import com.pbl.mobile.model.remote.payment.post.PostPaymentBody
+import com.pbl.mobile.model.remote.payment.post.PostPaymentResponse
 import com.pbl.mobile.model.remote.section.GetSectionsResponse
 import com.pbl.mobile.model.remote.user.GetSimpleUserResponse
 import com.pbl.mobile.model.remote.video.GetVideoResponse
+import com.pbl.mobile.util.NetworkUtil
 import io.sentry.Sentry
 
-class CourseViewModel(val input: BaseInput.CourseDetailInput) : BaseViewModel(input) {
+class CourseDetailsViewModel(val input: BaseInput.CourseDetailInput) : BaseViewModel(input) {
     private val sectionRequestManager = SectionRequestManager()
     private val categoryRequestManager = CategoryRequestManager()
     private val lectureRequestManager = VideoRequestManager()
+    private val paymentRequestManager = PaymentRequestManager()
     private val userRequestManager = UserRequestManager()
-    private val token = BEARER + SessionManager.fetchToken(input.application)
 
     private val _categories: MutableLiveData<BaseResponse<CategoryGetResponse>> = MutableLiveData()
     private val _courseSections: MutableLiveData<BaseResponse<GetSectionsResponse>> =
@@ -34,6 +39,9 @@ class CourseViewModel(val input: BaseInput.CourseDetailInput) : BaseViewModel(in
     private val _instructor: MutableLiveData<BaseResponse<GetSimpleUserResponse>> =
         MutableLiveData()
     private val _isAllLecturesLoaded: MutableLiveData<Boolean> = MutableLiveData()
+    private val _myPurchasedCourseIds: MutableLiveData<ArrayList<String>> = MutableLiveData()
+    private val _purchaseCourseResponse: MutableLiveData<BaseResponse<PostPaymentResponse>> =
+        MutableLiveData()
     private val sectionIds = arrayListOf<String>()
     private val sectionLectures = hashMapOf<String, ArrayList<Lecture>>()
 
@@ -42,6 +50,13 @@ class CourseViewModel(val input: BaseInput.CourseDetailInput) : BaseViewModel(in
     fun instructor(): LiveData<BaseResponse<GetSimpleUserResponse>> = _instructor
     fun lectures() = sectionLectures
     fun isAllLectureLoaded(): LiveData<Boolean> = _isAllLecturesLoaded
+    fun myPurchasedCourses(): LiveData<ArrayList<String>> = _myPurchasedCourseIds
+    fun purchaseCourseResponse(): LiveData<BaseResponse<PostPaymentResponse>> =
+        _purchaseCourseResponse
+
+    init {
+        loadMyPurchasedCourseIds()
+    }
 
     fun getCategories() {
         try {
@@ -112,6 +127,27 @@ class CourseViewModel(val input: BaseInput.CourseDetailInput) : BaseViewModel(in
         }
     }
 
+
+    fun loadMyPurchasedCourseIds() {
+        val userIds = input.application.getBaseConfig().myId
+        subscription.add(
+            paymentRequestManager.getPayment(
+                input.application,
+                userIds
+            )
+                .observeOnUiThread()
+                .subscribe(
+                    { paymentResponse ->
+                        val courseIds = paymentResponse.data.map { it.courseId }
+                        _myPurchasedCourseIds.value = ArrayList(courseIds)
+                    },
+                    {
+                        //no-ops
+                    }
+                )
+        )
+    }
+
     fun getInstructor(userId: String) {
         subscription.add(
             userRequestManager.getSimpleUserById(input.application, userId)
@@ -135,6 +171,33 @@ class CourseViewModel(val input: BaseInput.CourseDetailInput) : BaseViewModel(in
         } else {
             _isAllLecturesLoaded.value = true
         }
+    }
+
+    fun makePurchase(courseId: String, userId: String) {
+        subscription.add(
+            paymentRequestManager.postPayment(
+                input.application,
+                PostPaymentBody(
+                    courseId,
+                    userId,
+                    LANGUAGE,
+                    ORDER_INFO,
+                    NetworkUtil.getIpAddress()
+                )
+            )
+                .observeOnUiThread()
+                .doOnSubscribe {
+                    _purchaseCourseResponse.value = BaseResponse.Loading()
+                }
+                .subscribe(
+                    {
+                        _purchaseCourseResponse.value = BaseResponse.Success(it)
+                    },
+                    {
+                        _purchaseCourseResponse.value = BaseResponse.Error(it.message)
+                    }
+                )
+        )
     }
 
     private fun handleCategoryResponse(response: CategoryGetResponse) {

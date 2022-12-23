@@ -8,6 +8,7 @@ import com.pbl.mobile.databinding.ItemLectureVideoBinding
 import com.pbl.mobile.model.local.Lecture
 
 class LectureAdapter(
+    private val isCoursePurchased: Boolean,
     private val lectures: ArrayList<Lecture>,
     private val onLectureItemClickCallback: (lecture: Lecture) -> Unit
 ) : RecyclerView.Adapter<LectureAdapter.LectureItemViewHolder>() {
@@ -20,9 +21,10 @@ class LectureAdapter(
                 val numb = (absoluteAdapterPosition + 1).toString()
                 tvLectureNumb.text = numb
                 tvLectureTitle.text = lecture.title
-                root.setOnClickListener {
-                    onLectureItemClickCallback.invoke(lecture)
-                }
+                if (!lecture.isLock || isCoursePurchased)
+                    root.setOnClickListener {
+                        onLectureItemClickCallback.invoke(lecture)
+                    }
             }
         }
     }

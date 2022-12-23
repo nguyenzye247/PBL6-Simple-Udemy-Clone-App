@@ -5,6 +5,7 @@ import com.pbl.mobile.api.BaseRequestManager
 import com.pbl.mobile.api.GET_COURSES_URL
 import com.pbl.mobile.api.GET_INSTRUCTORS_COURSES_URL
 import com.pbl.mobile.model.remote.courses.GetCourseResponse
+import com.pbl.mobile.model.remote.courses.GetCoursesResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -18,13 +19,16 @@ interface CoursesApi {
     }
 
     @GET(GET_COURSES_URL)
-    fun getCourses(@Query("page") page: Int, @Query("limit") limit: Int): Single<GetCourseResponse>
+    fun getCourses(@Query("page") page: Int, @Query("limit") limit: Int): Single<GetCoursesResponse>
+
+    @GET("$GET_COURSES_URL/{courseId}")
+    fun getCourseById(@Path("courseId") courseId: String): Single<GetCourseResponse>
 
     @GET("$GET_INSTRUCTORS_COURSES_URL/{ID}")
     fun getInstructorCourses(
         @Path("ID") id: String,
         @Query("page") page: Int,
         @Query("limit") limit: Int
-    ): Single<GetCourseResponse>
+    ): Single<GetCoursesResponse>
 
 }

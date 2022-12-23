@@ -16,6 +16,7 @@
     <color name="gray_400">#FF686A70</color>
     <color name="gray_500">#FFF6F6F4</color>
     <color name="gray_610">#25808080</color>
+    <color name="gray_700">#7C81AB</color>
 
     <color name="white_background">#FFFCFCFC</color>
     <color name="white_100">#FFF8F8F8</color>
@@ -23,6 +24,7 @@
     <color name="white_300">#FFEEF7F4</color>
     <color name="white_400">#FFF8F8F8</color>
     <color name="white_500">#FFFAFAFA</color>
+    <color name="white_550">#CDFAFAFA</color>
 
     <color name="red_100">#FFF27166</color>
     <color name="red_200">#FF9B2D2D</color>
