@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_bottom_sheet">
 
+    <ImageView
+        android:id="@+id/iv_pull_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:background="@drawable/ic_pull_bar"
+        android:contentDescription="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="@integer/int_0" />
+
     <ImageButton
         android:id="@+id/btn_close"
         android:layout_width="wrap_content"

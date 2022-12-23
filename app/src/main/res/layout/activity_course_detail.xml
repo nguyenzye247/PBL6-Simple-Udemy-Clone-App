@@ -200,8 +200,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fr_fail_purchase"
         android:layout_width="match_parent"

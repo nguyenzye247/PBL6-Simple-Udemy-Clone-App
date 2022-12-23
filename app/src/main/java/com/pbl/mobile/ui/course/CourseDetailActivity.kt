@@ -308,15 +308,17 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseDet
         lecturesBottomSheet.show(supportFragmentManager, SectionLectureBottomSheet.TAG)
     }
 
-    override fun onLectureItemSelect(lecture: Lecture) {
-        goToWatchLecture(lecture)
+    override fun onLectureItemSelect(lecture: Lecture, lectures: ArrayList<Lecture>) {
+        goToWatchLecture(lecture, lectures)
     }
 
-    private fun goToWatchLecture(lecture: Lecture) {
+    private fun goToWatchLecture(lecture: Lecture, lectures: ArrayList<Lecture>) {
         startActivity(
             Intent(this@CourseDetailActivity, WatchLectureActivity::class.java).apply {
                 putExtra(LECTURE_KEY, lecture)
                 putExtra(CATEGORY_KEY, categoryName)
+                putExtra(IS_PURCHASED_COURSES_KEY, isCoursePurchased)
+                putParcelableArrayListExtra(LIST_LECTURE_KEY, lectures)
             }
         )
     }
