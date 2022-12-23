@@ -114,7 +114,7 @@ class WatchLectureViewModel(val input: BaseInput.WatchLectureInput) : BaseViewMo
         }
     }
 
-    fun getComments2(lectureId: String): LiveData<PagingData<Comment>> =
+    fun getCommentWithPaging(lectureId: String): LiveData<PagingData<Comment>> =
         commentRxRepositoryImpl.getComments(lectureId)
 
     fun getComments(lectureId: String) {

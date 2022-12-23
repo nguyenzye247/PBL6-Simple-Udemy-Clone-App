@@ -115,7 +115,7 @@ class LectureCommentBottomSheet(
 
     private fun observe() {
         viewModel.apply {
-            getComments2(lectureId).observe(this@LectureCommentBottomSheet) {
+            getCommentWithPaging(lectureId).observe(this@LectureCommentBottomSheet) {
                 commentAdapter.submitData(lifecycle, it)
             }
             getPushComment().observe(this@LectureCommentBottomSheet) { response ->

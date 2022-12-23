@@ -3,6 +3,7 @@ package com.pbl.mobile.ui.signin
 import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.onesignal.OneSignal
 import com.pbl.mobile.R
 import com.pbl.mobile.api.BaseResponse
 import com.pbl.mobile.api.SUCCESS
@@ -77,6 +78,7 @@ class SignInViewModel(input: BaseInput.MainInput) : BaseViewModel(input) {
                 .subscribe(
                     { getMeResponse ->
                         getMeResponse.data.let { me ->
+                            OneSignal.setExternalUserId(me.userId)
                             pApplication.getBaseConfig().apply {
                                 val idd = me.userId
                                 myId = me.userId
