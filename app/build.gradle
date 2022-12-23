@@ -58,6 +58,8 @@ dependencies {
 
     //OneSignal
     implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
+    //RabbitMQ
+    implementation "com.rabbitmq:amqp-client:5.16.0"
 
     //RxJava3
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'

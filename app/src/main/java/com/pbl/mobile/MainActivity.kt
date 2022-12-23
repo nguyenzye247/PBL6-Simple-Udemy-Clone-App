@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() {
     private fun onesignalSetup(){
         // Enable verbose OneSignal logging to debug issues if needed.
         OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE)
-
         // OneSignal Initialization
         OneSignal.initWithContext(this)
         OneSignal.setAppId(ONESIGNAL_APP_ID)
+        OneSignal.unsubscribeWhenNotificationsAreDisabled(true)
     }
 }

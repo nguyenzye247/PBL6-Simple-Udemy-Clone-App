@@ -67,7 +67,9 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                     stopLoading()
                     setExistedAccountAppearance()
                     viewModel.getMe()
-                    response.data?.let { viewModel.progressLogin(it) }
+                    response.data?.let {
+                        viewModel.progressLogin(it)
+                    }
                 }
                 is BaseResponse.Error -> {
                     response.msg?.let { this@SignInActivity.showToast(it) }
