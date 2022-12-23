@@ -107,6 +107,14 @@
     <string name="unknown">Unknown</string>
     <string name="add_a_comment">Add a comment…</string>
     <string name="read_more">Read more</string>
-
     <string name="holder_avatar">https://aui.atlassian.com/aui/latest/docs/images/avatar-person.svg</string>
+    <string name="my_purchased_courses">My Purchased Courses</string>
+    <string name="purchased">Purchased</string>
+    <string name="cancel">Cancel</string>
+    <string name="purchase">Purchase</string>
+    <string name="course_purchase">Course Purchase</string>
+    <string name="do_you_want_to_purchase_this_course">Do you want to purchase this course?</string>
+    <string name="error_purchasing_course">Error purchasing course</string>
+    <string name="purchase_success">Purchase Success</string>
+    <string name="fail_to_purchase">Fail To Purchase</string>
 </resources>

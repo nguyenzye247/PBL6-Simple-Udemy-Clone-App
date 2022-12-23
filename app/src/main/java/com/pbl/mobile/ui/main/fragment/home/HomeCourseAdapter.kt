@@ -1,7 +1,5 @@
 package com.pbl.mobile.ui.main.fragment.home
 
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -57,14 +55,10 @@ class HomeCourseAdapter(
                         DateFormatUtils.parseDate(course.createdAt) ?: EMPTY_TEXT
                     val price = "$" + course.price.toFloat().toInt().toString()
                     tvCoursePrice.text = price
-                    Thread {
-                        Handler(Looper.getMainLooper()).post {
-                            Glide.with(root.context)
-                                .load(course.thumbnailUrl)
-                                .transform(CenterInside(), RoundedCorners(24))
-                                .into(ivCourseThumbnail)
-                        }
-                    }.start()
+                    Glide.with(root.context)
+                        .load(course.thumbnailUrl)
+                        .transform(CenterInside(), RoundedCorners(24))
+                        .into(ivCourseThumbnail)
                     root.setOnClickListener {
                         onCourseItemClickCallback.invoke(item)
                     }

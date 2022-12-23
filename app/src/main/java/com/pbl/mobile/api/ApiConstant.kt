@@ -35,6 +35,10 @@ const val POST_VIDEO_LIKE_URL = "api/v1/java/reacts"
 const val LIKE_REACT_URL = "reacts"
 const val LIKE_CHECK_URL = "checkLike"
 
+const val GET_PAYMENT_URL = "api/v1/java/users"
+const val POST_PAYMENT_URL = "api/v1/java/payments"
+const val PAYMENT_URL = "payments"
+
 const val BEARER = "Bearer "
 const val AUTHORIZATION = "Authorization"
 

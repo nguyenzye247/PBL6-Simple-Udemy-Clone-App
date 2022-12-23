@@ -12,11 +12,17 @@ sealed class BaseInput {
     ) : BaseInput()
 
     data class CourseDetailInput(
-        val application: Application
+        val application: Application,
+        val isPurchasedCourse: Boolean
     ) : BaseInput()
 
     data class WatchLectureInput(
         val application: Application,
         val lecture: Lecture?
     ) : BaseInput()
+
+    data class PurchaseInput(
+        val application: Application,
+        val purchaseUrl: String
+    ): BaseInput()
 }

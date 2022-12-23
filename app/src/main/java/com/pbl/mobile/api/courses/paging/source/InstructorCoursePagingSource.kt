@@ -7,7 +7,7 @@ import com.pbl.mobile.api.courses.CourseRequestManager
 import com.pbl.mobile.common.DEFAULT_PAGE_INDEX
 import com.pbl.mobile.extension.observeOnIOThread
 import com.pbl.mobile.model.local.Course
-import com.pbl.mobile.model.remote.courses.GetCourseResponse
+import com.pbl.mobile.model.remote.courses.GetCoursesResponse
 import io.reactivex.rxjava3.core.Single
 
 class InstructorCoursePagingSource(
@@ -31,7 +31,7 @@ class InstructorCoursePagingSource(
     }
 
     private fun toLoadResult(
-        courseResponse: GetCourseResponse,
+        courseResponse: GetCoursesResponse,
         position: Int
     ): LoadResult<Int, Course> {
         return LoadResult.Page(

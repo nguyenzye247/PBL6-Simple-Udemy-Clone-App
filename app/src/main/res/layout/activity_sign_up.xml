@@ -246,7 +246,6 @@
                     app:boxStrokeErrorColor="@color/red_100"
                     app:boxStrokeWidth="1dp"
                     app:boxStrokeWidthFocused="1dp"
-                    app:endIconMode="password_toggle"
                     app:errorIconDrawable="@null"
                     app:errorTextColor="@color/red_100"
                     app:expandedHintEnabled="true"

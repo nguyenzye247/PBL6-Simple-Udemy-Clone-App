@@ -2,10 +2,12 @@ package com.pbl.mobile.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.pbl.mobile.ui.course.CourseViewModel
+import com.pbl.mobile.ui.course.CourseDetailsViewModel
 import com.pbl.mobile.ui.forgot_password.ForgotPasswordViewModel
 import com.pbl.mobile.ui.main.HomeMainViewModel
 import com.pbl.mobile.ui.new_password.NewPasswordViewModel
+import com.pbl.mobile.ui.purchase.PurchaseActivity
+import com.pbl.mobile.ui.purchase.PurchaseViewModel
 import com.pbl.mobile.ui.signin.SignInViewModel
 import com.pbl.mobile.ui.signup.SignUpViewModel
 import com.pbl.mobile.ui.verify_email.VerifyEmailViewModel
@@ -33,11 +35,14 @@ class ViewModelProviderFactory(private val input: BaseInput) : ViewModelProvider
             modelClass.isAssignableFrom(VerifyEmailViewModel::class.java) -> {
                 return VerifyEmailViewModel(input as BaseInput.NoInput) as T
             }
-            modelClass.isAssignableFrom(CourseViewModel::class.java) -> {
-                return CourseViewModel(input as BaseInput.CourseDetailInput) as T
+            modelClass.isAssignableFrom(CourseDetailsViewModel::class.java) -> {
+                return CourseDetailsViewModel(input as BaseInput.CourseDetailInput) as T
             }
             modelClass.isAssignableFrom(WatchLectureViewModel::class.java) -> {
                 return WatchLectureViewModel(input as BaseInput.WatchLectureInput) as T
+            }
+            modelClass.isAssignableFrom(PurchaseViewModel::class.java) -> {
+                return PurchaseViewModel(input as BaseInput.PurchaseInput) as T
             }
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

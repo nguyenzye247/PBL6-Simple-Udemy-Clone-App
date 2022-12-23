@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dimen_32dp"
+    android:background="@drawable/bg_dialog">
+
+    <TextView
+        android:id="@+id/tv_exit_app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_24dp"
+        android:includeFontPadding="false"
+        android:text="@string/course_purchase"
+        android:textColor="@color/black_100"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_exit_app_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_exit_app_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_24dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:text="@string/do_you_want_to_purchase_this_course"
+        android:textAlignment="center"
+        android:textColor="@color/gray_700"
+        android:textSize="@dimen/dimen_14sp"
+        app:layout_constraintBottom_toTopOf="@id/btn_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_exit_app_title" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="@dimen/dimen_0dp"
+        android:layout_marginTop="@dimen/dimen_20dp"
+        android:layout_marginBottom="@dimen/dimen_16dp"
+        android:padding="@dimen/dimen_0dp"
+        android:text="@string/cancel"
+        android:textAllCaps="false"
+        android:textColor="@color/black_100"
+        android:textSize="@dimen/dimen_14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_ok"
+        app:layout_constraintHeight_percent="0.24"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_exit_app_message"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <Button
+        android:id="@+id/btn_ok"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="@dimen/dimen_0dp"
+        android:layout_marginStart="@dimen/dimen_24dp"
+        android:padding="@dimen/dimen_0dp"
+        android:text="@string/purchase"
+        android:textAllCaps="false"
+        android:textColor="@color/blue_light_100"
+        android:textSize="@dimen/dimen_14sp"
+        app:layout_constraintBottom_toBottomOf="@id/btn_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.24"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/btn_cancel"
+        app:layout_constraintTop_toTopOf="@id/btn_cancel"
+        app:layout_constraintWidth_percent="0.3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
