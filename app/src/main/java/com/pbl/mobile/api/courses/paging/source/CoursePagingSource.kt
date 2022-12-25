@@ -37,7 +37,7 @@ class CoursePagingSource(
         return LoadResult.Page(
             data = courseResponse.data,
             prevKey = if (position == DEFAULT_PAGE_INDEX) null else position - 1,
-            nextKey = if (courseResponse.data.isEmpty()) null else position + 1
+            nextKey = if (courseResponse.pagination.next_page == null) null else position + 1
         )
     }
 }

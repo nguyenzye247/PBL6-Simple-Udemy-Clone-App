@@ -3,6 +3,7 @@ package com.pbl.mobile.base
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.pbl.mobile.ui.course.CourseDetailsViewModel
+import com.pbl.mobile.ui.editprofile.EditProfileViewModel
 import com.pbl.mobile.ui.forgot_password.ForgotPasswordViewModel
 import com.pbl.mobile.ui.main.HomeMainViewModel
 import com.pbl.mobile.ui.new_password.NewPasswordViewModel
@@ -43,6 +44,9 @@ class ViewModelProviderFactory(private val input: BaseInput) : ViewModelProvider
             }
             modelClass.isAssignableFrom(PurchaseViewModel::class.java) -> {
                 return PurchaseViewModel(input as BaseInput.PurchaseInput) as T
+            }
+            modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> {
+                return EditProfileViewModel(input as BaseInput.EditProFileInput) as T
             }
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

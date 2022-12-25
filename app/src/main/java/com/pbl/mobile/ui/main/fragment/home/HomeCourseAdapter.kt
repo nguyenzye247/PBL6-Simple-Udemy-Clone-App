@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.pbl.mobile.R
 import com.pbl.mobile.common.EMPTY_TEXT
 import com.pbl.mobile.databinding.ItemCourseBinding
+import com.pbl.mobile.model.local.Category
 import com.pbl.mobile.model.local.Course
 import com.pbl.mobile.model.remote.user.GetSimpleUserResponse
 import com.pbl.mobile.util.DateFormatUtils
@@ -19,6 +20,7 @@ class HomeCourseAdapter(
     private val onCourseItemClickCallback: (course: Course?) -> Unit
 ) : PagingDataAdapter<Course, HomeCourseAdapter.CourseViewHolder>(COURSE_COMPARATOR) {
     private var instructors: ArrayList<GetSimpleUserResponse.User>? = null
+    private var categories: ArrayList<Category>? = null
 
     companion object {
         private val COURSE_COMPARATOR = object : DiffUtil.ItemCallback<Course>() {
@@ -47,6 +49,13 @@ class HomeCourseAdapter(
                                     .load(instructor.avatarUrl)
                                     .placeholder(R.drawable.avatar_holder_person)
                                     .into(ivInstructorAvatar)
+                            }
+                        }
+                    }
+                    categories?.let {
+                        it.forEach { category ->
+                            if (category.id == course.categoryTopicId) {
+                                tvCourseCategory.text = category.name
                             }
                         }
                     }
@@ -83,6 +92,11 @@ class HomeCourseAdapter(
 
     fun setInstructor(instructors: ArrayList<GetSimpleUserResponse.User>) {
         this.instructors = instructors
+        notifyDataSetChanged()
+    }
+
+    fun setCategories(categories: ArrayList<Category>) {
+        this.categories = categories
         notifyDataSetChanged()
     }
 }

@@ -6,10 +6,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pbl.mobile.api.BaseResponse
 import com.pbl.mobile.base.BaseFragment
 import com.pbl.mobile.common.COURSE_KEY
+import com.pbl.mobile.common.EMPTY_TEXT
 import com.pbl.mobile.common.IS_PURCHASED_COURSES_KEY
 import com.pbl.mobile.databinding.FragmentHomeBinding
+import com.pbl.mobile.model.local.Category
 import com.pbl.mobile.model.local.Course
 import com.pbl.mobile.ui.course.CourseDetailActivity
 import com.pbl.mobile.ui.main.HomeMainViewModel
@@ -20,6 +23,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeMainViewModel>() {
     private lateinit var homeCourseAdapter: HomeCourseAdapter
     private val loadedInstructorIds = mutableSetOf<String>()
     private val purchasedCourseIds: ArrayList<String> = arrayListOf()
+    private val categories: ArrayList<Category> = arrayListOf()
 
     private val linearLayoutManager by lazy {
         LinearLayoutManager(
@@ -63,6 +67,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeMainViewModel>() {
     }
 
     private fun observe() {
+        viewModel.categories().observe(this@HomeFragment) { response ->
+            when (response) {
+                is BaseResponse.Success -> {
+                    response.data?.let { categoryResponse ->
+                        categories.clear()
+                        categories.addAll(categoryResponse.categories)
+                        homeCourseAdapter.setCategories(categories)
+                    }
+                }
+                is BaseResponse.Error -> {
+
+                }
+                is BaseResponse.Loading -> {
+
+                }
+            }
+        }
         lifecycleScope.launch {
             homeCourseAdapter.loadStateFlow
                 .distinctUntilChangedBy { it.append is LoadState.NotLoading }
@@ -93,7 +114,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeMainViewModel>() {
                 purchasedCourseIds.addAll(viewModel.myPurchaseCourses.map { it.id })
             }
         }
-        viewModel.loadMyPurchasedCourseIds()
     }
 
     private fun goToCourseDetail(course: Course?) {

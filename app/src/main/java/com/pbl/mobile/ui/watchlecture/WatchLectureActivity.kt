@@ -45,7 +45,7 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
     private var playWhenReady = true
     private var currentItem = 0
     private var playbackPosition = 0L
-    private var likeCount:Int = 0
+    private var likeCount: Int = 0
 
     companion object {
         private const val SKIP_AMOUNT = 5 //second
@@ -113,6 +113,7 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
                 tvCategory.text = categoryName
                 tvLectureTitle.text = lec.title
                 tvVideoPublishTime.text = DateFormatUtils.parseDate(lec.createdAt)
+                tvVideoViewCount.text = lec.totalView.toString()
             }
             rvLectures.apply {
                 lectureAdapter = LectureAdapter(

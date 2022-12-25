@@ -4,10 +4,15 @@ import android.content.Intent
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pbl.mobile.api.BaseResponse
 import com.pbl.mobile.base.BaseFragment
 import com.pbl.mobile.common.COURSE_KEY
 import com.pbl.mobile.common.IS_PURCHASED_COURSES_KEY
 import com.pbl.mobile.databinding.FragmentMyCourseBinding
+import com.pbl.mobile.extension.observeOnUiThread
+import com.pbl.mobile.helper.RxBus
+import com.pbl.mobile.helper.RxEvent
+import com.pbl.mobile.model.local.Category
 import com.pbl.mobile.model.local.Course
 import com.pbl.mobile.ui.course.CourseDetailActivity
 import com.pbl.mobile.ui.main.HomeMainViewModel
@@ -16,6 +21,7 @@ class MyPurchasedCourseFragment : BaseFragment<FragmentMyCourseBinding, HomeMain
     private val purchasedCourses: ArrayList<Course> = arrayListOf()
     private val purchasedInstructorIds = mutableSetOf<String>()
     private lateinit var purchasedCourseAdapter: MyPurchasedCourseAdapter
+    private val categories: ArrayList<Category> = arrayListOf()
 
     override fun getLazyBinding() = lazy { FragmentMyCourseBinding.inflate(layoutInflater) }
 
@@ -53,23 +59,49 @@ class MyPurchasedCourseFragment : BaseFragment<FragmentMyCourseBinding, HomeMain
     }
 
     private fun observe() {
+        viewModel.categories().observe(this@MyPurchasedCourseFragment) { response ->
+            when (response) {
+                is BaseResponse.Success -> {
+                    response.data?.let { categoryResponse ->
+                        categories.clear()
+                        categories.addAll(categoryResponse.categories)
+                        purchasedCourseAdapter.setCategories(categories)
+                    }
+                }
+                is BaseResponse.Error -> {
+
+                }
+                is BaseResponse.Loading -> {
+
+                }
+            }
+        }
         viewModel.apply {
             isFinishedLoadMyPurchaseCourses().observe(this@MyPurchasedCourseFragment) { isFinished ->
                 if (isFinished) {
                     purchasedCourses.clear()
-                    purchasedCourses.addAll(viewModel.myPurchaseCourses)
+                    purchasedCourses.addAll(viewModel.myPurchaseCourses.sortedBy { it.createdAt })
                     purchasedCourseAdapter.notifyDataSetChanged()
                     purchasedCourses.forEach { purchasedInstructorIds.add(it.userId) }
-                    if (purchasedInstructorIds.isNotEmpty())
+                    if (purchasedInstructorIds.isNotEmpty()) {
                         loadMyPurchasedInstructor(purchasedInstructorIds)
+                        binding.ivEmpty.isVisible = false
+                    }
                 }
             }
-            loadMyPurchasedCourseIds()
             isFinishedLoadPurchasedInstructor().observe(this@MyPurchasedCourseFragment) { isFinished ->
-                if(isFinished)
+                if (isFinished)
                     purchasedCourseAdapter.setInstructor(viewModel.purchasedInstructors)
             }
         }
+        viewModel.loadMyPurchasedCourseIds()
+        subscription.add(
+            RxBus.listen(RxEvent.EventMaybeRefreshAfterPurchase::class.java)
+                .observeOnUiThread()
+                .subscribe {
+                    viewModel.loadMyPurchasedCourseIds()
+                }
+        )
     }
 
     private fun goToCourseDetail(course: Course?) {

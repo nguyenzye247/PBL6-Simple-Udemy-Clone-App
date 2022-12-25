@@ -55,7 +55,7 @@ class LectureDescriptionBottomSheet(
             BottomSheetBehavior.from(bottomSheet).state = BottomSheetBehavior.STATE_EXPANDED
             (binding.root.parent as View).setBackgroundColor(Color.TRANSPARENT)
         }
-        lecture?.let {
+        lecture?.let { lec ->
             binding.apply {
                 tvLectureTitle.text = lecture.title
                 wvLectureDescription.loadData(
@@ -64,6 +64,7 @@ class LectureDescriptionBottomSheet(
                     "UTF-8"
                 )
                 tvLikeCount.text = likeCount.toString()
+                tvViewCount.text = lec.totalView.toString()
                 tvPublishDay.text = DateFormatUtils.getDayAndMonthFrom(lecture.createdAt)
                 tvPublishYear.text = DateFormatUtils.getYearFrom(lecture.createdAt)
             }

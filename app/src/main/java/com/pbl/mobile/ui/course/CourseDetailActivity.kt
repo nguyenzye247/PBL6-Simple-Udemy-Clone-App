@@ -25,6 +25,8 @@ import com.pbl.mobile.databinding.ActivityCourseDetailBinding
 import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.extension.parcelable
 import com.pbl.mobile.extension.showToast
+import com.pbl.mobile.helper.RxBus
+import com.pbl.mobile.helper.RxEvent
 import com.pbl.mobile.model.local.Category
 import com.pbl.mobile.model.local.Course
 import com.pbl.mobile.model.local.Lecture
@@ -112,6 +114,9 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseDet
                 tvCourseDescription.text =
                     HtmlUtils.fromHtmlText(HtmlUtils.removeEndlines(courseDetail.description))
                 ivNoCourseContent.isVisible = false
+                val studentCountText = (courseDetail.totalPurchaser
+                    ?: 0).toString() + EMPTY_SPACE + getString(R.string.students)
+                tvStudentCount.text = studentCountText
             }
             sectionAdapter = SectionAdapter(
                 sections,
@@ -165,6 +170,7 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseDet
                         Handler(Looper.getMainLooper()).postDelayed({
                             binding.frSuccessPurchase.isVisible = false
                         }, 4000)
+                        RxBus.publish(RxEvent.EventMaybeRefreshAfterPurchase())
                     }
                 } else {
                     binding.btnEnrollCourse.isEnabled = true

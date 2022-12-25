@@ -15,6 +15,8 @@ data class GetMeResponse(
         val fullName: String,
         @SerializedName("role")
         val role: String,
+        @SerializedName("createdAt")
+        val createdAt: String,
         @SerializedName("userId")
         val userId: String,
         @SerializedName("avatarUrl")

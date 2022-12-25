@@ -50,7 +50,7 @@ class LectureCommentAdapter :
                         }
                     }
                     tvCommentContent.text = comment.content
-                    tvCommentCreatedAt.text = DateFormatUtils.parseCommentDate(comment.createdAt)
+                    tvCommentCreatedAt.text = DateFormatUtils.parseTimeZoneDate(comment.createdAt)
                 }
             }
         }

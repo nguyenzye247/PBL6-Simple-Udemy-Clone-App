@@ -3,6 +3,7 @@ package com.pbl.mobile.api.courses
 import android.app.Application
 import com.pbl.mobile.model.remote.courses.GetCourseResponse
 import com.pbl.mobile.model.remote.courses.GetCoursesResponse
+import com.pbl.mobile.model.remote.courses.GetInstructorCourseResponse
 import io.reactivex.rxjava3.core.Single
 
 class CourseRequestManager {
@@ -14,7 +15,7 @@ class CourseRequestManager {
         return CoursesApi.getApi(application).getCourseById(courseId)
     }
 
-    fun getInstructorCourses(application: Application, id: String, page: Int, limit: Int): Single<GetCoursesResponse> {
-        return CoursesApi.getApi(application).getInstructorCourses(id, page, limit)
+    fun getInstructorCourses(application: Application, userId: String): Single<GetInstructorCourseResponse> {
+        return CoursesApi.getApi(application).getInstructorCourses(userId)
     }
 }

@@ -58,7 +58,6 @@ class CourseEnrollConfirmDialog : DialogFragment() {
         }
     }
 
-
     interface OnDialogConfirmListener {
         fun onEnrollConfirm()
     }

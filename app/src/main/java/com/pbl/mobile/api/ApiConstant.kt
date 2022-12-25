@@ -10,9 +10,16 @@ const val CONFIRM_EMAIL_URL = "api/v1/confirmEmail/"
 
 const val GET_USER = "api/v1/users"
 const val GET_ME = "api/v1/me"
+const val UPDATE_PROFILE_URL = "api/v1/users/update-profile"
+const val UPDATE_AVATAR_URL = "api/v1/users/update-avatar"
+const val GET_USER_DETAIL_URL = "api/v1/users/details"
+const val CHANGE_PASSWORD_URL = "api/v1/change-password"
 
 const val GET_COURSES_URL = "api/v1/courses"
-const val GET_INSTRUCTORS_COURSES_URL = "api/v1/users/courses"
+const val GET_INSTRUCTORS_COURSES_URL = "api/v1/users"
+const val GET_INSTRUCTORS_STUDENTS_URL = "api/v1/java/instructors"
+const val GET_INSTRUCTORS_REQUEST_URL = "api/v1/users/request-instructor"
+const val COURSE_URL = "courses"
 
 const val GET_SECTION_URL = "api/v1/sections"
 const val GET_COURSES_SECTION_URL = "sections"
@@ -38,6 +45,11 @@ const val LIKE_CHECK_URL = "checkLike"
 const val GET_PAYMENT_URL = "api/v1/java/users"
 const val POST_PAYMENT_URL = "api/v1/java/payments"
 const val PAYMENT_URL = "payments"
+
+const val GET_INSTRUCTOR_FOLLOWER_URL = "api/v1/java/instructors"
+const val FOLLOW_URL = "follows"
+
+const val UPLOAD_IMAGE_URL = "api/v1/upload/image"
 
 const val BEARER = "Bearer "
 const val AUTHORIZATION = "Authorization"

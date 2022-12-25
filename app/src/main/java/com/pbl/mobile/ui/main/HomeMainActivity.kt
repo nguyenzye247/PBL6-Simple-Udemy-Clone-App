@@ -9,14 +9,21 @@ import com.pbl.mobile.base.BaseActivity
 import com.pbl.mobile.base.BaseInput
 import com.pbl.mobile.base.ViewModelProviderFactory
 import com.pbl.mobile.databinding.ActivityHomeBinding
+import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.extension.showToast
+import com.pbl.mobile.ui.editprofile.EditProfileActivity
+import com.pbl.mobile.ui.main.fragment.profile.ProfileFragment
+import com.pbl.mobile.ui.signin.SignInActivity
 import com.pbl.mobile.ui.upload.UploadActivity
 import com.pbl.mobile.ui.upload.dialog.UploadBottomSheet
-import io.sentry.Sentry
+import com.pbl.mobile.widget.InstructorRequestConfirmDialog
+import com.pbl.mobile.widget.SignOutConfirmDialog
 
 
 class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
-    OnUploadOptionSelect {
+    OnUploadOptionSelect, ProfileFragment.OnEditProfileClickListener,
+    SignOutConfirmDialog.OnSignOutConfirmListener,
+    InstructorRequestConfirmDialog.OnInstructorRequestConfirmListener {
     private lateinit var homeMainAdapter: HomeMainAdapter
     private var uploadBottomSheet: UploadBottomSheet? = null
 
@@ -75,7 +82,9 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
     }
 
     private fun observe() {
-        viewModel
+        viewModel.apply {
+            getCategories()
+        }
     }
 
     private fun initNavigationListener() {
@@ -86,7 +95,7 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
 
     private fun initBottomNavigation() {
         binding.bottomNavMain.apply {
-            this.setOnItemSelectedListener { menuItem ->
+            setOnItemSelectedListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.menu_home -> {
                         binding.vp2Main.setCurrentItem(HomeMainAdapter.HOME_POS, false)
@@ -128,11 +137,34 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
         }
     }
 
+    private fun goToEditProfile() {
+        startActivity(
+            Intent(
+                this@HomeMainActivity,
+                EditProfileActivity::class.java
+            )
+        )
+    }
+
     override fun onUploadCourseSelect() {
 //        goToUploadCourse()
     }
 
     override fun onBackPressed() {
         //TODO: Show dialog exit confirmation
+    }
+
+    override fun onEditProfileClick() {
+        goToEditProfile()
+    }
+
+    override fun onSignOutConfirm() {
+        getBaseConfig().clearAll()
+        startActivity(Intent(this@HomeMainActivity, SignInActivity::class.java))
+        finish()
+    }
+
+    override fun onInstructorRequestConfirm() {
+        viewModel.requestToBecomeInstructor()
     }
 }

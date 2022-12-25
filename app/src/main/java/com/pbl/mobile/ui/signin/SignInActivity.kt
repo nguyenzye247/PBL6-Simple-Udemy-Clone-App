@@ -11,6 +11,7 @@ import com.pbl.mobile.base.BaseInput
 import com.pbl.mobile.base.ViewModelProviderFactory
 import com.pbl.mobile.common.EMPTY_SPACE
 import com.pbl.mobile.databinding.ActivitySignInBinding
+import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.extension.isEmailValid
 import com.pbl.mobile.extension.setError
 import com.pbl.mobile.extension.showToast
@@ -34,9 +35,10 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
     }
 
     private fun loginIfExisted() {
-        val expiresTime = SessionManager.fetchExpiresTime(this@SignInActivity)
-        if (System.currentTimeMillis() <= expiresTime) {
-            viewModel.getMe()
+        val accessToken = getBaseConfig().token
+        val refreshToken = getBaseConfig().refreshToken
+        if (accessToken.isNotEmpty() && refreshToken.isNotEmpty()) {
+//            viewModel.getMe()
             viewModel.navigateToHome()
         }
     }
@@ -66,9 +68,9 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                 is BaseResponse.Success -> {
                     stopLoading()
                     setExistedAccountAppearance()
-                    viewModel.getMe()
                     response.data?.let {
                         viewModel.progressLogin(it)
+                        viewModel.getMe()
                     }
                 }
                 is BaseResponse.Error -> {

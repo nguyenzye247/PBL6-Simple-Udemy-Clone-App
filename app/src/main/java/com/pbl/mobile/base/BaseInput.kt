@@ -3,6 +3,7 @@ package com.pbl.mobile.base
 import android.app.Application
 import com.pbl.mobile.model.local.Course
 import com.pbl.mobile.model.local.Lecture
+import io.sentry.protocol.App
 
 sealed class BaseInput {
     object NoInput : BaseInput()
@@ -24,5 +25,9 @@ sealed class BaseInput {
     data class PurchaseInput(
         val application: Application,
         val purchaseUrl: String
+    ): BaseInput()
+
+    data class EditProFileInput(
+        val application: Application
     ): BaseInput()
 }
