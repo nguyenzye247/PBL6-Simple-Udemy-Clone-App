@@ -20,7 +20,7 @@ interface CategoryApi {
     fun create(@Body request: CategoryCreateRequest): Single<CategoryCreateResponse>
 
     @GET(GET_CATEGORY_URL)
-    fun getAll(@Query("page") page: Int = -1): Single<CategoryGetResponse>
+    fun getAll(@Query("paging") paging: Int = 100): Single<CategoryGetResponse>
 
     @POST(EDIT_CATEGORY_URL)
     fun update(@Body name: String): Single<CategoryEditResponse>

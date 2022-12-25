@@ -80,11 +80,14 @@ class SignInViewModel(input: BaseInput.MainInput) : BaseViewModel(input) {
                         getMeResponse.data.let { me ->
                             OneSignal.setExternalUserId(me.userId)
                             pApplication.getBaseConfig().apply {
-                                val idd = me.userId
                                 myId = me.userId
+                                fullName = me.fullName
+                                myEmail = me.email
                                 myAvatar = me.avatarUrl ?: EMPTY_TEXT
                                 myRole = me.role
+                                joinAt = me.createdAt
                             }
+                            navigateToHome()
                         }
                     },
                     { throwable ->
@@ -95,12 +98,14 @@ class SignInViewModel(input: BaseInput.MainInput) : BaseViewModel(input) {
     }
 
     fun progressLogin(result: SignInResponse) {
+        val token = result.data.token
+        val refreshToken = result.data.refreshToken
+        val expireTime = result.data.expiresIn
         pApplication.let {
             pApplication.showToast(it.getString(R.string.sign_in_success))
             SessionManager.saveToken(it, result.data.token)
             SessionManager.saveRefreshToken(it, result.data.refreshToken)
             SessionManager.saveExpiresTime(it, result.data.expiresIn)
-            navigateToHome()
         }
     }
 

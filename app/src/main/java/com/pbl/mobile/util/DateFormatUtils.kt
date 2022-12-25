@@ -1,5 +1,6 @@
 package com.pbl.mobile.util
 
+import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
 import org.ocpsoft.prettytime.PrettyTime
@@ -29,8 +30,8 @@ object DateFormatUtils {
         return outputDateString
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun parseCommentDate(
+    @SuppressLint("NewApi")
+    fun parseTimeZoneDate(
         inputDateString: String?
     ): String? {
         val prettyTime = PrettyTime(Locale.getDefault())
@@ -39,6 +40,25 @@ object DateFormatUtils {
         try {
             date = inputDateString?.let { Date(ZonedDateTime.parse(it).toInstant().toEpochMilli()) }
             outputDateString = date?.let { prettyTime.format(it) }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return outputDateString
+    }
+
+    @SuppressLint("NewApi")
+    fun getDateFromTimeZoneDate(
+        inputDateString: String?
+    ): String? {
+        var date: Date?
+        var outputDateFormat = SimpleDateFormat(
+            "yyyy-MM-dd",
+            Locale.US
+        )
+        var outputDateString: String? = null
+        try {
+            date = inputDateString?.let { Date(ZonedDateTime.parse(it).toInstant().toEpochMilli()) }
+            outputDateString = date?.let { outputDateFormat.format(it) }
         } catch (e: ParseException) {
             e.printStackTrace()
         }

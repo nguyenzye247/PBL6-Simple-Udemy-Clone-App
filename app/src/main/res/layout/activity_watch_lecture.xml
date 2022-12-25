@@ -410,8 +410,7 @@
                         android:layout_marginTop="@dimen/dimen_12dp"
                         android:text="@string/lecture"
                         android:textColor="@color/black_100"
-                        android:textSize="@dimen/dimen_16sp"
-                        />
+                        android:textSize="@dimen/dimen_16sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_lectures"
@@ -420,14 +419,6 @@
                         android:layout_marginHorizontal="@dimen/dimen_8dp"
                         android:layout_marginVertical="@dimen/dimen_12dp"
                         app:layout_constraintTop_toBottomOf="@id/tv_lectures_title" />
-
-                    <ImageView
-                        android:id="@+id/iv_no_lecture_content"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:contentDescription="@null"
-                        android:src="@drawable/ic_empty" />
 
                 </LinearLayout>
 

@@ -20,6 +20,12 @@ data class Lecture(
     val url: String,
     @SerializedName("isLock")
     val isLock: Boolean,
+    @SerializedName("totalView")
+    val totalView: Int,
+    @SerializedName("totalComment")
+    val totalComment: Int,
+    @SerializedName("totalLike")
+    val totalLike: Int,
     @SerializedName("createdAt")
     val createdAt: String,
     @SerializedName("updatedAt")

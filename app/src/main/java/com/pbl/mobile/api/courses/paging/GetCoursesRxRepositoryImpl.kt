@@ -6,12 +6,11 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.pbl.mobile.api.courses.paging.source.CoursePagingSource
+import com.pbl.mobile.api.courses.paging.source.InstructorCoursePagingSource
 import com.pbl.mobile.model.local.Course
 
-class GetCoursesRxRepositoryImpl(
-    private val coursePagingSource: CoursePagingSource
-) : GetCoursesRxRepository {
-    override fun getCourses(): LiveData<PagingData<Course>> {
+class GetCoursesRxRepositoryImpl : GetCoursesRxRepository {
+    override fun getCourses(coursePagingSource: CoursePagingSource): LiveData<PagingData<Course>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 4,
@@ -25,16 +24,16 @@ class GetCoursesRxRepositoryImpl(
         ).liveData
     }
 
-    override fun getInstructorCourses(): LiveData<PagingData<Course>> {
+    override fun getInstructorCourses(instructorCoursePagingSource: InstructorCoursePagingSource): LiveData<PagingData<Course>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 5,
-                maxSize = 100,
-                prefetchDistance = 3,
-                initialLoadSize = 5
+                pageSize = 2,
+                maxSize = 50,
+                prefetchDistance = 2,
+                initialLoadSize = 2
             ),
             pagingSourceFactory = {
-                coursePagingSource
+                instructorCoursePagingSource
             }
         ).liveData
     }

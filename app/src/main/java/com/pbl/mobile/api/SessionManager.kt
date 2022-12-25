@@ -32,5 +32,6 @@ object SessionManager {
     fun clearData(pContext: Context) {
         pContext.getBaseConfig().token = ""
         pContext.getBaseConfig().refreshToken = ""
+        pContext.getBaseConfig().expiresTime = 0L
     }
 }

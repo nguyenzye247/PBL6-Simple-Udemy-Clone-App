@@ -80,24 +80,27 @@
             android:layout_marginEnd="15dp"
             android:contentDescription="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/image_course_thumbnail"
-            app:layout_constraintBottom_toTopOf="@id/rv_course_tags"
+            app:layout_constraintBottom_toTopOf="@id/tv_course_category"
             app:layout_constraintDimensionRatio="630:286"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/iv_instructor_avatar"
             app:layout_constraintTop_toBottomOf="@id/gl_instructor_info"
-            app:layout_constraintVertical_chainStyle="spread" />
+            tools:src="@drawable/image_course_thumbnail" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_course_tags"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/tv_course_category"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/dimen_12dp"
             android:orientation="horizontal"
+            android:textColor="@color/blue_light_100"
+            android:textSize="@dimen/dimen_14sp"
             app:layout_constraintBottom_toTopOf="@id/tv_course_name"
             app:layout_constraintEnd_toEndOf="@id/iv_course_thumbnail"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="@id/iv_course_thumbnail"
-            app:layout_constraintTop_toBottomOf="@id/iv_course_thumbnail" />
+            app:layout_constraintTop_toBottomOf="@id/iv_course_thumbnail"
+            tools:text="Android" />
 
         <TextView
             android:id="@+id/tv_course_name"
@@ -111,17 +114,17 @@
             android:textSize="16sp"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toTopOf="@id/tv_course_name"
-            app:layout_constraintEnd_toEndOf="@id/rv_course_tags"
+            app:layout_constraintEnd_toEndOf="@id/iv_course_thumbnail"
             app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="@id/rv_course_tags"
-            app:layout_constraintTop_toBottomOf="@id/rv_course_tags"
+            app:layout_constraintStart_toStartOf="@id/iv_course_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/tv_course_category"
             tools:text="Salat Definition and Meaning" />
 
         <TextView
             android:id="@+id/tv_course_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
             android:layout_marginBottom="@dimen/dimen_12dp"
             android:fontFamily="@font/rubik_medium"
             android:textColor="@color/black_100"

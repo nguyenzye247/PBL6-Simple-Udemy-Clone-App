@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_top_background"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background_dim_yellow_top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="375:214"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_edit_profile_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/edit_profile"
+            android:textColor="@color/black_100"
+            android:textSize="@dimen/dimen_18sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_user_avatar"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="@dimen/dimen_0dp"
+        android:layout_marginStart="@dimen/dimen_12dp"
+        android:scaleType="centerCrop"
+        app:civ_border_color="@color/yellow_100"
+        app:civ_border_width="@dimen/dimen_2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="@integer/int_0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_edit_profile"
+        app:layout_constraintVertical_bias="0.02"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintWidth_percent="0.28"
+        tools:src="@tools:sample/avatars" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_avatar"
+        android:layout_width="@dimen/dimen_24dp"
+        android:layout_height="@dimen/dimen_24dp"
+        android:indeterminateTint="@color/yellow_100"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/iv_user_avatar"
+        app:layout_constraintEnd_toEndOf="@id/iv_user_avatar"
+        app:layout_constraintStart_toStartOf="@id/iv_user_avatar"
+        app:layout_constraintTop_toTopOf="@id/iv_user_avatar" />
+
+    <TextView
+        android:id="@+id/tv_user_full_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_12dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/black_100"
+        android:textSize="@dimen/dimen_20sp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/tv_manage_your_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="@integer/int_0"
+        app:layout_constraintStart_toEndOf="@id/iv_user_avatar"
+        app:layout_constraintTop_toTopOf="@id/iv_user_avatar"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Huong Le Nguyen" />
+
+    <TextView
+        android:id="@+id/tv_manage_your_account"
+        style="@style/TextFontRubikRegular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_4dp"
+        android:layout_marginEnd="@dimen/dimen_12dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="@string/manage_your_information"
+        android:textColor="@color/black_100"
+        android:textSize="@dimen/dimen_14sp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@id/iv_user_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/tv_user_full_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_user_full_name" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_24dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@id/iv_user_avatar"
+        app:tabIndicatorColor="@color/yellow_100"
+        app:tabRippleColor="@color/yellow_400"
+        app:tabSelectedTextColor="@color/yellow_100"
+        app:tabTextAppearance="@style/AppTabLayoutStyle"
+        app:tabTextColor="@color/black_100" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp2_main"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_0dp"
+        android:elevation="@dimen/dimen_4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout_main" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

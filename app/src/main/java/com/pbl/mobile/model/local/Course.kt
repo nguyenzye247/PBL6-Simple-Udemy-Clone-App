@@ -27,5 +27,7 @@ data class Course(
     @SerializedName("categoryTopicId")
     val categoryTopicId: String,
     @SerializedName("userId")
-    val userId: String
+    val userId: String,
+    @SerializedName("totalPurchaser")
+    val totalPurchaser: Int?
 ) : Parcelable

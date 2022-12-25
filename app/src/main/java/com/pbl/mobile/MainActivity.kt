@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.onesignal.OneSignal
 import com.pbl.mobile.common.ONESIGNAL_APP_ID
 import com.pbl.mobile.databinding.ActivityMainBinding
+import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.ui.signin.SignInActivity
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         // OneSignal Initialization
         OneSignal.initWithContext(this)
         OneSignal.setAppId(ONESIGNAL_APP_ID)
+        OneSignal.setExternalUserId(this.getBaseConfig().myId)
         OneSignal.unsubscribeWhenNotificationsAreDisabled(true)
     }
 }

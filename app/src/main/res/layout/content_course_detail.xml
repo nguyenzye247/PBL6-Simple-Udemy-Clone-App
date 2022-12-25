@@ -82,7 +82,7 @@
         app:layout_constraintStart_toEndOf="@id/rt_stars_point"
         app:layout_constraintTop_toBottomOf="@id/tv_course_title"
         app:srb_isIndicator="true"
-        app:srb_rating="4.5"
+        app:srb_rating="0"
         app:srb_starHeight="@dimen/dimen_16dp"
         app:srb_starPadding="@dimen/dimen_4dp"
         app:srb_starWidth="@dimen/dimen_16dp"
@@ -94,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dimen_8dp"
-        android:text="(22,037 students)"
+        tools:text="(22,037 students)"
         android:textColor="@color/black_100"
         android:textSize="@dimen/dimen_16sp"
         app:layout_constraintBottom_toBottomOf="@id/rt_stars"
@@ -227,11 +227,11 @@
 
             <ImageView
                 android:id="@+id/iv_no_course_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dimen_300dp"
+                android:layout_height="@dimen/dimen_300dp"
                 android:layout_gravity="center"
                 android:contentDescription="@null"
-                android:src="@drawable/ic_empty" />
+                android:src="@drawable/image_empty" />
 
         </LinearLayout>
 
