@@ -11,6 +11,8 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -24,6 +26,7 @@
         android:theme="@style/Theme.PBL6"
         android:usesCleartextTraffic="true"
         tools:targetApi="33">
+        <meta-data android:name="com.onesignal.NotificationOpened.DEFAULT" android:value="Enable" />
         <meta-data
             android:name="io.sentry.dsn"
             android:value="https://7b6dc9ed07d24b55b50d5841bd7bf5d7@o4504270232158208.ingest.sentry.io/4504282767884288" />

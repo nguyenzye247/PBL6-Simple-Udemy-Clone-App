@@ -30,11 +30,13 @@ import com.pbl.mobile.extension.showToast
 import com.pbl.mobile.model.local.Comment
 import com.pbl.mobile.model.local.Lecture
 import com.pbl.mobile.model.remote.user.GetSimpleUserResponse
+import com.pbl.mobile.model.remote.video.view.UpdateViewBody
 import com.pbl.mobile.ui.course.lecture.LectureAdapter
 import com.pbl.mobile.ui.watchlecture.comment.LectureCommentBottomSheet
 import com.pbl.mobile.ui.watchlecture.description.LectureDescriptionBottomSheet
 import com.pbl.mobile.util.DateFormatUtils
 import com.pbl.mobile.util.ScreenUtils
+import java.math.RoundingMode
 
 class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLectureViewModel>() {
     private var player: ExoPlayer? = null
@@ -117,21 +119,24 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
             }
             rvLectures.apply {
                 lectureAdapter = LectureAdapter(
+                    lecture?.id ?: EMPTY_TEXT,
                     isCoursePurchased,
                     lectures,
                     onLectureItemClickCallback = {
-                        this@WatchLectureActivity.finish()
-                        startActivity(
-                            Intent(
-                                this@WatchLectureActivity,
-                                WatchLectureActivity::class.java
-                            ).apply {
-                                putExtra(LECTURE_KEY, it)
-                                putExtra(CATEGORY_KEY, categoryName)
-                                putExtra(IS_PURCHASED_COURSES_KEY, isCoursePurchased)
-                                putParcelableArrayListExtra(LIST_LECTURE_KEY, lectures)
-                            }
-                        )
+                        if (it.id != lecture?.id) {
+                            this@WatchLectureActivity.finish()
+                            startActivity(
+                                Intent(
+                                    this@WatchLectureActivity,
+                                    WatchLectureActivity::class.java
+                                ).apply {
+                                    putExtra(LECTURE_KEY, it)
+                                    putExtra(CATEGORY_KEY, categoryName)
+                                    putExtra(IS_PURCHASED_COURSES_KEY, isCoursePurchased)
+                                    putParcelableArrayListExtra(LIST_LECTURE_KEY, lectures)
+                                }
+                            )
+                        }
                     }
                 )
                 adapter = lectureAdapter
@@ -277,7 +282,9 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
                 is BaseResponse.Success -> {
                     val data = response.data
                     data?.let { viewData ->
-                        val viewCountText = viewData.data.countView.toString() + " Views"
+                        val lastDuration = (viewData.data.highestDuration * 1000).toLong()
+                        player?.seekTo(lastDuration)
+                        val viewCountText = "0 Views"
                         binding.tvVideoViewCount.text = viewCountText
                     } ?: kotlin.run {
                         val viewCountText = "Unknown"
@@ -453,6 +460,28 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
                         .into(ivPreviewUserCommentAvatar)
                     tvCommentPreview.text = comment.content
                 }
+            }
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        player?.let { player ->
+            getLectureFromIntent()?.let { lecture ->
+                val lastDurationInSecond = player.currentPosition / 1000f
+                val roundedDuration =
+                    lastDurationInSecond.toBigDecimal().setScale(3, RoundingMode.UP).toFloat()
+                val userId = this.getBaseConfig().myId
+                val lectureId = lecture.id
+                val time = DateFormatUtils.getTimeZoneDate()
+                viewModel.updateVideoView(
+                    UpdateViewBody(
+                        roundedDuration,
+                        time,
+                        userId,
+                        lectureId
+                    )
+                )
             }
         }
     }

@@ -177,4 +177,5 @@
     <string name="dash">-</string>
     <string name="tag">Tag</string>
     <string name="apply_filter">Apply Filter</string>
+    <string name="zero_star">0.0</string>
 </resources>

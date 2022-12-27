@@ -4,8 +4,12 @@ import android.app.Application
 import com.pbl.mobile.api.*
 import com.pbl.mobile.model.remote.video.GetVideoResponse
 import com.pbl.mobile.model.remote.video.view.GetVideoViewResponse
+import com.pbl.mobile.model.remote.video.view.UpdateViewBody
+import com.pbl.mobile.model.remote.video.view.UpdateViewResponse
 import io.reactivex.rxjava3.core.Single
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface VideoApi {
@@ -23,4 +27,9 @@ interface VideoApi {
         @Path("userId") userId: String,
         @Path("videoId") videoId: String
     ): Single<GetVideoViewResponse>
+
+    @PUT(UPDATE_VIDEO_VIEWS_URL)
+    fun putVideoView(
+        @Body videoViewBody: UpdateViewBody
+    ): Single<UpdateViewResponse>
 }

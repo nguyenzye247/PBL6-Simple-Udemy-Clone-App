@@ -2,23 +2,23 @@ package com.pbl.mobile.model.remote.video.view
 
 import com.google.gson.annotations.SerializedName
 
-data class GetVideoViewResponse(
+data class UpdateViewResponse(
     @SerializedName("status")
     val status: String,
     @SerializedName("data")
-    val data: Data,
+    val data: Data
 ) {
     data class Data(
         @SerializedName("id")
-        val id : String,
+        val id: String,
         @SerializedName("countView")
-        val countView: Long,
+        val countView: Int,
         @SerializedName("lastDuration")
-        val lastDuration: Double,
+        val lastDuration: Float,
         @SerializedName("highestDuration")
-        val highestDuration: Double,
-        @SerializedName("lastedViewDate")
-        val lastedViewDate: String,
+        val highestDuration: Float,
+        @SerializedName("lastestViewDate")
+        val lastestViewDate: String,
         @SerializedName("createdAt")
         val createdAt: String,
         @SerializedName("updatedAt")

@@ -59,7 +59,7 @@
         style="@style/TextFontRubikMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="4.5"
+        android:text="@string/zero_star"
         android:textColor="@color/yellow_100"
         android:textSize="@dimen/dimen_18sp"
         app:layout_constraintBottom_toBottomOf="@id/rt_stars"

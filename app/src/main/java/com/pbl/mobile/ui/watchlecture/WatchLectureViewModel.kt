@@ -22,6 +22,7 @@ import com.pbl.mobile.model.remote.like.PostVideoLikeResponse
 import com.pbl.mobile.model.remote.like.request.PostLikeRequestBody
 import com.pbl.mobile.model.remote.user.GetSimpleUserResponse
 import com.pbl.mobile.model.remote.video.view.GetVideoViewResponse
+import com.pbl.mobile.model.remote.video.view.UpdateViewBody
 
 class WatchLectureViewModel(val input: BaseInput.WatchLectureInput) : BaseViewModel(input) {
     private val userRequestManager = UserRequestManager()
@@ -231,6 +232,21 @@ class WatchLectureViewModel(val input: BaseInput.WatchLectureInput) : BaseViewMo
                     },
                     {
                         _isLikeVideo.value = false
+                    }
+                )
+        )
+    }
+
+    fun updateVideoView(updateVideoViewBody: UpdateViewBody) {
+        subscription.add(
+            videoRequestManager.updateVideoView(input.application, updateVideoViewBody)
+                .observeOnUiThread()
+                .subscribe(
+                    { updateViewResponse ->
+                        Log.d("BACK_123", "updateVideoView: ${updateViewResponse.data.countView}")
+                    },
+                    {
+
                     }
                 )
         )

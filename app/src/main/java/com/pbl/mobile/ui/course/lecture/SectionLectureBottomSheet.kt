@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.pbl.mobile.common.EMPTY_TEXT
 import com.pbl.mobile.databinding.FragmentSectionLecturesBottomsheetBinding
 import com.pbl.mobile.model.local.Lecture
 import com.pbl.mobile.util.ScreenUtils
@@ -70,6 +71,7 @@ class SectionLectureBottomSheet(
             tvSectionTitle.text = sectionName
             rvLectures.apply {
                 lectureAdapter = LectureAdapter(
+                    EMPTY_TEXT,
                     isPurchasedCourse,
                     lectures,
                     onLectureItemClickCallback = {

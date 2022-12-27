@@ -26,6 +26,7 @@ const val GET_COURSES_SECTION_URL = "sections"
 
 const val VIDEOS_URL = "videos"
 const val VIDEO_VIEWS_URL = "videoviews"
+const val UPDATE_VIDEO_VIEWS_URL = "api/v1/users/update-view"
 
 const val CREATE_CATEGORY_URL = "api/v1/category-topics"
 const val GET_CATEGORY_URL = "api/v1/category-topics"
