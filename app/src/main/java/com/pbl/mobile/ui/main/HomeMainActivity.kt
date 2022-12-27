@@ -13,6 +13,7 @@ import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.extension.showToast
 import com.pbl.mobile.ui.editprofile.EditProfileActivity
 import com.pbl.mobile.ui.main.fragment.profile.ProfileFragment
+import com.pbl.mobile.ui.search.SearchActivity
 import com.pbl.mobile.ui.signin.SignInActivity
 import com.pbl.mobile.ui.upload.UploadActivity
 import com.pbl.mobile.ui.upload.dialog.UploadBottomSheet
@@ -40,6 +41,8 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            android.R.id.home ->
+                onBackPressed()
             R.id.menu_notification -> {
 
             }
@@ -47,24 +50,30 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
 
             }
             R.id.menu_search -> {
-
+                goToSearch()
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun setupInit() {
-//        try {
-//            throw Exception("Lifecycle error test.")
-//        } catch (e: Exception) {
-//            Sentry.captureException(e)
-//        }
+        initActionBar()
         initViews()
         initListeners()
         observe()
     }
 
+    private fun initActionBar() {
+        setSupportActionBar(binding.homeToolbar)
+        val actionBar = supportActionBar
+        actionBar?.let {
+            it.setDisplayShowTitleEnabled(false)
+            it.setDisplayHomeAsUpEnabled(true)
+        }
+    }
+
     private fun initViews() {
+        makeStatusBarTransparent()
         binding.apply {
         }
     }
@@ -142,6 +151,15 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
             Intent(
                 this@HomeMainActivity,
                 EditProfileActivity::class.java
+            )
+        )
+    }
+
+    private fun goToSearch() {
+        startActivity(
+            Intent(
+                this@HomeMainActivity,
+                SearchActivity::class.java
             )
         )
     }

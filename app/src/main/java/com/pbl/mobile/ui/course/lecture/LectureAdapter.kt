@@ -2,6 +2,7 @@ package com.pbl.mobile.ui.course.lecture
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.pbl.mobile.databinding.ItemLectureVideoBinding
@@ -21,10 +22,14 @@ class LectureAdapter(
                 val numb = (absoluteAdapterPosition + 1).toString()
                 tvLectureNumb.text = numb
                 tvLectureTitle.text = lecture.title
-                if (!lecture.isLock || isCoursePurchased)
+                if (!lecture.isLock || isCoursePurchased) {
+                    ivLectureLock.isVisible = false
                     root.setOnClickListener {
                         onLectureItemClickCallback.invoke(lecture)
                     }
+                } else {
+                    ivLectureLock.isVisible = true
+                }
             }
         }
     }

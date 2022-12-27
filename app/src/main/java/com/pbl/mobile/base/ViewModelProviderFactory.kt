@@ -7,8 +7,8 @@ import com.pbl.mobile.ui.editprofile.EditProfileViewModel
 import com.pbl.mobile.ui.forgot_password.ForgotPasswordViewModel
 import com.pbl.mobile.ui.main.HomeMainViewModel
 import com.pbl.mobile.ui.new_password.NewPasswordViewModel
-import com.pbl.mobile.ui.purchase.PurchaseActivity
 import com.pbl.mobile.ui.purchase.PurchaseViewModel
+import com.pbl.mobile.ui.search.SearchViewModel
 import com.pbl.mobile.ui.signin.SignInViewModel
 import com.pbl.mobile.ui.signup.SignUpViewModel
 import com.pbl.mobile.ui.verify_email.VerifyEmailViewModel
@@ -47,6 +47,9 @@ class ViewModelProviderFactory(private val input: BaseInput) : ViewModelProvider
             }
             modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> {
                 return EditProfileViewModel(input as BaseInput.EditProFileInput) as T
+            }
+            modelClass.isAssignableFrom(SearchViewModel::class.java) -> {
+                return SearchViewModel(input as BaseInput.SearchInput) as T
             }
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

@@ -153,7 +153,7 @@
     <string name="yes">Yes</string>
     <string name="your_request_is_sent">Your request is sent</string>
     <string name="already_request_to_become_instructor">You have already requested. Please wait while your request is being verified by our admin</string>
-    <string name="example_birthday">2001-01-01</string>
+    <string name="example_birthday">2001–01–01</string>
     <string name="take_picture">Take picture</string>
     <string name="select_from_gallery">Select From Gallery</string>
     <string name="permis_denied">Permission Denied</string>
@@ -169,4 +169,12 @@
     <string name="please_fulfill_all_info">Please fulfill all of the required information</string>
     <string name="password_must_be_matched">Password must be matched</string>
     <string name="change_password_success">Change password successfully</string>
+    <string name="search_something">Search something…</string>
+    <string name="search_courses">Search Courses</string>
+    <string name="filter_your_search">Filter your search</string>
+    <string name="price_slider">Price Slider</string>
+    <string name="vnd">Vnd</string>
+    <string name="dash">-</string>
+    <string name="tag">Tag</string>
+    <string name="apply_filter">Apply Filter</string>
 </resources>

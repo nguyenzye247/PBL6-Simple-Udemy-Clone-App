@@ -8,8 +8,9 @@
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -100,8 +101,13 @@
             android:exported="true">
 
         </activity>
-        <activity android:name=".ui.purchase.PurchaseActivity"/>
-        <activity android:name=".ui.editprofile.EditProfileActivity"/>
+        <activity android:name=".ui.purchase.PurchaseActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.editprofile.EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.search.SearchActivity"
+            android:screenOrientation="portrait" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.android.broadcast_receiver"
@@ -110,6 +116,7 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths">
+
             </meta-data>
         </provider>
     </application>
