@@ -84,6 +84,12 @@ object DateFormatUtils {
         return outputDayAndMonthString
     }
 
+    @SuppressLint("NewApi")
+    fun getTimeZoneDate(): String {
+        val date = Date(System.currentTimeMillis())
+        return SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS Z", Locale.US).format(date)
+    }
+
     fun getYearFrom(
         dateString: String,
         inputDateFormat: SimpleDateFormat = SimpleDateFormat(

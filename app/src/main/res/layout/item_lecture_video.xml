@@ -12,9 +12,9 @@
         android:id="@+id/click_view"
         android:layout_width="@dimen/dimen_0dp"
         android:layout_height="@dimen/dimen_0dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="?attr/selectableItemBackgroundBorderless"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,12 +92,11 @@
         android:id="@+id/iv_lecture_lock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/tv_lecture_title"
-        app:layout_constraintBottom_toBottomOf="@id/tv_lecture_title"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/dimen_8dp"
         android:contentDescription="@null"
         android:src="@drawable/ic_lecture_lock"
-        android:layout_marginEnd="@dimen/dimen_8dp"
-        />
+        app:layout_constraintBottom_toBottomOf="@id/tv_lecture_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_lecture_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

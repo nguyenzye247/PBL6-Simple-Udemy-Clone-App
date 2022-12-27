@@ -7,7 +7,10 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -17,10 +20,10 @@
                 android:id="@+id/iv_user_avatar"
                 android:layout_width="@dimen/dimen_0dp"
                 android:layout_height="@dimen/dimen_0dp"
+                android:layout_marginTop="@dimen/dimen_24dp"
                 android:scaleType="centerCrop"
-                app:civ_border_color="@color/yellow_100"
+                app:civ_border_color="@color/blue_light_100"
                 app:civ_border_width="@dimen/dimen_2dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

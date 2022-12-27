@@ -4,11 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.onesignal.OSNotification
 import com.onesignal.OneSignal
 import com.pbl.mobile.common.ONESIGNAL_APP_ID
 import com.pbl.mobile.databinding.ActivityMainBinding
 import com.pbl.mobile.extension.getBaseConfig
+import com.pbl.mobile.notification.MyNotificationOpenHandler
 import com.pbl.mobile.ui.signin.SignInActivity
 
 class MainActivity : AppCompatActivity() {
@@ -33,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         OneSignal.initWithContext(this)
         OneSignal.setAppId(ONESIGNAL_APP_ID)
         OneSignal.setExternalUserId(this.getBaseConfig().myId)
+//        OneSignal.setNotificationOpenedHandler(MyNotificationOpenHandler())
         OneSignal.unsubscribeWhenNotificationsAreDisabled(true)
+
     }
 }

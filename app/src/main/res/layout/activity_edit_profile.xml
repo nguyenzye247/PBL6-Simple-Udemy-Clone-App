@@ -42,7 +42,7 @@
         android:layout_height="@dimen/dimen_0dp"
         android:layout_marginStart="@dimen/dimen_12dp"
         android:scaleType="centerCrop"
-        app:civ_border_color="@color/yellow_100"
+        app:civ_border_color="@color/blue_light_100"
         app:civ_border_width="@dimen/dimen_2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
