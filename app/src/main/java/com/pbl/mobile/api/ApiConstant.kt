@@ -32,6 +32,8 @@ const val GET_CATEGORY_URL = "api/v1/category-topics"
 const val EDIT_CATEGORY_URL = "api/v1/category-topics"
 const val DELETE_CATEGORY_URL = "api/v1/category-topics"
 
+const val GET_HASHTAG_URL = "api/v1/hashtags"
+
 const val PUSH_COMMENT_URL = "api/v1/java/comments"
 const val GET_COMMENTS_URL = "api/v1/java/videos"
 const val COMMENTS_URL = "comments"
@@ -50,6 +52,8 @@ const val GET_INSTRUCTOR_FOLLOWER_URL = "api/v1/java/instructors"
 const val FOLLOW_URL = "follows"
 
 const val UPLOAD_IMAGE_URL = "api/v1/upload/image"
+
+const val SEARCH_URL = "api/v1/courses/search"
 
 const val BEARER = "Bearer "
 const val AUTHORIZATION = "Authorization"

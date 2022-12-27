@@ -44,12 +44,13 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
             android:gravity="center_vertical|start"
-            android:paddingStart="16dp"
-            android:paddingEnd="0dp"
-            app:contentInsetStartWithNavigation="0dp"
+            android:paddingStart="@dimen/dimen_16dp"
+            android:paddingEnd="@dimen/dimen_0dp"
+            android:clickable="false"
+            app:contentInsetStartWithNavigation="@dimen/dimen_0dp"
             app:menu="@menu/menu_toolbar_main"
             app:navigationContentDescription="@string/logo_description"
-            app:navigationIcon="@drawable/ic_logo_black"
+            app:navigationIcon="@drawable/ic_official_logo_text_small"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
     </com.google.android.material.appbar.AppBarLayout>
 

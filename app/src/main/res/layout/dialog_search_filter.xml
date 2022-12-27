@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dialog"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_filter_your_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_20sp"
+            android:text="@string/filter_your_search"
+            android:textColor="@color/black_100"
+            android:textSize="@dimen/dimen_16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_price_range"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_24dp"
+            app:cardCornerRadius="@dimen/dimen_12dp"
+            app:cardElevation="@dimen/dimen_0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_filter_your_search">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_price_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_12dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    android:text="@string/price"
+                    android:textColor="@color/black_100"
+                    android:textSize="@dimen/dimen_14sp"
+                    app:layout_constraintBottom_toTopOf="@id/sep_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_price_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dimen_8dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/dimen_4dp"
+                    android:text="@string/confirm"
+                    android:textColor="@color/yellow_100"
+                    android:textSize="@dimen/dimen_14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_price_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_price_title"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <View
+                    android:id="@+id/sep_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:background="@color/gray_100"
+                    app:layout_constraintBottom_toTopOf="@id/range_price"
+                    app:layout_constraintTop_toBottomOf="@id/tv_price_title"
+                    app:layout_constraintVertical_bias="@integer/int_0" />
+
+                <com.google.android.material.slider.RangeSlider
+                    android:id="@+id/range_price"
+                    android:layout_width="@dimen/dimen_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:layout_marginBottom="@dimen/dimen_12dp"
+                    android:contentDescription="@string/price_slider"
+                    android:stepSize="2000.0"
+                    android:valueFrom="0.0"
+                    android:valueTo="500000.0"
+                    app:haloColor="@color/black_100"
+                    app:haloRadius="2dp"
+                    app:labelBehavior="floating"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/tv_price_confirm"
+                    app:layout_constraintStart_toStartOf="@id/tv_price_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_min_price"
+                    app:thumbStrokeColor="@color/yellow_100"
+                    app:thumbStrokeWidth="@dimen/dimen_1dp"
+                    app:tickVisible="false"
+                    app:trackColorActive="@color/yellow_100"
+                    app:trackColorInactive="@color/gray_100"
+                    app:values="@array/initial_slider_values" />
+
+                <TextView
+                    android:id="@+id/tv_min_price"
+                    style="@style/TextFontRubikRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:textColor="@color/black_100"
+                    android:textSize="@dimen/dimen_12sp"
+                    app:layout_constraintBottom_toTopOf="@id/range_price"
+                    app:layout_constraintStart_toStartOf="@id/tv_price_title"
+                    app:layout_constraintTop_toBottomOf="@id/sep_price"
+                    tools:text="20000 Vnd" />
+
+                <TextView
+                    android:id="@+id/tv_dash_price"
+                    style="@style/TextFontRubikRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_4dp"
+                    android:text="@string/dash"
+                    android:textSize="@dimen/dimen_12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_min_price"
+                    app:layout_constraintStart_toEndOf="@id/tv_min_price"
+                    app:layout_constraintTop_toTopOf="@id/tv_min_price" />
+
+                <TextView
+                    android:id="@+id/tv_max_price"
+                    style="@style/TextFontRubikRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_4dp"
+                    android:textColor="@color/black_100"
+                    android:textSize="@dimen/dimen_12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_dash_price"
+                    app:layout_constraintStart_toEndOf="@id/tv_dash_price"
+                    app:layout_constraintTop_toTopOf="@id/tv_dash_price"
+                    tools:text="250000 Vnd" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_category"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_24dp"
+            app:cardCornerRadius="@dimen/dimen_16dp"
+            app:cardElevation="@dimen/dimen_0dp"
+            app:layout_constraintEnd_toEndOf="@id/cv_price_range"
+            app:layout_constraintStart_toStartOf="@id/cv_price_range"
+            app:layout_constraintTop_toBottomOf="@id/cv_price_range">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_category_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_12dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    android:text="@string/category"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimen_14sp"
+                    app:layout_constraintBottom_toTopOf="@id/sep_category"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="@integer/int_0"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <View
+                    android:id="@+id/sep_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:background="@color/gray_100"
+                    app:layout_constraintBottom_toTopOf="@id/rv_categories"
+                    app:layout_constraintTop_toBottomOf="@id/tv_category_title"
+                    app:layout_constraintVertical_bias="@integer/int_0" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_categories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dimen_12dp"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:layout_marginBottom="@dimen/dimen_12dp"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHeight_max="@dimen/dimen_160dp"
+                    app:layout_constraintTop_toBottomOf="@id/sep_category"
+                    tools:layout_height="@dimen/dimen_200dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_tag"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_24dp"
+            app:cardCornerRadius="@dimen/dimen_16dp"
+            app:cardElevation="@dimen/dimen_0dp"
+            app:layout_constraintEnd_toEndOf="@id/cv_category"
+            app:layout_constraintStart_toStartOf="@id/cv_category"
+            app:layout_constraintTop_toBottomOf="@id/cv_category">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_tag_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_12dp"
+                    android:layout_marginTop="@dimen/dimen_16dp"
+                    android:text="@string/tag"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimen_14sp"
+                    app:layout_constraintBottom_toTopOf="@id/sep_tag"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="@integer/int_0"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <View
+                    android:id="@+id/sep_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:background="@color/gray_100"
+                    app:layout_constraintBottom_toTopOf="@id/rv_tags"
+                    app:layout_constraintTop_toBottomOf="@id/tv_tag_title"
+                    app:layout_constraintVertical_bias="@integer/int_0" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_tags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/dimen_12dp"
+                    android:layout_marginTop="@dimen/dimen_12dp"
+                    android:layout_marginBottom="@dimen/dimen_12dp"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHeight_max="@dimen/dimen_160dp"
+                    app:layout_constraintTop_toBottomOf="@id/sep_tag"
+                    tools:layout_height="@dimen/dimen_200dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button
+            android:id="@+id/btn_apply_filter"
+            style="@style/AppYellowButtonStyle"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_24dp"
+            android:layout_marginBottom="@dimen/dimen_20dp"
+            android:paddingVertical="@dimen/dimen_8dp"
+            android:text="@string/apply_filter"
+            android:textColor="@color/black_100"
+            android:textSize="@dimen/dimen_14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_tag"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_percent="0.4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

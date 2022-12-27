@@ -30,4 +30,8 @@ sealed class BaseInput {
     data class EditProFileInput(
         val application: Application
     ): BaseInput()
+
+    data class SearchInput(
+        val application: Application
+    ): BaseInput()
 }
