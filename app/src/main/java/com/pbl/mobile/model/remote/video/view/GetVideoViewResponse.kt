@@ -6,7 +6,7 @@ data class GetVideoViewResponse(
     @SerializedName("status")
     val status: String,
     @SerializedName("data")
-    val data: Data,
+    val data: Data?,
 ) {
     data class Data(
         @SerializedName("id")

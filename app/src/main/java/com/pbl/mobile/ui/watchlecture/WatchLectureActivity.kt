@@ -282,10 +282,12 @@ class WatchLectureActivity : BaseActivity<ActivityWatchLectureBinding, WatchLect
                 is BaseResponse.Success -> {
                     val data = response.data
                     data?.let { viewData ->
-                        val lastDuration = (viewData.data.highestDuration * 1000).toLong()
-                        player?.seekTo(lastDuration)
-                        val viewCountText = "0 Views"
-                        binding.tvVideoViewCount.text = viewCountText
+                        viewData.data?.let {
+                            val lastDuration = (viewData.data.highestDuration * 1000).toLong()
+                            player?.seekTo(lastDuration)
+                            val viewCountText = "0 Views"
+                            binding.tvVideoViewCount.text = viewCountText
+                        }
                     } ?: kotlin.run {
                         val viewCountText = "Unknown"
                         binding.tvVideoViewCount.text = viewCountText

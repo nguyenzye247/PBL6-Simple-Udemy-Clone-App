@@ -110,7 +110,7 @@ class EditProfileViewModel(val input: BaseInput.EditProFileInput) : BaseViewMode
     fun uploadAvatar(bitmap: Bitmap) {
         val imageParts = createImageParts(bitmap)
         subscription.add(
-            imageRequestManager.uploadBackImage(
+            imageRequestManager.uploadAvatar(
                 input.application,
                 imageParts
             )

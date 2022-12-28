@@ -82,7 +82,9 @@ class MyPurchasedCourseFragment : BaseFragment<FragmentMyCourseBinding, HomeMain
                     purchasedCourses.clear()
                     purchasedCourses.addAll(viewModel.myPurchaseCourses.sortedBy { it.createdAt })
                     purchasedCourseAdapter.notifyDataSetChanged()
-                    purchasedCourses.forEach { purchasedInstructorIds.add(it.userId) }
+                    purchasedCourses.forEach {
+                        purchasedInstructorIds.add(it.userId)
+                    }
                     if (purchasedInstructorIds.isNotEmpty()) {
                         loadMyPurchasedInstructor(purchasedInstructorIds)
                         binding.ivEmpty.isVisible = false

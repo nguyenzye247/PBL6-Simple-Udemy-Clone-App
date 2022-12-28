@@ -190,9 +190,11 @@ class HomeMainViewModel(private val input: BaseInput.MainInput) : BaseViewModel(
                         .observeOnUiThread()
                         .subscribe(
                             { courseResponse ->
-                                myPurchaseCourses.add(courseResponse.course)
-                                if (courseIds.size == myPurchaseCourses.size)
-                                    _isFinishedLoadMyPurchaseCourses.value = true
+                                if (courseResponse.course != null) {
+                                    myPurchaseCourses.add(courseResponse.course)
+                                    if (courseIds.size == myPurchaseCourses.size)
+                                        _isFinishedLoadMyPurchaseCourses.value = true
+                                }
                             },
                             { throwable ->
                                 throwable.printStackTrace()

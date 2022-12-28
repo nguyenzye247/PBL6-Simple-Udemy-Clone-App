@@ -8,11 +8,13 @@ import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.ui.signin.SignInActivity
 import okhttp3.Interceptor
 import okhttp3.Response
+import java.util.concurrent.Semaphore
 
 class AuthenticationInterceptor(
     private val application: Application
 ) : Interceptor {
     private val refreshRequestManager = RefreshRequestManager()
+    private val semaphore = Semaphore(1)
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
@@ -25,16 +27,21 @@ class AuthenticationInterceptor(
         val response = chain.proceed(newRequest)
 
         if (response.code == 401) {
-            refreshAccessToken(refreshToken)?.let { newAccessToken ->
-                application.getBaseConfig().token = newAccessToken
+            semaphore.acquire()
+            try {
+                val refreshIt = refreshAccessToken(refreshToken)
+                refreshIt?.let { newAccessToken ->
+                    application.getBaseConfig().token = newAccessToken
 
-                val anotherNewRequest = request.newBuilder()
-                    .header("Authorization", BEARER + newAccessToken)
-                    .build()
-                return chain.proceed(anotherNewRequest)
+                    val anotherNewRequest = request.newBuilder()
+                        .header("Authorization", BEARER + newAccessToken)
+                        .build()
+                    return chain.proceed(anotherNewRequest)
+                }
+            } finally {
+                semaphore.release()
             }
         }
-
         return response
     }
 

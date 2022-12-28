@@ -2,6 +2,7 @@ package com.pbl.mobile.api
 
 import android.app.Application
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
+import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -22,8 +23,13 @@ class BaseRequestManager(val application: Application) {
     private var httpLoggingInterceptor = HttpLoggingInterceptor()
         .setLevel(HttpLoggingInterceptor.Level.BODY)
 
+    private val dispatcher = Dispatcher().also {
+        it.maxRequests = 1
+    }
+
     private val okHttpClient = OkHttpClient
         .Builder()
+        .dispatcher(dispatcher)
         .addInterceptor(AuthenticationInterceptor(application))
         .addInterceptor(httpLoggingInterceptor)
         .build()

@@ -229,7 +229,7 @@ class CourseDetailActivity : BaseActivity<ActivityCourseDetailBinding, CourseDet
             when (response) {
                 is BaseResponse.Success -> {
                     response.data?.let { sectionResponse ->
-                        sectionResponse.data.sections.let {
+                        sectionResponse.data.let {
                             sections.clear()
                             sections.addAll(it)
                             sectionAdapter.notifyDataSetChanged()

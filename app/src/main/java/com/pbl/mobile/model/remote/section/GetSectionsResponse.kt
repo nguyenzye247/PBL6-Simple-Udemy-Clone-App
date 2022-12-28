@@ -7,10 +7,5 @@ data class GetSectionsResponse(
     @SerializedName("status")
     val status: String,
     @SerializedName("data")
-    val data: Data,
-) {
-    data class Data(
-        @SerializedName("sections")
-        val sections: List<Section>
-    )
-}
+    val data: List<Section>,
+)
