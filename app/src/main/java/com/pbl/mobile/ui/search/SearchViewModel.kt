@@ -16,7 +16,6 @@ import com.pbl.mobile.base.BaseInput
 import com.pbl.mobile.base.BaseViewModel
 import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.extension.observeOnUiThread
-import com.pbl.mobile.model.dto.FilterData
 import com.pbl.mobile.model.local.Course
 import com.pbl.mobile.model.remote.category.get.CategoryGetResponse
 import com.pbl.mobile.model.remote.hashtag.GetHashtagResponse

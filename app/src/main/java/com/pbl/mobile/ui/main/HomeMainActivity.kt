@@ -43,12 +43,6 @@ class HomeMainActivity : BaseActivity<ActivityHomeBinding, HomeMainViewModel>(),
         when (item.itemId) {
             android.R.id.home ->
                 onBackPressed()
-            R.id.menu_notification -> {
-
-            }
-            R.id.menu_language -> {
-
-            }
             R.id.menu_search -> {
                 goToSearch()
             }

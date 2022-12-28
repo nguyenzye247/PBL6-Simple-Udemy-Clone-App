@@ -3,10 +3,12 @@ package com.pbl.mobile.api.refresh
 import android.app.Application
 import com.google.gson.annotations.SerializedName
 import com.pbl.mobile.api.BaseRequestManager
+import com.pbl.mobile.api.REFRESH_URL
 import com.pbl.mobile.model.remote.signin.SignInResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface RefreshApi {
     companion object {
@@ -15,6 +17,7 @@ interface RefreshApi {
         }
     }
 
+    @POST(REFRESH_URL)
     fun refreshToken(@Body refreshBody: RefreshBody): Call<SignInResponse>
 
     data class RefreshBody(

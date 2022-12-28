@@ -211,7 +211,7 @@ class CourseDetailsViewModel(val input: BaseInput.CourseDetailInput) : BaseViewM
         if (response.status == SUCCESS) {
             _courseSections.value = BaseResponse.Success(response)
             sectionIds.clear()
-            sectionIds.addAll(response.data.sections.map { it.id })
+            sectionIds.addAll(response.data.map { it.id })
             getAllCourseLectures()
         } else
             _courseSections.value = BaseResponse.Error("Error loading course details")

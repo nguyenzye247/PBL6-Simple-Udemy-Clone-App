@@ -2,16 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_language"
-        android:icon="@drawable/ic_language_global"
-        android:title="@string/language"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/menu_notification"
-        android:icon="@drawable/ic_notification_inactive"
-        android:title="@string/notification"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_search"
         android:title="@string/search"
