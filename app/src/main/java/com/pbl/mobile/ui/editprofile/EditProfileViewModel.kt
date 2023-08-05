@@ -3,11 +3,14 @@ package com.pbl.mobile.ui.editprofile
 import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.onesignal.OneSignal
 import com.pbl.mobile.api.BaseResponse
 import com.pbl.mobile.api.image.ImageRequestManager
 import com.pbl.mobile.api.user.UserRequestManager
 import com.pbl.mobile.base.BaseInput
 import com.pbl.mobile.base.BaseViewModel
+import com.pbl.mobile.common.EMPTY_TEXT
+import com.pbl.mobile.extension.getBaseConfig
 import com.pbl.mobile.extension.observeOnUiThread
 import com.pbl.mobile.model.remote.image.UploadImageResponse
 import com.pbl.mobile.model.remote.user.GetUserDetailResponse
@@ -199,6 +202,34 @@ class EditProfileViewModel(val input: BaseInput.EditProFileInput) : BaseViewMode
                     },
                     { throwable ->
                         _changePasswordResponse.value = BaseResponse.Error(throwable.message)
+                    }
+                )
+        )
+    }
+
+    fun getMe() {
+        subscription.add(
+            userRequestManager.getMe(
+                input.application,
+                input.application.getBaseConfig().token
+            )
+                .observeOnUiThread()
+                .subscribe(
+                    { getMeResponse ->
+                        getMeResponse.data.let { me ->
+                            OneSignal.setExternalUserId(me.userId)
+                            input.application.getBaseConfig().apply {
+                                myId = me.userId
+                                fullName = me.fullName
+                                myEmail = me.email
+                                myAvatar = me.avatarUrl ?: EMPTY_TEXT
+                                myRole = me.role
+                                joinAt = me.createdAt
+                            }
+                        }
+                    },
+                    { throwable ->
+
                     }
                 )
         )

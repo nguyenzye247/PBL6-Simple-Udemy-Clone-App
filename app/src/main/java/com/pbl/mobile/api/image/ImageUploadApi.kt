@@ -32,7 +32,7 @@ interface ImageUploadApi {
     ): Single<UploadImageResponse>
 
     @Multipart
-    @PUT(UPLOAD_IMAGE_URL)
+    @POST(UPLOAD_IMAGE_URL)
     fun uploadAvatar(
         @Part file: MultipartBody.Part
     ): Single<UploadImageResponse>

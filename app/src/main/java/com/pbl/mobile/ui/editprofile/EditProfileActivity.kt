@@ -185,6 +185,7 @@ class EditProfileActivity : BaseActivity<ActivityEditProfileBinding, EditProfile
                         response.data?.let { updateUserAvatarResponse ->
                             if (updateUserAvatarResponse.status == SUCCESS) {
                                 this@EditProfileActivity.showToast("User avatar updated successfully")
+                                getMe()
                             }
                         }
                     }

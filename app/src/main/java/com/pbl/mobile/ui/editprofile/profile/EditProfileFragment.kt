@@ -286,7 +286,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
         }
     }
 
-    private fun setIdentityImage(url: String) {
+    private fun setIdentityImage(url: String?) {
         val identityUrls =
             StringUtils.separateIdentityUrl(url)
         if (identityUrls.first.isNotEmpty() && identityUrls.second.isNotEmpty()) {
